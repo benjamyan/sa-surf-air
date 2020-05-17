@@ -1,0 +1,20 @@
+{% macro active(activePage='home') %}
+<nav class="header__nav">
+    <!--LOGO-->
+    <a href="#" class="nav__logo header__nav--logo"><img class="nav__logo--image" src="#" /></a>
+    <!--MAIN-NAV-->
+    <div class="nav__main">
+        <a href="#" class="nav__main--item nav__item{%if activePage == 'home' %}--active{% endif %}">home</a>
+        <a href="#" class="nav__main--item nav__item{%if activePage == 'experience' %}--active{% endif %}">experience</a>
+        <a href="#" class="nav__main--item nav__item{%if activePage == 'on-demand' %}--active{% endif %}">on demand</a>
+        <a href="#" class="nav__main--item nav__item{%if activePage == 'scheduled' %}--active{% endif %}">scheduled</a>
+        <a href="#" class="nav__main--item nav__item{%if activePage == 'memberships' %}--active{% endif %}">memberships</a>
+    </div>
+    <!--SUB-NAV-->
+    <div class="nav__sub">
+        <a href="tel:8003656179" class="nav__sub--item">800.365.6179</a>
+        <a href="#" class="nav__item--active">sign in</a>
+        <a href="#" class="nav__sub--item nav__item--button-lg"></a>
+    </div>  
+</nav>
+{% endmacro %}
