@@ -1,0 +1,7 @@
+<div class="hero__banner col-xs-12">
+{% for bannerText in heroBanner %}
+    <h5>{{bannerText.subtitle}}</h5>
+    <h1>{{bannerText.title}}</h1>
+    <button><a href="{{bannerText.btnHref}}">{{bannerText.btnText}}</a></button>
+{% endfor %}
+</div>

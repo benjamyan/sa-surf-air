@@ -1,5 +1,6 @@
-/*Hello, World!*/
-@use "../node_modules/tailwindcss/tailwind.css";
-@use "../node_modules/tailwindcss/base.css";
-@use "../node_modules/tailwindcss/components.css";
-@use "../node_modules/tailwindcss/utilities.css";
+@import "base/fonts";
+@import "base/variables";
+@import "base/typography";
+@import "base/kindling";
+@import "navigation";
+

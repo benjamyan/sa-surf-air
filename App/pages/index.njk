@@ -11,9 +11,7 @@
 {% endblock %}
 
 {% block content %}
-  {% for bannerText in homeHeroBanner %}
-    <h1>{{bannerText.title}}</h1>
-  {% endfor %}
+  {% include "partials/heroBanner_fullHeight.njk" %}
 {% endblock %}
 
 {% block footer %}

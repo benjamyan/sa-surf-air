@@ -1,0 +1,54 @@
+h1, h2, h3, h4, h5, h6, p, em, body, html, input, textarea, strong {
+  font-family: $font-stack;
+  color: white;
+  padding: 0;
+  margin: 0;
+  font-kerning: normal;
+}
+h1, h2, h3, h4 {
+  text-align: center;
+}
+h1, h2 {
+  font-size: calc(36px + (60 - 36) * ((99vw - 300px) / (1900 - 300)));
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 71px;
+  text-align: center;
+}
+h3 {
+  font-size: calc(32px + (44 - 32) * ((100vw - 300px) / (1900 - 300)));
+  line-height: 3.5rem;
+}
+h4 {
+  font-size: 22px;
+  font-style: normal;
+  letter-spacing: 2px;
+}
+h5 {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 4.21px;
+  line-height: 16.8px;
+  text-align: center;
+}
+h6 {
+  color: black;
+  font-size: 15px;
+  font-style: italic;
+}
+p {
+  font-size: 18px;
+  letter-spacing: .11rem;
+  font-style: normal;
+  line-height: 36px;
+}
+ul, ul li {
+  font-size: 19px;
+  line-height: 32px;
+  list-style: none;
+  list-style-type: none;
+}
+span { }
+a {
+  text-decoration: none;
+}

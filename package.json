@@ -21,14 +21,12 @@
     "gulp-data": "^1.3.1",
     "gulp-nunjucks": "^5.0.1",
     "gulp-nunjucks-render": "^2.2.3",
-    "nunjucks": "^3.2.1",
-    "tailwindcss": "^1.4.6"
+    "nunjucks": "^3.2.1"
   },
   "dependencies": {
     "gulp-foreach": "^0.1.0",
     "gulp-nunjucks": "^5.0.1",
     "gulp-nunjucks-render": "^2.2.3",
-    "nunjucks": "^3.2.1",
-    "tailwindcss": "^1.4.6"
+    "nunjucks": "^3.2.1"
   }
 }

@@ -1,8 +1,5 @@
 {
-    "homeHeroBanner": [{
-        "subtitle": "PERSONALIZED AVIATION SETS YOU FREE",
-        "title": "Another title goes here",
-        "btnHref": "#",
-        "btnText": "SIGN UP"
+    "heroBanner": [{
+        "title": "Another title goes here"
     }]
 }

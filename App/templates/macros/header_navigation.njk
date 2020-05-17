@@ -1,20 +1,20 @@
 {% macro active(activePage='home') %}
-<nav class="header__nav">
+<nav class="header__nav col-xs-12">
     <!--LOGO-->
     <a href="index.html" class="nav__logo header__nav--logo"><img class="nav__logo--image" src="#" /></a>
     <!--MAIN-NAV-->
     <div class="nav__main">
-        <a href="index.html" class="nav__main--item nav__item{%if activePage == 'home' %}--active{% endif %}">home</a>
-        <a href="experience.html" class="nav__main--item nav__item{%if activePage == 'experience' %}--active{% endif %}">experience</a>
-        <a href="on-demand.html" class="nav__main--item nav__item{%if activePage == 'on-demand' %}--active{% endif %}">on demand</a>
-        <a href="scheduled.html" class="nav__main--item nav__item{%if activePage == 'scheduled' %}--active{% endif %}">scheduled</a>
-        <a href="memberships.html" class="nav__main--item nav__item{%if activePage == 'memberships' %}--active{% endif %}">memberships</a>
+        <a href="index.html" class="nav__item nav__main--item {%if activePage == 'home' %}nav__item--active{% endif %}">home</a>
+        <a href="experience.html" class="nav__item nav__main--item {%if activePage == 'experience' %}nav__item--active{% endif %}">experience</a>
+        <a href="on-demand.html" class="nav__item nav__main--item {%if activePage == 'on-demand' %}nav__item--active{% endif %}">on demand</a>
+        <a href="scheduled.html" class="nav__item nav__main--item {%if activePage == 'scheduled' %}nav__item--active{% endif %}">scheduled</a>
+        <a href="memberships.html" class="nav__item nav__main--item {%if activePage == 'memberships' %}nav__item--active{% endif %}">memberships</a>
     </div>
     <!--SUB-NAV-->
     <div class="nav__sub">
-        <a href="tel:8003656179" class="nav__sub--item">800.365.6179</a>
-        <a href="#" class="nav__item--active">sign in</a>
-        <a href="#" class="nav__sub--item nav__item--button-lg">start free trial</a>
+        <a href="tel:8003656179" class="nav__item nav__sub--item">800.365.6179</a>
+        <a href="#" class="nav__item nav__item--active">sign in</a>
+        <a href="#" class="nav__item nav__sub--item nav__item--button-lg">start free trial</a>
     </div>  
 </nav>
 {% endmacro %}
