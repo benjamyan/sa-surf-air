@@ -25,9 +25,10 @@
     "tailwindcss": "^1.4.6"
   },
   "dependencies": {
-    "nunjucks": "^3.2.1",
+    "gulp-foreach": "^0.1.0",
     "gulp-nunjucks": "^5.0.1",
     "gulp-nunjucks-render": "^2.2.3",
+    "nunjucks": "^3.2.1",
     "tailwindcss": "^1.4.6"
   }
 }
