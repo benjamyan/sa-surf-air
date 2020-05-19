@@ -1,10 +1,27 @@
 {
     "hero": [{
-        "subtitle": "PERSONALIZED AVIATION SETS YOU FREE",
-        "title": "Better travel for the modern world",
+        "subTitle": "PERSONALIZED AVIATION SETS YOU FREE",
+        "mainTitle": "Better travel for the modern world",
+        "btnType": "transparent",
         "btnHref": "#",
         "btnText": "SIGN UP",
-        "bgImageSrc": "media/home_hero.jpg",
+        "bgImageSrc": "assets/image/home_hero.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "welcome": [{
+        "mainTitle": "Welcome to personalized aviation",
+        "bgImageSrc": "assets/image/home_services_bg.jpg",
+        "bgImageAlt": "An alt tag for services section",
+        "services": [
+            {
+                "mainTitle": "Health"
+            },
+            {
+                "mainTitle": "Optionality"
+            },
+            {
+                "mainTitle": "Zero Hassles"
+            }
+        ]
     }]
 }

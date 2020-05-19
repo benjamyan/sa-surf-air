@@ -1,0 +1,8 @@
+{% block Title %}
+  {% import 'macros/page_title.njk' as Title %}
+    {{ Title.active(pageTitle) }}
+{% endblock %}
+{% block header %}
+  {% import 'macros/header_navigation.njk' as nav %}
+    {{ nav.active(pageTitle) }}
+{% endblock %}

@@ -1,0 +1,17 @@
+<section class="service__banner service__banner--{{ sectionRef }} service__banner--{{ pageTitle }} col-xs-12">
+{% for content in sectionRef %}
+    {% if content.mainTitle %}
+        <h1>{{content.mainTitle}}</h1>
+    {% endif %}
+    {% if content.subTitle %}
+        <h1>{{content.subTitle}}</h1>
+    {% endif %}
+    {% for service in content.services %}
+    <article class="service__item service__item--{{loop.index}} service__item--{{ sectionRef }}">
+        <p>{{service.mainTitle}}</p>
+        <details></details>
+    </article> 
+    {% endfor %}
+    {% include "partials/section_bg.njk" %}
+{% endfor %}
+</section>

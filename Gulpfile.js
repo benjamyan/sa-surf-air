@@ -3,8 +3,6 @@ const image = require('gulp-image');
 const nunjucks = require('nunjucks');
 const nunjucksRender = require('gulp-nunjucks-render');
 const data = require('gulp-data');
-// const nunEnv = new nunjucksRender.nunjucks.Environment([loaders], [opts]);
-
 
 const pages = ["index","experience","on-demand","scheduled","memberships"]
 gulp.task('nunjucks', async function() {
@@ -33,11 +31,8 @@ gulp.task('image', () => {
             concurrent: 10,
             quiet: true // defaults to false
         }))
-        .pipe(gulp.dest('./dest'));
+        .pipe(gulp.dest('./App'));
 });
-/*env.addGlobal('this', function () {
-    return this.getVariables()
-})*/
 
 exports.default = function() {
     //

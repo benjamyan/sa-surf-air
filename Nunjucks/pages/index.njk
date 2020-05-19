@@ -13,30 +13,19 @@
 
 {% block content %}
 
-  <!--{% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}-->
-  {% import 'macros/ctaBanner_centerAlign_fullHeight.njk' as hero %}
-    {{ hero.target(
-      pageTitle = pageTitle,
-      ctaName = 'hero',
-      subTitle = 'PERSONALIZED AVIATION SETS YOU FREE', 
-      mainTitle = 'Better travel for the modern world',
-      btnType = 'transparent',
-      btnHref = '#',
-      btnText = 'SIGN UP',
-      bgImgSrc = 'assets/image/home_hero.jpg',
-      bgImgAlt = 'Surf Air description goes here for SEO and screen readers'
-    ) }}
+  {% set sectionRef = hero %}
+    {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
   
-  {% set sectionRef = "welcome" %}
+  {% set sectionRef = welcome %}
     {% include "partials/aboutServices_fullHeight.njk" %}
 
-  {% set sectionRef = "why" %}
+  {% set sectionRef = why %}
     {% include "partials/textBanner_rightAlign_fullHeight.njk" %}
 
-  {% set sectionRef = "who" %}
+  {% set sectionRef = who %}
     {% include "partials/textBanner_leftAlign_fullHeight.njk" %}
 
-  {% set sectionRef = "vs" %}
+  {% set sectionRef = vs %}
     {% include "partials/textBanner_leftAlign_fullHeight.njk" %}
 
   {% include "partials/floating_section_counter.njk" %}

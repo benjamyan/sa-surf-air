@@ -1,0 +1,18 @@
+<div class="cta__banner--bg col-xs-12">
+    {% if content.bgVideoMP4 %}
+        <video class="bg__video cta__banner--media cta__banner--bg-video col-xs-12" poster="{{content.bgVideoPoster}}" muted autoplay preload>
+            {% if content.bgVideoWEBM %}
+                <source src="{{content.bgVideoWEBM}}.webm" type="video/webm">
+            {% endif %}
+            {% if content.bgVideoOGG %}
+                <source src="{{content.bgVideoOGG}}.ogv" type="video/ogg">
+            {% endif %}
+            {% if content.bgVideoMP4 %}
+                <source src="{{content.bgVideoMP4}}.mp4" type="video/mp4">
+            {% endif %}
+        </video>
+    {% endif %}
+    {% if content.bgImageSrc %}
+        <img class="bg__image cta__banner--media cta__banner--bg-image col-xs-12" src="{{content.bgImageSrc}}" alt="{{content.bgImageAlt}}" />
+    {% endif %}
+</div>
