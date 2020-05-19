@@ -1,0 +1,10 @@
+{
+    "hero": [{
+        "subtitle": "PERSONALIZED AVIATION SETS YOU FREE",
+        "title": "Better travel for the modern world",
+        "btnHref": "#",
+        "btnText": "SIGN UP",
+        "bgImageSrc": "media/home_hero.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }]
+}

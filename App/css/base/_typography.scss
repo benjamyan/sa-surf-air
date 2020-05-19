@@ -1,5 +1,4 @@
 h1, h2, h3, h4, h5, h6, p, em, body, html, input, textarea, strong {
-  font-family: $font-stack;
   color: white;
   padding: 0;
   margin: 0;
@@ -9,22 +8,26 @@ h1, h2, h3, h4 {
   text-align: center;
 }
 h1, h2 {
-  font-size: calc(36px + (60 - 36) * ((99vw - 300px) / (1900 - 300)));
+  @extend %font-stack-light;
+  font-size: calc(36px + (70 - 36) * ((99vw - 300px) / (1900 - 300)));
   font-weight: 400;
   letter-spacing: 1px;
   line-height: 71px;
   text-align: center;
 }
 h3 {
+  @extend %font-stack-light;
   font-size: calc(32px + (44 - 32) * ((100vw - 300px) / (1900 - 300)));
   line-height: 3.5rem;
 }
 h4 {
+  @extend %font-stack-reg;
   font-size: 22px;
   font-style: normal;
   letter-spacing: 2px;
 }
 h5 {
+  @extend %font-stack-bold;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 4.21px;
@@ -32,11 +35,13 @@ h5 {
   text-align: center;
 }
 h6 {
+  @extend %font-stack-ital;
   color: black;
   font-size: 15px;
   font-style: italic;
 }
 p {
+  @extend %font-stack-reg;
   font-size: 18px;
   letter-spacing: .11rem;
   font-style: normal;
@@ -48,7 +53,6 @@ ul, ul li {
   list-style: none;
   list-style-type: none;
 }
-span { }
 a {
   text-decoration: none;
 }

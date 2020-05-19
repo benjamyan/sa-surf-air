@@ -1,50 +1,47 @@
 @import "https://fonts.googleapis.com/css?family=Open+Sans";
 @font-face {
-  font-family: "rt_ralewaylight";
-  src: url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-light-webfont.eot");
-  src: url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-light-webfont.eot?#iefix") format("embedded-opentype"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-light-webfont.woff2") format("woff2"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-light-webfont.woff") format("woff"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-light-webfont.ttf") format("truetype"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-light-webfont.svg") format("svg");
-  font-weight: normal;
-  font-style: normal;
+  font-family: "Kievit-light";
+  src: url("../../assets/fonts/FFKievitWebProLight.woff2") format("woff2");
 }
 @font-face {
-  font-family: "rt_ralewayregular";
-  src: url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-regular-webfont.eot");
-  src: url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-regular-webfont.eot?#iefix") format("embedded-opentype"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-regular-webfont.woff2") format("woff2"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-regular-webfont.woff") format("woff"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-regular-webfont.ttf") format("truetype"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-regular-webfont.svg") format("svg");
-  font-weight: normal;
-  font-style: normal;
+  font-family: "Kievit-ital";
+  src: url("../../assets/fonts/FFKievitWebProItalic.woff2") format("woff2");
 }
 @font-face {
-  font-family: "rt_ralewaymedium";
-  src: url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-medium-webfont.eot");
-  src: url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-medium-webfont.eot?#iefix") format("embedded-opentype"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-medium-webfont.woff2") format("woff2"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-medium-webfont.woff") format("woff"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-medium-webfont.ttf") format("truetype"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-medium-webfont.svg") format("svg");
-  font-weight: normal;
-  font-style: normal;
+  font-family: "Kievit-reg";
+  src: url("../../assets/fonts/FFKievitWebPro.woff2") format("woff2");
 }
 @font-face {
-  font-family: "rt_ralewaysemibold";
-  src: url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-semibold-webfont.eot");
-  src: url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-semibold-webfont.eot?#iefix") format("embedded-opentype"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-semibold-webfont.woff2") format("woff2"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-semibold-webfont.woff") format("woff"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-semibold-webfont.ttf") format("truetype"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-semibold-webfont.svg") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "rt_ralewaybold";
-  src: url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-extrabold-webfont.eot");
-  src: url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-extrabold-webfont.eot?#iefix") format("embedded-opentype"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-extrabold-webfont.woff2") format("woff2"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-extrabold-webfont.woff") format("woff"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-extrabold-webfont.ttf") format("truetype"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-extrabold-webfont.svg") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "rt_ralewayextrabold";
-  src: url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-extrabold-webfont.eot");
-  src: url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-extrabold-webfont.eot?#iefix") format("embedded-opentype"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-extrabold-webfont.woff2") format("woff2"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-extrabold-webfont.woff") format("woff"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-extrabold-webfont.ttf") format("truetype"), url("https://cdn2.hubspot.net/hubfs/5213739/2019%20Year%20in%20Review%20Landing%20Page/RT-Raleway/rtraleway-extrabold-webfont.svg") format("svg");
-  font-weight: normal;
-  font-style: normal;
+  font-family: "Kievit-bold";
+  src: url("../../assets/fonts/FFKievitWebProBold.woff2") format("woff2");
 }
 /*COLORS*/
 /*FONTS*/
+h3, h1, h2 {
+  font-family: "Kievit-light", "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+h6 {
+  font-family: "Kievit-ital", "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.nav__item, p, h4 {
+  font-family: "Kievit-reg", "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.nav__item--button-lg, h5 {
+  font-family: "Kievit-bold", "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
 h1, h2, h3, h4, h5, h6, p, em, body, html, input, textarea, strong {
-  font-family: "Open Sans", "Arial", "Helvetica", sans-serif;
   color: white;
   padding: 0;
   margin: 0;
@@ -56,7 +53,7 @@ h1, h2, h3, h4 {
 }
 
 h1, h2 {
-  font-size: calc(36px + (60 - 36) * ((99vw - 300px) / (1900 - 300)));
+  font-size: calc(36px + (70 - 36) * ((99vw - 300px) / (1900 - 300)));
   font-weight: 400;
   letter-spacing: 1px;
   line-height: 71px;
@@ -134,6 +131,7 @@ html {
 html, body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 .inline {
@@ -325,16 +323,76 @@ html, body {
 
 /*Responsive*/
 .nav__item {
-  font-family: sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 1.5px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2.5px;
   line-height: 14px;
   text-align: center;
   text-transform: uppercase;
+  color: white;
 }
-.nav__item--active {
-  font-weight: 800;
+.nav__item--button-lg {
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 17.5px;
+}
+.nav__item--button-lg a {
+  color: #0A253E;
+  text-decoration: none;
+}
+.nav__item--button-solid {
+  color: black;
+  background-color: #FFFFFF;
+}
+.nav__item--button-transparent {
+  color: #FFFFFF;
+  background-color: transparent;
+  border: 1px solid #FFFFFF;
+}
+
+.header__nav {
+  margin: 0 auto;
+  padding: 23px 40px 0 40px;
+  align-items: center;
+  position: fixed;
+  z-index: 2;
+}
+.header__nav .nav__logo {
+  margin-right: auto;
+}
+.header__nav .nav__logo--image {
+  width: 115px;
+  height: 28px;
+  object-fit: contain;
+}
+.header__nav .nav__main {
+  margin: 0 auto;
+}
+.header__nav .nav__item {
+  text-align: center;
+  margin: 0 7.5px;
+  vertical-align: middle;
+}
+
+.cta__banner {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.cta__banner--content {
+  z-index: 1;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 15%;
+}
+.cta__banner--content h1 {
+  margin: 13px 0;
+}
+.cta__banner--bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
 
 /*# sourceMappingURL=output.css.map */

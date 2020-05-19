@@ -1,0 +1,35 @@
+<section class="cta__banner cta__banner--{{ sectionRef }} cta__banner--{{ pageTitle }} col-xs-12">
+{% set this = sectionRef %}
+<p>{{this}}</p>
+{% for content in this %}
+    <center class="cta__banner--content {{this}} col-xs-11 col-sm-11">
+        {% if content.subtitle %}
+            <h5>{{content.subtitle}}</h5>
+        {% endif %}
+        {% if content.title %}
+            <h1>{{content.title}}</h1>
+        {% endif %}
+        {% if content.btnHref %}
+            <a class="nav__item nav__item--button-lg nav__item--button-trans" href="{{content.btnHref}}">{{content.btnText}}</a>
+        {% endif %}
+    </center>
+    <div class="cta__banner--bg col-xs-12">
+        {% if content.bgVideoMP4 %}
+            <video class="bg__video cta__banner--media cta__banner--bg-video" poster="{{content.bgVideoPoster}}" muted autoplay preload>
+                {% if content.bgVideoWEBM %}
+                    <source src="{{content.bgVideoWEBM}}.webm" type="video/webm">
+                {% endif %}
+                {% if content.bgVideoOGG %}
+                    <source src="{{content.bgVideoOGG}}.ogv" type="video/ogg">
+                {% endif %}
+                {% if content.bgVideoMP4 %}
+                    <source src="{{content.bgVideoMP4}}.mp4" type="video/mp4">
+                {% endif %}
+            </video>
+        {% endif %}
+        {% if content.bgImageSrc %}
+            <img class="bg__image cta__banner--media cta__banner--bg-image" src="{{content.bgImageSrc}}" alt="{{content.bgImageAlt}}" />
+        {% endif %}
+    </div>
+{% endfor %}
+</section>
