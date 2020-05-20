@@ -8,9 +8,9 @@
     text-transform: uppercase;
     color: white;
     &--button {
+        @extend %font-stack-bold;
+        text-align: center;
         &-lg {
-            @extend %font-stack-bold;
-            text-align: center;
             padding: 10px 20px;
             border-radius: 17.5px;
             a {

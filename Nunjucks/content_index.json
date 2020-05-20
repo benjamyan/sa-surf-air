@@ -12,16 +12,44 @@
         "mainTitle": "Welcome to personalized aviation",
         "bgImageSrc": "assets/image/home_services_bg.jpg",
         "bgImageAlt": "An alt tag for services section",
-        "services": [
+        "itemList": [
             {
-                "mainTitle": "Health"
+                "iconSrc": "#",
+                "mainTitle": "Health",
+                "mainCopy": "We go above and beyond to ensure your metal and physical wellbeing",
+                "listItems": {
+                    "1": "Thousands of hyper local airports",
+                    "2": "Fleet of aircraft from turboprops & jets to seaplanes & helicopters",
+                    "3": "Arrive just 15 minutes before departure"
+                },
+                "btnText": "DISCOVER"
             },
             {
-                "mainTitle": "Optionality"
+                "iconSrc": "#",
+                "mainTitle": "Optionality",
+                "mainCopy": "Make the important choices, while we take care of the rest.",
+                "listItems": {
+                    "1": "Thousands of hyper local airports",
+                    "2": "Fleet of aircraft from turboprops & jets to seaplanes & helicopters",
+                    "3": "Easy-to-use mobile app",
+                    "4": "Arrive just 15 minutes before departure"
+                },
+                "btnText": "DISCOVER"
             },
             {
-                "mainTitle": "Zero Hassles"
+                "iconSrc": "#",
+                "mainTitle": "Zero Hassles",
+                "mainCopy": "Never wait in line. We’ve eliminated all the bad parts.",
+                "listItems": {
+                    "1": "Thousands of hyper local airports",
+                    "2": "Fleet of aircraft from turboprops & jets to seaplanes & helicopters",
+                    "3": "Easy-to-use mobile app"
+                },
+                "btnText": "DISCOVER"
             }
         ]
+    }],
+    "why": [{
+        
     }]
 }

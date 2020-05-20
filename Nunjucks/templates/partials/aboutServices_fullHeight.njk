@@ -1,17 +1,31 @@
 <section class="service__banner service__banner--{{ sectionRef }} service__banner--{{ pageTitle }} col-xs-12">
 {% for content in sectionRef %}
+    {% if content.subTitle %}
+        <h5>{{content.subTitle}}</h5>
+    {% endif %}
     {% if content.mainTitle %}
         <h1>{{content.mainTitle}}</h1>
     {% endif %}
-    {% if content.subTitle %}
-        <h1>{{content.subTitle}}</h1>
+    {% if content.itemList %}
+    <div class="service__banner--item-wrapper flex-h col-xs-12">
+        {% for list in content.itemList %}
+        <article class="service__banner--item inline service__banner--item-{{loop.index}} col-xs-{{12 / loop.length}}">
+            {% if list.mainTitle %}
+                <h3>{{list.mainTitle}}</h3>
+            {% endif %}
+            {% if list.mainCopy %}
+                <p>{{list.mainCopy}}</p>
+            {% endif %}
+            <details class="service__banner--item-inner">
+                <summary>{{list.btnText}}</summary>
+                {% for value, item in list.listItems %}
+                    <p>{{item}}</p>
+                {% endfor %}
+            </details>
+        </article>
+        {% endfor %}
+    </div>
     {% endif %}
-    {% for service in content.services %}
-    <article class="service__item service__item--{{loop.index}} service__item--{{ sectionRef }}">
-        <p>{{service.mainTitle}}</p>
-        <details></details>
-    </article> 
-    {% endfor %}
     {% include "partials/section_bg.njk" %}
 {% endfor %}
 </section>
