@@ -1,55 +1,41 @@
 {
     "hero": [{
-        "subTitle": "PERSONALIZED AVIATION SETS YOU FREE",
-        "mainTitle": "Better travel for the modern world",
-        "btnType": "transparent",
-        "btnHref": "#",
-        "btnText": "SIGN UP",
-        "bgImageSrc": "assets/image/home_hero.jpg",
+        "main": [{
+            "mainTitle": "Better travel <br>for the modern world"
+        }],
+        "sub": [{
+            "superCopy": "Travel on your terms, starting at just $199 per month.",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "ON DEMAND"
+                },
+                "2": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "SCHEDULED"
+                }
+            }
+        }],
+        "bgImageSrc": "assets/image/airplane-from-hangar.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],
     "welcome": [{
-        "mainTitle": "Welcome to personalized aviation",
-        "bgImageSrc": "assets/image/home_services_bg.jpg",
-        "bgImageAlt": "An alt tag for services section",
+        "main": [{
+            "mainTitle": "Welcome to<br> personalized aviation"
+        }],
         "itemList": [
             {
-                "iconSrc": "#",
+                "mainTitleIcon": "assets/image/health.svg",
                 "mainTitle": "Health",
-                "mainCopy": "We go above and beyond to ensure your metal and physical wellbeing",
-                "listItems": {
-                    "1": "Thousands of hyper local airports",
-                    "2": "Fleet of aircraft from turboprops & jets to seaplanes & helicopters",
-                    "3": "Arrive just 15 minutes before departure"
-                },
-                "btnText": "DISCOVER"
-            },
-            {
-                "iconSrc": "#",
-                "mainTitle": "Optionality",
-                "mainCopy": "Make the important choices, while we take care of the rest.",
-                "listItems": {
-                    "1": "Thousands of hyper local airports",
-                    "2": "Fleet of aircraft from turboprops & jets to seaplanes & helicopters",
-                    "3": "Easy-to-use mobile app",
-                    "4": "Arrive just 15 minutes before departure"
-                },
-                "btnText": "DISCOVER"
-            },
-            {
-                "iconSrc": "#",
-                "mainTitle": "Zero Hassles",
-                "mainCopy": "Never wait in line. We’ve eliminated all the bad parts.",
-                "listItems": {
-                    "1": "Thousands of hyper local airports",
-                    "2": "Fleet of aircraft from turboprops & jets to seaplanes & helicopters",
-                    "3": "Easy-to-use mobile app"
-                },
+                "mainCopy": "We go above and beyond to ensure your mental and physical wellbeing",
                 "btnText": "DISCOVER"
             }
-        ]
-    }],
-    "why": [{
-        
+        ],
+        "bgImageSrc": "assets/image/businessman-reading-newpaper.jpg",
+        "bgImageAlt": "An alt tag for services section"
     }]
 }

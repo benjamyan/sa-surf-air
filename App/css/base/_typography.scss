@@ -3,21 +3,29 @@ h1, h2, h3, h4, h5, h6, p, em, body, html, input, textarea, strong {
   padding: 0;
   margin: 0;
   font-kerning: normal;
+  text-align: left;
 }
-h1, h2, h3, h4 {
+h1 {
+  @extend %font-stack-num;
+  font-size: calc(48px + (86 - 48) * ((99vw - 300px) / (1900 - 300)));
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 25px 0 20px 0;
+  line-height: 58px;
   text-align: center;
 }
-h1, h2 {
+h2 {
   @extend %font-stack-light;
-  font-size: calc(36px + (70 - 36) * ((99vw - 300px) / (1900 - 300)));
+  font-size: calc(36px + (65 - 36) * ((99vw - 300px) / (1900 - 300)));
   font-weight: 400;
   letter-spacing: 1px;
-  line-height: 71px;
+  line-height: 58px;
   text-align: center;
 }
 h3 {
   @extend %font-stack-light;
-  font-size: calc(32px + (44 - 32) * ((100vw - 300px) / (1900 - 300)));
+  font-size: calc(28px + (34 - 28) * ((100vw - 300px) / (1900 - 300)));
+  font-weight: 200;
   line-height: 3.5rem;
 }
 h4 {
@@ -40,19 +48,23 @@ h6 {
   font-size: 15px;
   font-style: italic;
 }
-p {
-  @extend %font-stack-reg;
-  font-size: 18px;
-  letter-spacing: .11rem;
+p, li {
+  @extend %font-stack-light;
+  font-size: 20px;
+  letter-spacing: .03rem;
   font-style: normal;
-  line-height: 36px;
-}
-ul, ul li {
-  font-size: 19px;
-  line-height: 32px;
-  list-style: none;
-  list-style-type: none;
+  line-height: 25px;
+  sub {
+    @extend %font-stack-ital;
+    font-size:20px;
+    letter-spacing: .06rem;
+  }
 }
 a {
   text-decoration: none;
+}
+.light {
+  h1, h2, h3, h4, h5, h6, p, li, a {
+    color: $super-grey;
+  }
 }

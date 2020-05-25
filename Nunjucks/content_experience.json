@@ -1,5 +1,125 @@
 {
-    "heroBanner": [{
-        "title": "Another title goes here"
+    "hero": [{
+        "main": [{
+            "miniTitle": "PERSONALIZED AVIATION SETS YOU FREE",
+            "mainTitle": "Better travel for the modern world",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "SIGN UP"
+                }
+            }
+        }],
+        "bgImageSrc": "assets/image/airplane-from-hangar.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "welcome": [{
+        "main": [{
+            "mainTitle": "Welcome to<br> personalized aviation"
+        }],
+        "itemList": [
+            {
+                "mainTitleIcon": "assets/image/health.svg",
+                "mainTitle": "Health",
+                "mainCopy": "We go above and beyond to ensure your mental and physical wellbeing",
+                "listItems": {
+                    "1": "Thousands of hyper local airports",
+                    "2": "Fleet of aircraft from turboprops & jets to seaplanes & helicopters",
+                    "3": "Arrive just 15 minutes before departure"
+                },
+                "btnText": "DISCOVER"
+            },
+            {
+                "mainTitleIcon": "assets/image/optionality.svg",
+                "mainTitle": "Optionality",
+                "mainCopy": "Make the important choices, while we take care of the rest.",
+                "listItems": {
+                    "1": "Thousands of hyper local airports",
+                    "2": "Fleet of aircraft from turboprops & jets to seaplanes & helicopters",
+                    "3": "Easy-to-use mobile app",
+                    "4": "Arrive just 15 minutes before departure"
+                },
+                "btnText": "DISCOVER"
+            },
+            {
+                "mainTitleIcon": "assets/image/zero.svg",
+                "mainTitle": "Zero Hassles",
+                "mainCopy": "Never wait in line. We’ve eliminated all the bad parts.",
+                "listItems": {
+                    "1": "Thousands of hyper local airports",
+                    "2": "Fleet of aircraft from turboprops & jets to seaplanes & helicopters",
+                    "3": "Easy-to-use mobile app"
+                },
+                "btnText": "DISCOVER"
+            }
+        ],
+        "bgImageSrc": "assets/image/businessman-reading-newpaper.jpg",
+        "bgImageAlt": "An alt tag for services section"
+    }],
+    "why": [{
+        "fgWidth": "5",
+        "main": [{
+            "miniTitle": "WHY FLY SURF AIR",
+            "mainTitle": "It starts with<br> your time",
+            "subTitle": "That thing we never seem to have enough of. Time flies. But luckily, we fly faster."
+        }],
+        "sub": [{
+            "superCopyIcon": "assets/image/clock.svg",
+            "superCopy": "Be there more",
+            "mainCopy": "If it’s home in time for dinner or more facetime with clients, being where you’re needed most means not standing in lines at the airport.",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "SIGN UP"
+                }
+            }
+        }],
+        "bgImageSrc": "assets/image/person-on-bike-on-road.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "who": [{
+        "fgWidth": "6",
+        "main": [{
+            "miniTitle": "WHO FLIES SURF AIR",
+            "mainTitle": "I’ll never go back to commercial.",
+            "subTitle": "Instead of relocating for a new job in LA, Michael flies down whenever he needs to. In the winters, he skips the traffic to Tahoe for skiing with his family."
+        }],
+        "sub": [{
+            "subCopy": "Michael A<br> Member since 2015"
+        }],
+        "media": [{
+            "mainImageSrc": "assets/image/topo-map.png",
+            "mainImageAlt": "#"
+        }],
+        "bgImageSrc": "assets/image/airplane-against-mountain-backdrop.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "vs": [{
+        "main":[{
+            "miniTitle": "SURF AIR VS. COMMERCIAL",
+            "superTitle": "5000",
+            "mainTitle": "Fewer steps from<br> your car to plane"
+        }],
+        "bgImageSrc": "assets/image/woman-front-of-airplane.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "change": [{
+        "main": [{
+            "mainTitle": "The old way to fly is over.<br>Personalized aviation has arrived.",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "CHANGE THE WAY YOU FLY"
+                }
+            }
+        }],
+        "bgImageSrc": "assets/image/airplane-at-dusk-tail.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }]
 }

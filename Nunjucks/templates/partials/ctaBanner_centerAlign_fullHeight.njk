@@ -1,16 +1,8 @@
-<div class="cta__banner cta__banner--{{ sectionRef | string | safe }} cta__banner--{{ pageTitle }} col-xs-12">
-{% for content in sectionRef %}
-    <center class="cta__banner--content col-xs-12 col-sm-11">
-        {% if content.subTitle %}
-            <h5>{{content.subTitle}}</h5>
-        {% endif %}
-        {% if content.mainTitle %}
-            <h1>{{content.mainTitle}}</h1>
-        {% endif %}
-        {% if content.btnHref %}
-            <a class="nav__item nav__item--button-lg nav__item--button-{{ content.btnType }}" href="{{content.btnHref}}">{{content.btnText}}</a>
-        {% endif %}
+<section class="cta__banner cta__banner--{{ section['class'] }} col-xs-12"{% if section['onload'] != false %} data-interaction="{{section['onload']}}"{% endif %}>
+{% for content in section['ref'] %}
+    <center class="section__content cta__banner--content col-xs-12 col-sm-11">
+        {% include "partials/components/_section_text.njk" %}
     </center>
-    {% include "partials/section_bg.njk" %}
+    {% include "partials/components/_section_bg.njk" %}
 {% endfor %}
-</div>
+</section>

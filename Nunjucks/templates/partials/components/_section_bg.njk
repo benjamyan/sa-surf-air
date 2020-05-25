@@ -1,3 +1,6 @@
+{% if section['onload'] == 'frostedGlass' %}
+    <div class="blur col-xs-12"></div>
+{% endif %}
 <div class="section__bg col-xs-12">
     {% if content.bgVideoMP4 %}
         <video class="bg__video section__bg--media section__bg--bg-video col-xs-12" poster="{{content.bgVideoPoster}}" muted autoplay preload>

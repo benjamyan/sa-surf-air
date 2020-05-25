@@ -1,36 +1,32 @@
 {% set pageTitle = "home" %}
 {% extends "layout.njk" %}
 
-{% block Title %}
-  {% import 'macros/page_title.njk' as Title %}
-    {{ Title.active(pageTitle) }}
-{% endblock %}
+{% block meta -%}
+  {% import 'macros/head_meta.njk' as meta %}
+    {{ meta.active(pageTitle) }}
+{%- endblock %}
 
 {% block header %}
-  {% import 'macros/header_navigation.njk' as nav %}
-    {{ nav.active(pageTitle) }}
+  {% import 'macros/header_navigation.njk' as header %}
+    {{ header.active(pageTitle) }}
 {% endblock %}
 
 {% block content %}
-
-  {% set sectionRef = hero %}
+  {% set section = {
+    ref: hero,
+    class: 'hero',
+    int1: 'frostedGlass',
+    int2: 'slideInOut',
+    int3: 'fadeSlideIn'
+  } %}
     {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
-  
-  {% set sectionRef = welcome %}
-    {% include "partials/aboutServices_fullHeight.njk" %}
 
-  {% set sectionRef = why %}
-    {% include "partials/textBanner_rightAlign_fullHeight.njk" %}
-
-  {% set sectionRef = who %}
-    {% include "partials/textBanner_leftAlign_fullHeight.njk" %}
-
-  {% set sectionRef = vs %}
-    {% include "partials/textBanner_leftAlign_fullHeight.njk" %}
-
-  {% include "partials/floating_section_counter.njk" %}
-
+  {% set sectionCount = 1 %}
+    {% include "partials/components/_counter.njk" %}
+    
 {% endblock %}
 
 {% block footer %}
+  {% import 'macros/footer_navigation.njk' as footer %}
+    {{ footer.active(pageTitle) }}
 {% endblock %}

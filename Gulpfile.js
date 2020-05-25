@@ -1,8 +1,9 @@
 const gulp = require('gulp');
 const image = require('gulp-image');
-const nunjucks = require('nunjucks');
+const nunjucks = require('gulp-nunjucks');
 const nunjucksRender = require('gulp-nunjucks-render');
 const data = require('gulp-data');
+const nunEnv = new nunjucksRender.nunjucks.Environment();
 
 const pages = ["index","experience","on-demand","scheduled","memberships"]
 gulp.task('nunjucks', async function() {

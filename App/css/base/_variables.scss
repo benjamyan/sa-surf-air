@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap');
 /*COLORS*/
 $text-default: #404040;
 $mid-blue: #264562;
@@ -18,7 +19,6 @@ $white: #FFFFFF;
 %font-stack-ital {
     font-family: ("Kievit-ital", "Open Sans", Helvetica, Arial, sans-serif);
     font-weight: 400;
-    font-style: italic;
 }
 %font-stack-reg {
     font-family: ("Kievit-reg", "Open Sans", Helvetica, Arial, sans-serif);
@@ -27,6 +27,11 @@ $white: #FFFFFF;
 }
 %font-stack-bold {
     font-family: ("Kievit-bold", "Open Sans", Helvetica, Arial, sans-serif);
+    font-weight: 800;
+    font-style: normal;
+}
+%font-stack-num {
+    font-family: ("Klavika-bold", "Titillium Web", Helvetica, Arial, sans-serif);
     font-weight: 800;
     font-style: normal;
 }

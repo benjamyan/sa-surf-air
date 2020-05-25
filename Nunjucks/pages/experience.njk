@@ -1,14 +1,78 @@
+{% set pageTitle = "experience" %}
 {% extends "layout.njk" %}
 
-{% block Title %}
-{% endblock %}
+{% block meta -%}
+  {% import 'macros/head_meta.njk' as meta %}
+    {{ meta.active(pageTitle) }}
+{%- endblock %}
 
 {% block header %}
+  {% import 'macros/header_navigation.njk' as header %}
+    {{ header.active(pageTitle) }}
 {% endblock %}
 
 {% block content %}
-  
+
+  {% set section = {
+    ref: hero,
+    class: 'hero',
+    onload: 'frostedGlass',
+    onenter: 'fadeIn',
+    onexit: 'fadeOut'
+  } %}
+  {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
+
+  {% set section = {
+    ref: welcome,
+    class: 'welcome',
+    onload: false,
+    onenter: 'fadeIn',
+    onclick: 'slideItemIn(event); return false;',
+    onexit: 'fadeOut'
+  } %}
+  {% include "partials/serviceBanner_fullHeight.njk" %}
+
+  {% set section = {
+    ref: why,
+    class: 'why',
+    onload: false,
+    onenter: 'fadeIn',
+    onexit: 'fadeOut'
+  } %}
+  {% include "partials/textBanner_rightAlign_fullHeight.njk" %}
+
+  {% set section = {
+    ref: who,
+    class: 'who',
+    onload: false,
+    onenter: 'fadeIn',
+    onexit: 'fadeOut'
+  } %}
+  {% include "partials/textBanner_leftAlign_fullHeight.njk" %}
+
+  {% set section = {
+    ref: vs,
+    class: 'vs',
+    onload: false,
+    onenter: 'fadeIn',
+    onexit: 'fadeOut'
+  } %}
+  {% include "partials/splitBanner_leftAlign_fullHeight.njk" %}
+
+  {% set section = {
+    ref: change,
+    class: 'change',
+    onload: 'contentLock',
+    onenter: 'fadeIn',
+    onexit: 'fadeOut'
+  } %}
+  {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
+
+  {% include "partials/components/_counter.njk" %}
+
 {% endblock %}
 
 {% block footer %}
+  {% import 'macros/footer_navigation.njk' as footer %}
+    {{ footer.active(pageTitle) }}
 {% endblock %}

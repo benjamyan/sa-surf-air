@@ -23,7 +23,6 @@ html {
 html, body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
 }
 .inline {
     display: inline-block;
@@ -63,45 +62,63 @@ html, body {
   transition: all .15s;
   transition-timing-function: cubic-bezier(0.25, 0.25, 0.005, 1);
 }
+.blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: -1;
+  background-color: rgba(255, 255, 255, .15);
+}
+.lock {
+  overflow-y: hidden;
+}
+@supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+  .blur {
+    background-color: transparent;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
 .col-xs-12 {
-    width: 100%;
-  }
-  .col-xs-11 {
-    width: 91.66666667%;
-  }
-  .col-xs-10 {
-    width: 83.33333333%;
-  }
-  .col-xs-9 {
-    width: 75%;
-  }
-  .col-xs-8 {
-    width: 66.66666667%;
-  }
-  .col-xs-7 {
-    width: 58.33333333%;
-  }
-  .col-xs-6 {
-    width: 49.66666666%;
-  }
-  .col-xs-5 {
-    width: 41.66666667%;
-  }
-  .col-xs-4 {
-    width: 33.33333332%;
-  }
-  .col-xs-3 {
-    width: 25%;
-  }
-  .col-xs-2 {
-    width: 16.66666667%;
-  }
-  .col-xs-1 {
-    width: 8.33333333%;
-  }
-  .col-xs-0 {
-    width: 4%;
-  }
+  width: 100%;
+}
+.col-xs-11 {
+  width: 91.66666667%;
+}
+.col-xs-10 {
+  width: 83.33333333%;
+}
+.col-xs-9 {
+  width: 75%;
+}
+.col-xs-8 {
+  width: 66.66666667%;
+}
+.col-xs-7 {
+  width: 58.33333333%;
+}
+.col-xs-6 {
+  width: 50%;
+}
+.col-xs-5 {
+  width: 41.66666667%;
+}
+.col-xs-4 {
+  width: 33.33333332%;
+}
+.col-xs-3 {
+  width: 25%;
+}
+.col-xs-2 {
+  width: 16.66666667%;
+}
+.col-xs-1 {
+  width: 8.33333333%;
+}
+.col-xs-0 {
+  width: 4%;
+}
 
 /*Responsive*/
 @media screen and (max-width: 1920px) { 

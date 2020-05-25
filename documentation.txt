@@ -1,0 +1,58 @@
+#################################
+# JSON OBJECTS FOR CONTENT BLOCKS
+#################################
+
+# Main content
+-----------------
+miniTitle        // h5
+superTitle       // h1
+mainTitle        // h2
+subTitle         // h4
+
+
+# Sub content
+-----------------
+superCopyIcon    // icon for h3
+superCopy        // h3
+mainCopy         // p
+subCopy          // p sub (italicized)
+
+
+# List content
+-----------------
+itemList         // container for list items 
+mainTitleIcon    // icon for mainTitle
+mainTitle        // main title for list itemList
+mainCopy         // main p tag for item - shows by default
+listItems        // list item - seperated by number (1, 2, 3)
+btnText          // text for summary tag
+
+
+# Content media
+-----------------
+mainImageSrc     // source link of the image
+mainImageAlt     // alt tag for the image
+
+
+# Button content
+-----------------
+btnSize          // size of the button
+btnType          // solid or transparent
+btnHref          // link for the button
+btnText          // text of the button
+
+
+# BG media objects
+-----------------
+bgImageSrc       // link of the background image
+bgImageAlt       // alt tag for the background image
+
+
+
+#################################
+# SECTION SPECIFIC JSON OBJECTS
+#################################
+
+# textBanner
+-----------------
+fgWidth          // width of foreground element based on 12 column grid

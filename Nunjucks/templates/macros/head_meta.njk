@@ -1,6 +1,6 @@
-{% macro active(activePage='') %}
+{% macro active(activePage='') -%}
 <title>
     {% if activePage == 'home' -%}Homepage{%- endif %}
     {% if activePage == 'experience' -%}Experience{%- endif %}
 </title>
-{% endmacro %}
+{%- endmacro %}

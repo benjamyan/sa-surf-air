@@ -1,17 +1,17 @@
 {% macro active(activePage='') %}
-<header class="header__nav flex-h col-xs-12">
+<header class="header__nav header__nav--{{ activePage }} flex-h col-xs-12">
     <a href="index.html" class="nav__logo inline header__nav--logo"><img class="nav__logo--image" src="assets/image/logo.png" /></a>
     <nav class="nav__main inline">
-        <a href="index.html" class="nav__item nav__main--item{%if activePage == 'home' %} nav__item--active{% endif %}">home</a>
-        <a href="experience.html" class="nav__item nav__main--item{%if activePage == 'experience' %} nav__item--active{% endif %}">experience</a>
-        <a href="on-demand.html" class="nav__item nav__main--item{%if activePage == 'on-demand' %} nav__item--active{% endif %}">on demand</a>
-        <a href="scheduled.html" class="nav__item nav__main--item{%if activePage == 'scheduled' %} nav__item--active{% endif %}">scheduled</a>
-        <a href="memberships.html" class="nav__item nav__main--item{%if activePage == 'memberships' %} nav__item--active{% endif %}">memberships</a>
+        <p><a href="index.html" class="nav__item nav__main--item{%if activePage == 'home' %} nav__item--active{% endif %}">home</a></p>
+        <p><a href="experience.html" class="nav__item nav__main--item{%if activePage == 'experience' %} nav__item--active{% endif %}">experience</a></p>
+        <p><a href="on-demand.html" class="nav__item nav__main--item{%if activePage == 'on-demand' %} nav__item--active{% endif %}">on demand</a></p>
+        <p><a href="scheduled.html" class="nav__item nav__main--item{%if activePage == 'scheduled' %} nav__item--active{% endif %}">scheduled</a></p>
+        <p><a href="memberships.html" class="nav__item nav__main--item{%if activePage == 'memberships' %} nav__item--active{% endif %}">memberships</a></p>
     </nav>
     <div class="nav__sub inline">
-        <a href="tel:8003656179" class="nav__item nav__sub--item"><i></i>800.365.6179</a>
-        <a href="#" class="nav__item nav__item--active">sign in</a>
-        <a href="#" class="nav__item nav__sub--item nav__item--button nav__item--button-lg nav__item--button-solid">start free trial</a>
+        <p class="text"><a href="tel:8003656179" class="nav__item nav__sub--item"><i></i>800.365.6179</a></p>
+        <p class="text"><a href="#" class="nav__item nav__item--active">sign in</a></p>
+        <p class="button"><a href="#" class="nav__item nav__item--button nav__item--button-sm nav__item--button-solid">start free trial</a></p>
     </div>
 </header>
 {% endmacro %}

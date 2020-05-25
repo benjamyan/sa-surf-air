@@ -1,0 +1,20 @@
+<article class="service__banner--item inline service__banner--item-{{loop.index}} col-xs-{{12 / loop.length}}"{% if section['onclick'] != false %} onclick="{{section['onclick']}}"{% endif %}>
+    {% if list.mainTitle %}
+        <div class="service__banner--item-title"{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>
+            <img class="section__content--sub-icon" src="{{list.mainTitleIcon}}" />
+            <h3>{{list.mainTitle}}</h3>
+        </div>
+    {% endif %}
+    {% if list.mainCopy %}
+        <p{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>{{list.mainCopy}}</p>
+    {% endif %}
+    <details class="service__banner--item-inner"{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>
+        <summary>{{list.btnText}}</summary>
+        <ul>
+        {% for value, item in list.listItems %}
+            <li>{{item}}</li>
+        {% endfor %}
+        </ul>
+    </details>
+    <div class="blur col-xs-12"></div>
+</article>

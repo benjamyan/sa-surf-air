@@ -1,0 +1,34 @@
+{% macro active(activePage='') %}
+<footer class="footer__nav flex-v footer__nav--{{ activePage }} flex-h col-xs-12">
+    <p class="footer__nav--copyright inline">©2020 Surf Airlines</p>
+    <nav class="nav__main footer__nav--main inline">
+        {% if activePage != 'about' %}
+            <a href="about.html" class="nav__item nav__main--item">about</a>
+        {% endif %}
+        {% if activePage != 'faq' %}
+            <a href="faq.html" class="nav__item nav__main--item">faq</a>
+        {% endif %}
+        {% if activePage != 'newsroom' %}
+            <a href="newsroom.html" class="nav__item nav__main--item">newsroom</a>
+        {% endif %}
+        {% if activePage != 'press' %}
+            <a href="press.html" class="nav__item nav__main--item">press</a>
+        {% endif %}
+        {% if activePage != 'careers' %}
+            <a href="careers.html" class="nav__item nav__main--item">careers</a>
+        {% endif %}
+        {% if activePage != 'legal' %}
+            <a href="legal.html" class="nav__item nav__main--item">legal</a>
+        {% endif %}
+        {% if activePage != 'site-credit' %}
+            <a href="site-credit.html" class="nav__item nav__main--item">site credit</a>
+        {% endif %}
+    </nav>
+    <div class="footer__social nav__sub inline">
+        <a href="#" class="footer__social--icon inline"><img src="assets/image/facebook.png" /></a>
+        <a href="#" class="footer__social--icon inline"><img src="assets/image/twitter.png" /></a>
+        <a href="#" class="footer__social--icon inline"><img src="assets/image/instagram.png" /></a>
+        <a href="#" class="footer__social--icon inline"><img src="assets/image/linkedin.png" /></a>
+    </div>
+</footer>
+{% endmacro %}
