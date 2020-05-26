@@ -430,7 +430,7 @@ html, body {
 .split__banner, .service__banner, .text__banner, .cta__banner {
   position: relative;
   height: 100.1vh;
-  min-height: 970px;
+  /*min-height: 970px;*/
   overflow: hidden;
   padding: 0 200px;
 }
@@ -439,7 +439,7 @@ html, body {
 **************UNIVERSAL************
 **********************************/
 .section__content {
-  padding-top: 200px;
+  padding-top: 10rem;
 }
 .section__content--item {
   padding-bottom: 25px;
@@ -454,7 +454,7 @@ html, body {
   padding: 20px 0;
 }
 .section__content--media .main__image {
-  max-width: fit-content;
+  max-width: max-content;
 }
 .section__content--button-wrapper {
   padding-top: 15px;
@@ -569,12 +569,14 @@ html, body {
   position: relative;
   border-left: 0.5px solid rgba(255, 255, 255, 0.5);
   border-right: 0.5px solid rgba(255, 255, 255, 0.5);
-  padding: 50px 50px 100px 50px;
+  padding: 2.5rem 2.5rem 4rem 2.5rem;
   height: max-content;
   margin-top: auto;
   z-index: 2;
   vertical-align: bottom;
   cursor: pointer;
+  flex: 1;
+  margin: 0;
 }
 .service__banner--item-wrapper .service__banner--item:first-child {
   border-left: none;

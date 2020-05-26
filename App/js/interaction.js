@@ -1,48 +1,38 @@
+navDOM = {
+    logo: document.querySelector(".nav__logo"),
+    mainText: Array.from(document.querySelectorAll(".nav__main p")),
+    subText: Array.from(document.querySelectorAll(".nav__sub .text")),
+    subButton: document.querySelector(".nav__sub .button")
+},
 /////////////////////////////////////////
 /////////////////////////////////////////
 // callback functions for general tom-foolery
-function delay(n) {
+delay = (n)=> {
     n = n || 2000;
     return new Promise(done => {
         setTimeout(() => {
             done();
         }, n)
     });
-};
+}
+isInViewport = (el)=> {
+    const rect = el.getBoundingClientRect(),
+          windowHeight = (window.innerHeight || document.documentElement.clientHeight),
+          windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+    return (
+        (rect.top <= windowHeight) && ((rect.top + rect.height) >= 0) 
+        &&
+        (rect.left <= windowWidth) && ((rect.left + rect.width) >= 0)
+    );
+}
+clearChanges = (targetArr)=> {
+    console.log(targetArr)
+    targetArr.forEach(function(current){
+        current.removeAttribute("style")
+    });
+}
 function navActive(target) {
     //
-};
-function textSlideUp(target, del, dur, trans, ease, pos) {
-    const originalText = target.innerHTML,
-          innerSpan = document.createElement("span"),
-          spanHeight = target.offsetHeight,
-          innerSpanStyles = "position:absolute; left:0; right:0; text-align:center;",
-          spanParentStyles = `height:${spanHeight}px; position:relative; overflow:hidden; width:100%;`,
-          clearText = ()=> {
-            target.innerHTML = '';
-            target.appendChild(innerSpan);
-          },
-          buildSpan = ()=> {
-            innerSpan.innerHTML += originalText;
-            innerSpan.style.cssText = innerSpanStyles;
-            innerSpan.parentElement.style.cssText = spanParentStyles;
-          },
-          clearSpanAndStyles = function() {
-            target.removeAttribute("style");
-            target.innerHTML = originalText;
-          },
-          tl = gsap.timeline({ oncomplete:clearSpanAndStyles });
-    clearText(), buildSpan();
-    tl.from( 
-        target.children, 
-        { 
-            delay: del,
-            duration: dur,
-            translateY: spanHeight + 1,
-            opacity: 0,
-            ease: ease
-        }, pos
-    );
 };
 function fadeIn(targetEl) {
     const wipeChanges = ()=> {
@@ -139,7 +129,7 @@ function slideItemIn(event) {
         translateY: 0,
         ease:"expo.out"
     }, "-=1" );
-};
+}
 function slideItemOut(target, targetElHeight) {
     const targetEl = target,
           detailsDOM = targetEl.querySelector("details"),
@@ -187,22 +177,19 @@ function pageContentOutro() {
 }
 function headerNavigationIntro() {
     console.log("headerNavigationIntro")
-    const targetEl = document.querySelector("header"),
-          targetDOM = {
-            logo: targetEl.querySelector(".nav__logo"),
-            main: targetEl.querySelector(".nav__main"),
-            subText: targetEl.querySelectorAll(".nav__sub .text"),
-            subButton: targetEl.querySelector(".nav__sub .button")
+    const paramBuild = ()=> {
+            const finalArr = [navDOM.logo, navDOM.subButton];
+            // for (let i = 0; )
+            return finalArr
           },
-          wipeChanges = ()=> {
-              targetDOM.logo.removeAttribute("style");
-              // (targetDOM.main).children.removeAttribute("style")
-          },
-          tl = gsap.timeline({ onComplete:wipeChanges });
-    tl.from( targetDOM.logo, { delay:1, duration:2, translateY:-50 , opacity:0, ease:"expo.out", } );
-    tl.from( targetDOM.subButton, { delay:0, stagger:.075, duration:1, translateY:-50 , opacity:0, ease:"expo.out", }, "-=2" );
-    tl.from( targetDOM.main.children, { delay:0.05, stagger:.075, duration:1, translateY:20 , opacity:0, ease:"expo.out", }, "-=1.5" );
-    tl.from( targetDOM.subText, { delay:0.25, stagger:.075, duration:1, translateY:20 , opacity:0, ease:"expo.out", }, "-=1.5" );
+          tl = gsap.timeline({ 
+              onComplete: clearChanges, 
+              onCompleteParams: [ navDOM.logo, navDOM.subButton, navDOM.mainText.each, navDOM.subText.each ]
+            });
+    tl.from( navDOM.logo, { delay:1, duration:2, translateY:-50 , opacity:0, ease:"expo.out", } );
+    tl.from( navDOM.subButton, { delay:0, stagger:.075, duration:1, translateY:-50 , opacity:0, ease:"expo.out", }, "-=2" );
+    tl.from( navDOM.mainText, { delay:0.05, stagger:.075, duration:1, translateY:20 , opacity:0, ease:"expo.out", }, "-=1.5" );
+    tl.from( navDOM.subText, { delay:0.25, stagger:.075, duration:1, translateY:20 , opacity:0, ease:"expo.out", }, "-=1.5" );
 }
 function headerNavigationOutro() {
     console.log("headerNavigationOutro")

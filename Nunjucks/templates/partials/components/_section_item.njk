@@ -1,4 +1,4 @@
-<article class="service__banner--item inline service__banner--item-{{loop.index}} col-xs-{{12 / loop.length}}"{% if section['onclick'] != false %} onclick="{{section['onclick']}}"{% endif %}>
+<article class="service__banner--item service__banner--item-{{loop.index}} col-xs-{{12 / loop.length}}"{% if section['onclick'] != false %} onclick="{{section['onclick']}}"{% endif %}>
     {% if list.mainTitle %}
         <div class="service__banner--item-title"{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>
             <img class="section__content--sub-icon" src="{{list.mainTitleIcon}}" />
