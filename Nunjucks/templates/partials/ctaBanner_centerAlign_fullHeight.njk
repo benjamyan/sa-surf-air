@@ -1,6 +1,6 @@
-<section class="cta__banner cta__banner--{{ section['class'] }} col-xs-12"{% if section['onload'] != false %} data-interaction="{{section['onload']}}"{% endif %}>
+<section class="cta__banner section__content {{ section['class'] }} col-xs-12"{% if section['onload'] != false %} data-interaction="{{section['onload']}}"{% endif %}>
 {% for content in section['ref'] %}
-    <center class="section__content cta__banner--content col-xs-12 col-sm-11">
+    <center class="cta__banner--content col-xs-12 col-sm-11">
         {% include "partials/components/_section_text.njk" %}
     </center>
     {% include "partials/components/_section_bg.njk" %}

@@ -7,7 +7,7 @@ h1, h2, h3, h4, h5, h6, p, em, body, html, input, textarea, strong {
 }
 h1 {
   @extend %font-stack-num;
-  font-size: calc(48px + (86 - 48) * ((99vw - 300px) / (1900 - 300)));
+  font-size: calc(54px + (86 - 54) * ((99vw - 300px) / (1900 - 300)));
   font-weight: 800;
   letter-spacing: 1px;
   margin: 25px 0 20px 0;
@@ -16,27 +16,27 @@ h1 {
 }
 h2 {
   @extend %font-stack-light;
-  font-size: calc(36px + (65 - 36) * ((99vw - 300px) / (1900 - 300)));
+  font-size: calc(30px + (65 - 30) * ((99vw - 300px) / (1900 - 300)));
   font-weight: 400;
   letter-spacing: 1px;
-  line-height: 58px;
   text-align: center;
 }
 h3 {
   @extend %font-stack-light;
-  font-size: calc(28px + (34 - 28) * ((100vw - 300px) / (1900 - 300)));
+  font-size: calc(24px + (34 - 24) * ((100vw - 300px) / (1900 - 300)));
   font-weight: 200;
   line-height: 3.5rem;
 }
 h4 {
   @extend %font-stack-reg;
-  font-size: 22px;
+  font-size: calc(18px + (22 - 18) * ((100vw - 300px) / (1900 - 300)));
   font-style: normal;
   letter-spacing: 2px;
+  line-height: 1.5rem;
 }
 h5 {
   @extend %font-stack-bold;
-  font-size: 14px;
+  font-size: calc(12px + (14 - 12) * ((100vw - 300px) / (1900 - 300)));
   font-weight: 400;
   letter-spacing: 4.21px;
   line-height: 16.8px;
@@ -44,13 +44,14 @@ h5 {
 }
 h6 {
   @extend %font-stack-ital;
+  font-size: calc(13px + (15 - 13) * ((100vw - 300px) / (1900 - 300)));
   color: black;
-  font-size: 15px;
   font-style: italic;
 }
 p, li {
   @extend %font-stack-light;
   font-size: 20px;
+  font-size: calc(17px + (20 - 17) * ((100vw - 300px) / (1900 - 300)));
   letter-spacing: .03rem;
   font-style: normal;
   line-height: 25px;
@@ -66,5 +67,10 @@ a {
 .light {
   h1, h2, h3, h4, h5, h6, p, li, a {
     color: $super-grey;
+  }
+}
+@media screen and (max-width: 600px) {
+  h5 {
+    letter-spacing: 2.22px;
   }
 }

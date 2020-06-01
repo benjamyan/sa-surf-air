@@ -1,135 +1,217 @@
 const DOM = {
-    counter: ".section__counter"
+    counter: ".section__counter",
+    serviceBanner: ".service__banner",
+    serviceBannerItem: ".service__banner--item"
 };
 const counter = document.querySelector(DOM.counter),
       sections = Array.from(document.querySelectorAll("section")),
       totalSections = sections.length,
       viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+let running = false;
 
 
-populateCounterID = ()=> {
-    for (let i = 0; i < totalSections; i++) {
-        counter.innerHTML += `<div id="${i+1}"></div>`
-    }
-    console.log(counter)
-    counter.querySelector("div:first-child").classList.add("active")
+setDOMcontentHTML = ()=> {                  // setup the HTML of content sectins in DOM
+    sections.forEach(function(current, index){          //  run a loop on array with total content sections in DOM
+        current.id = `section${index + 1}`;
+        counter.innerHTML += `
+            <div id="${index+1}" onclick="counterController(document.querySelector('#section${index+1}'))" ></div>
+        `                                               // return div w id relevant to amount of sections in DOM
+    });
 }
-populateSectionID = ()=> {
-    sections.forEach(function(current, index){
-        current.id = index + 1;
+setDOMcontentOnload = (targetEl)=> {        // initial setup of the DOM when page loads
+    let activeSection, activeCounter;                   //
+    sections.forEach(function(current, index){          //
+        if (isInViewport(current)) {                    //
+            activeSection = current;                    //
+            activeCounter = index + 1;                  //
+        } 
+    });
+    activeSection.classList.add("isActive");
+    document.querySelector(`${DOM.counter} div[id="${activeCounter}"]`).classList.add("active");
+    navApplyClass();
+}
+
+
+buildInteractionObj = (el, int)=> {         // function to build an interaction object
+    return {                                // return these variables as an object
+        target: el,                         // DOM element targetted
+        interaction: int                    // name of the interaction to be fired
+    }
+}
+getInteraction = (targetEl)=> {             // retrieve the interaction from the given DOM node
+    let targetElData, targetInteraction, currTarget, currInt;
+    if (!Array.isArray(targetEl)) {                                 // if targetEl is not an array
+        targetElData = targetEl.dataset.interaction;                // get target data-set
+        if (targetElData) {                                         // if targetEl has a data-set
+            targetElData.indexOf(' ') === -1 ?                      // test for white-space
+                targetInteraction = [ targetElData ] :              // split into an array if has whitespace
+                targetInteraction =  targetElData.split(" ")        // convert to Array for forEach
+            targetInteraction.forEach(function(current){            // set variables for return
+                currTarget = targetEl,                              // set currTarget
+                currInt = current                                   // set currInt = current iteration
+            });
+        }
+    } else {                                                        // if targetEl is an array
+        targetEl.forEach(function(current){                         // set variables for return
+            currTarget = current,                                   // currtarget = current ieration
+            currInt = current.dataset.interaction                   // set currInt
+        });
+    };
+    return buildInteractionObj( currTarget, currInt )               // return the elements to build an object
+}
+setInteraction = (targetEl, num)=> {        // setup and fire an interaction of a given DOM node
+    const newFunc = eval(targetEl.interaction);                 // No EVAL! Reformat this using `new Function`
+    if (targetEl.interaction === "fadeElIn")                    // if element has fadeElIn data-interaction          
+        targetEl.target.style.opacity = 0;                      // ^ set the opactityy to 0 for smooth transition
+    setTimeout(function(){                                      // timeout fire the function on a stagger
+        newFunc(targetEl.target);                               // call the new function
+    }, (num * 200) );                                           // this will stagger the interactions if need-be
+}
+interactionController = (targetEl)=> {      // central controller for all interaction-related function
+    const targetArr = Array.from(targetEl.querySelectorAll("[data-interaction]")),
+          allTargets = [ targetEl, targetArr ],
+          sectionInterations = [];
+    allTargets.forEach(function(current){
+        if (!Array.isArray(current)) {
+            sectionInterations.push(getInteraction(current));
+        } else {
+            current.forEach(function(currTarget) {
+                sectionInterations.push(getInteraction(currTarget));
+            })
+        };
+    });
+    sectionInterations.forEach(function(current, index) {
+        if (typeof current.interaction !== "undefined") {
+            setInteraction(current, index)
+        }
     });
 }
 
-lockViewport = (element, time)=> {
-    var keys = {37: 1, 38: 1, 39: 1, 40: 1};
-    function preventDefault(e) {
-        e.preventDefault();
-    }
-    function preventDefaultForScrollKeys(e) {
-        if (keys[e.keyCode]) {
-            preventDefault(e);
-            return false;
-        }
-    }
-    var supportsPassive = false;
-    try {
-        window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
-            get: function () { supportsPassive = true; } 
-        }));
-    } catch(e) {}
-    var wheelOpt = supportsPassive ? { passive: false } : false;
-    var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
-    function disableScroll() {
-        window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
-        window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
-        window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
-        window.addEventListener('keydown', preventDefaultForScrollKeys, false);
-    }
-    function enableScroll() {
-        window.removeEventListener('DOMMouseScroll', preventDefault, false);
-        window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
-        window.removeEventListener('touchmove', preventDefault, wheelOpt);
-        window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
-    }
-    disableScroll()
-    setTimeout(function() {
-        enableScroll()
-    }, time);
-};
-fireInteractions = (targetEl)=> {
-    const targetInteractions = Array.from(targetEl.querySelectorAll("[data-interaction]")),
-          interaction = targetInteractions[0].dataset.interaction;
-    console.log(targetInteractions)
-    if (interaction === "fadeIn") fadeIn(targetInteractions)
-}
-scrollToSection = (dir)=> {
-    if (viewportWidth < 1024) {
-        return false;
+
+changeClassOnScroll = (targetEl)=> {        // change class of a DOM node when section changes
+    if (targetEl.classList.contains("light")) {
+        toggleClassName( 
+            "dark", 
+            document.querySelector(`${DOM.counter}`),
+            document.querySelector(`${DOM.counter}`)
+        );
     } else {
-        let targetEl, 
-            isActive = document.querySelector(".isActive")
-            isFired = false;
-        sections.forEach(function(current, index){
-            if (isInViewport(current)) {
-                const next = sections[index + 1],
-                      prev = sections[index - 1];
-                dir === 0 ? targetEl = next : targetEl = prev;
-            }
-        });
-        if (isActive) isActive.classList.remove("isActive");
-        lockViewport( document.querySelector("body") , 1000);
-        lockViewport( document.querySelector("main") , 1000);
-        targetEl.scrollIntoView({ 
-            behavior: "smooth",
-            block: "center",
-            inline: "center"
-        });
-        fireInteractions(targetEl)
-        targetEl.classList.add("isActive")
+        document.querySelector(`${DOM.counter}`).classList.remove("dark")
     };
+    // toggle state for the navigation
+    if (targetEl === sections[0]) { 
+        navDOM.nav.classList.remove("active");
+    } else {
+        setTimeout(function(){
+            navApplyClass();
+        }, 100);
+    };
+    toggleClassName( // toggle active state for counter
+        "active", 
+        document.querySelector(`${DOM.counter} .active`),
+        document.querySelector(`${DOM.counter} div[id="${targetEl.id.split("section")[1]}"`)
+    );
+    toggleClassName( // toggle active state for sections
+        "isActive", 
+        document.querySelector(".isActive"), 
+        targetEl
+    );
+}
+getScrollSection = (dir)=> {                // get the next DOM node to move to
+    let targetEl;
+    sections.forEach(function(current, index){
+        if (isInViewport(current)) {
+            const next = sections[index + 1],
+                  prev = sections[index - 1];
+            dir === 0 ? targetEl = next : targetEl = prev;
+        }
+    });
+    return targetEl;
+}
+goToSection = (targetEl)=> {                // move to the given DOM node 
+    TweenLite.to( // tween to the next section
+        window, {
+            duration: 1,
+            scrollTo: {
+                y: window.scrollY + targetEl.getBoundingClientRect().y
+            },
+            ease:"expo.out"
+        }
+    );
+}
+counterController = (targetEl)=> {          // central controller breadcrumb-counter click events
+    lockViewport( targetEl, 1500 );             // lock the viewport first-thing
+    goToSection(targetEl);
+    interactionController(targetEl);
+    changeClassOnScroll(targetEl);
+}
+scrollController = (dir)=> {                // central controller for all scroll events
+    if (viewportWidth < 1024) {
+        targetEl = getScrollSection(dir)
+        changeClassOnScroll(targetEl);
+    } else {
+        return (function() {
+            if (!running) {
+                running = true;
+                lockViewport( 1500 );                   // lock the viewport first-thing
+                targetEl = getScrollSection(dir)
+                if (targetEl) {                         // if isnt beginning or end of the document
+                    goToSection(targetEl);
+                    changeClassOnScroll(targetEl);
+                    interactionController(targetEl);
+                    setTimeout(function() {
+                        running = false;
+                    }, 1500);
+                } else running = false;
+            }
+        })()
+    }
 }
 
-function setupPopulators() {
-    populateCounterID(), populateSectionID();
-}
+
 function setupListeners() {
     const listenerTargets = {
-        scroll:    [ "mousewheel","DOMMouseScroll" ],
+        scroll:    [ "onwheel", "wheel", "mousewheel", "onmousewheel","DOMMouseScroll", "touchstart", "touchmove", "touchend", "touchcancel" ],
         key:       [ 38,40 ]
     };
     for (let i = 0; i < Object.keys(listenerTargets).length; i++) {
         const currentObj = Object.keys(listenerTargets)[i],
               currentObjItem = listenerTargets[currentObj];
+        let scrollDirection;
+        scrollFunc = (event)=> {
+            if (event.deltaY > 0) scrollDirection = 0;
+            else scrollDirection = 1;
+            scrollController(scrollDirection);
+        }
+        keyFunc = (event)=> {
+            if (event.keyCode === 40 || event.key === "ArrowDown") {
+                scrollDirection = 0;
+                scrollController(scrollDirection);
+            };
+            if (event.keyCode === 38 || event.key === "ArrowUp") {
+                scrollDirection = 1;
+                scrollController(scrollDirection);
+            };
+        }
         if ( currentObj === "scroll") {
             currentObjItem.forEach(function(current) {
-                document.addEventListener(current, function(event) {
-                    if (event.deltaY > 0) {
-                        const scrollDirection = 0;
-                        scrollToSection(scrollDirection);
-                    } else {
-                        const scrollDirection = 1;
-                        scrollToSection(scrollDirection);
-                    }
-                })
+                window.addEventListener(current, scrollFunc, false)
             })
-        }
+        };
         if ( currentObj === "key") {
-            document.addEventListener("keydown", function(event) {
-                if (event.keyCode === 40 || event.key === "ArrowDown") {
-                    const scrollDirection = 0;
-                    scrollToSection(scrollDirection);
-                };
-                if (event.keyCode === 38 || event.key === "ArrowUp") {
-                    const scrollDirection = 1;
-                    scrollToSection(scrollDirection);
-                };
-            })
-        }
+            window.addEventListener("keydown", keyFunc, false)
+        };
     }
+}
+function baseSetup() {
+    setupListeners();
+    setDOMcontentHTML();
+    setDOMcontentOnload();
+    if (document.querySelector(DOM.serviceBannerItem))
+        setEqualHeight(Array.from(document.querySelectorAll(DOM.serviceBannerItem)));
 }
 // init
 (function init(){
     console.log('App Initialized')
-    setupPopulators();
-    setupListeners();
+    baseSetup();
 })();

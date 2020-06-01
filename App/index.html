@@ -16,8 +16,13 @@
         
   
     
-<header class="header__nav header__nav--home flex-h col-xs-12">
-    <a href="index.html" class="nav__logo inline header__nav--logo"><img class="nav__logo--image" src="assets/image/logo.png" /></a>
+<header class="header__nav header__nav--home flex-h transition col-xs-12">
+    <a href="index.html" class="nav__logo header__nav--logo inline"><img class="nav__logo--image" src="assets/image/base/surfair-logo.png" /></a>
+    <div class="nav__mobile header__nav--mobile inline" onclick="navMobileMenu(event);">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
     <nav class="nav__main inline">
         <p><a href="index.html" class="nav__item nav__main--item nav__item--active">home</a></p>
         <p><a href="experience.html" class="nav__item nav__main--item">experience</a></p>
@@ -25,26 +30,31 @@
         <p><a href="scheduled.html" class="nav__item nav__main--item">scheduled</a></p>
         <p><a href="memberships.html" class="nav__item nav__main--item">memberships</a></p>
     </nav>
-    <div class="nav__sub inline">
-        <p class="text"><a href="tel:8003656179" class="nav__item nav__sub--item"><i></i>800.365.6179</a></p>
+    <nav class="nav__sub inline">
+        <p class="text">
+            <a href="tel:8003656179" class="nav__item nav__sub--item">
+            <svg width="11" height="11" viewBox="0 0 11 11"><path d="M10.977,9.422a1.579,1.579,0,0,0-.061-.757C10.268,8.1,9.609,7.541,8.961,6.978a.784.784,0,0,0-.66-.1c-.208.085-.281.293-.366.428-.354.55-1.283.513-2.077.256a8.461,8.461,0,0,1-2.419-2.42c-.256-.794-.293-1.723.256-2.077.134-.085.342-.159.428-.367a.782.782,0,0,0-.1-.66C3.463,1.393,2.9.734,2.339.086A1.454,1.454,0,0,0,1.581.025C.544.209.14,1.5.1,1.59A2.437,2.437,0,0,0,.043,2.751,13.092,13.092,0,0,0,3.219,8.09a11.76,11.76,0,0,0,5.033,2.871A2.62,2.62,0,0,0,9.413,10.9C9.5,10.864,10.794,10.461,10.977,9.422Z" transform="translate(0)" fill="#fff"/></svg>
+            800.365.6179</a>
+        </p>
         <p class="text"><a href="#" class="nav__item nav__item--active">sign in</a></p>
         <p class="button"><a href="#" class="nav__item nav__item--button nav__item--button-sm nav__item--button-solid">start free trial</a></p>
-    </div>
+    </nav>
+    <div class="blur col-xs-12"></div>
 </header>
 
 
         
   
-    <section class="cta__banner cta__banner--hero col-xs-12" data-interaction="">
+    <section class="cta__banner section__content hero col-xs-12" data-interaction="">
 
-    <center class="section__content cta__banner--content col-xs-12 col-sm-11">
+    <center class="cta__banner--content col-xs-12 col-sm-11">
         
-    <div class="section__content--item section__content--main" data-interaction="">
+    <div class="section__content--item section__content--main">
 
     
     
     
-        <h2>Better travel <br>for the modern world</h2>
+        <h2 data-interaction="">Better travel <br>for the modern world</h2>
     
     
     
@@ -52,10 +62,10 @@
 </div>
 
 
-    <div class="section__content--item section__content--sub" data-interaction="">
+    <div class="section__content--item section__content--sub">
 
     
-        <div class="section__content--sub-title">
+        <div class="section__content--sub-title" data-interaction="">
             
             <h3>Travel on your terms, starting at just $199 per month.</h3>
         </div>
@@ -64,14 +74,14 @@
     
     
         
-        <div class="section__content--button-wrapper nav__item--button-wrapper" data-interaction="">
+        <div class="section__content--button-wrapper nav__item--button-wrapper">
     
-    <div class="section__content--button section__content--button-lg">
-        <a class="nav__item nav__item--button-lg nav__item--button-transparent" href="#">ON DEMAND</a>
+    <div class="section__content--button section__content--button-lg" data-interaction="">
+        <a class="nav__item nav__item--button nav__item--button-lg nav__item--button-transparent" href="#">ON DEMAND</a>
     </div>
     
-    <div class="section__content--button section__content--button-lg">
-        <a class="nav__item nav__item--button-lg nav__item--button-transparent" href="#">SCHEDULED</a>
+    <div class="section__content--button section__content--button-lg" data-interaction="">
+        <a class="nav__item nav__item--button nav__item--button-lg nav__item--button-transparent" href="#">SCHEDULED</a>
     </div>
     
 </div>
@@ -82,17 +92,19 @@
 
     </center>
     
+    <div class="blur col-xs-12"></div>
+
 <div class="section__bg col-xs-12">
     
     
-        <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/airplane-from-hangar.jpg" alt="Surf Air description goes here for SEO and screen readers" />
+        <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/index/group-walking-to-plane.jpg" alt="Surf Air description goes here for SEO and screen readers" />
     
 </div>
 
 </section>
 
   
-    <aside class="section__counter">
+    <aside class="section__counter transition">
     
 </aside>
     
@@ -126,10 +138,10 @@
         
     </nav>
     <div class="footer__social nav__sub inline">
-        <a href="#" class="footer__social--icon inline"><img src="assets/image/facebook.png" /></a>
-        <a href="#" class="footer__social--icon inline"><img src="assets/image/twitter.png" /></a>
-        <a href="#" class="footer__social--icon inline"><img src="assets/image/instagram.png" /></a>
-        <a href="#" class="footer__social--icon inline"><img src="assets/image/linkedin.png" /></a>
+        <a href="#" class="footer__social--icon inline"><img src="assets/image/base/facebook.png" /></a>
+        <a href="#" class="footer__social--icon inline"><img src="assets/image/base/twitter.png" /></a>
+        <a href="#" class="footer__social--icon inline"><img src="assets/image/base/instagram.png" /></a>
+        <a href="#" class="footer__social--icon inline"><img src="assets/image/base/linkedin.png" /></a>
     </div>
 </footer>
 

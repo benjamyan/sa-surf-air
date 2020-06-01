@@ -1,7 +1,7 @@
-<div class="section__content--item section__content--sub"{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>
+<div class="section__content--item section__content--sub">
 {% for sub in content.sub %}
     {% if sub.superCopy %}
-        <div class="section__content--sub-title">
+        <div class="section__content--sub-title"{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>
             {% if sub.superCopyIcon %}
                 <img src="{{sub.superCopyIcon}}" />
             {% endif %}
@@ -9,10 +9,10 @@
         </div>
     {% endif %}
     {% if sub.mainCopy %}
-        <p>{{sub.mainCopy | safe}}</p>
+        <p{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>{{sub.mainCopy | safe}}</p>
     {% endif %}
     {% if sub.subCopy %}
-        <p><sub>{{sub.subCopy | safe}}</sub></p>
+        <p{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}><sub>{{sub.subCopy | safe}}</sub></p>
     {% endif %}
     {% if sub.btn %}
         {% set btnRef = sub %}

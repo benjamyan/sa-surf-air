@@ -1,7 +1,7 @@
-<div class="section__content--item section__content--media"{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>
+<div class="section__content--item section__content--media">
 {% for media in content.media %} 
     {% if media.mainVideoMP4 %}
-        <video class="{{ sectionRef }}__video main__video section__main--media section__main--video col-xs-12" poster="{{media.mainVideoPoster}}" muted autoplay preload>
+        <video class="{{ sectionRef }}__video main__video section__main--media section__main--video col-xs-12" poster="{{media.mainVideoPoster}}" muted autoplay preload{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>
             {% if media.mainVideoWEBM %}
                 <source src="{{media.bmainVideoWEBM}}.webm" type="video/webm">
             {% endif %}
@@ -14,7 +14,7 @@
         </video>
     {% endif %}
     {% if media.mainImageSrc %}
-        <img class="{{ sectionRef }}__image main__image section__main--media section__main--image col-xs-9" src="{{media.mainImageSrc}}" alt="{{media.mainImageAlt}}" />
+        <img class="{{ sectionRef }}__image main__image section__main--media section__main--image col-xs-9" src="{{media.mainImageSrc}}" alt="{{media.mainImageAlt}}"{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %} />
     {% endif %}
 {% endfor %}
 </div>

@@ -1,16 +1,16 @@
-<div class="section__content--item section__content--main"{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>
+<div class="section__content--item section__content--main">
 {% for main in content.main %}
     {% if main.miniTitle -%}
-        <h5>{{main.miniTitle | safe}}</h5>
+        <h5{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>{{main.miniTitle | safe}}</h5>
     {%- endif %}
     {% if main.superTitle %}
-        <h1>{{main.superTitle | safe}}</h1>
+        <h1{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>{{main.superTitle | safe}}</h1>
     {% endif %}
     {% if main.mainTitle %}
-        <h2>{{main.mainTitle | safe}}</h2>
+        <h2{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>{{main.mainTitle | safe}}</h2>
     {% endif %}
     {% if main.subTitle %}
-        <h4>{{main.subTitle | safe}}</h4>
+        <h4{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>{{main.subTitle | safe}}</h4>
     {% endif %}
     {% if main.btn %}
         {% set btnRef = main %}

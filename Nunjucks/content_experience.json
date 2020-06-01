@@ -12,7 +12,7 @@
                 }
             }
         }],
-        "bgImageSrc": "assets/image/airplane-from-hangar.jpg",
+        "bgImageSrc": "assets/image/experience/airplane-from-hangar.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],
     "welcome": [{
@@ -21,7 +21,7 @@
         }],
         "itemList": [
             {
-                "mainTitleIcon": "assets/image/health.svg",
+                "mainTitleIcon": "assets/image/experience/health.svg",
                 "mainTitle": "Health",
                 "mainCopy": "We go above and beyond to ensure your mental and physical wellbeing",
                 "listItems": {
@@ -32,7 +32,7 @@
                 "btnText": "DISCOVER"
             },
             {
-                "mainTitleIcon": "assets/image/optionality.svg",
+                "mainTitleIcon": "assets/image/experience/optionality.svg",
                 "mainTitle": "Optionality",
                 "mainCopy": "Make the important choices, while we take care of the rest.",
                 "listItems": {
@@ -44,7 +44,7 @@
                 "btnText": "DISCOVER"
             },
             {
-                "mainTitleIcon": "assets/image/zero.svg",
+                "mainTitleIcon": "assets/image/experience/zero.svg",
                 "mainTitle": "Zero Hassles",
                 "mainCopy": "Never wait in line. We’ve eliminated all the bad parts.",
                 "listItems": {
@@ -55,7 +55,7 @@
                 "btnText": "DISCOVER"
             }
         ],
-        "bgImageSrc": "assets/image/businessman-reading-newpaper.jpg",
+        "bgImageSrc": "assets/image/experience/businessman-reading-newpaper.jpg",
         "bgImageAlt": "An alt tag for services section"
     }],
     "why": [{
@@ -66,7 +66,7 @@
             "subTitle": "That thing we never seem to have enough of. Time flies. But luckily, we fly faster."
         }],
         "sub": [{
-            "superCopyIcon": "assets/image/clock.svg",
+            "superCopyIcon": "assets/image/experience/clock.svg",
             "superCopy": "Be there more",
             "mainCopy": "If it’s home in time for dinner or more facetime with clients, being where you’re needed most means not standing in lines at the airport.",
             "btn": {
@@ -78,7 +78,7 @@
                 }
             }
         }],
-        "bgImageSrc": "assets/image/person-on-bike-on-road.jpg",
+        "bgImageSrc": "assets/image/experience/person-on-bike-on-road.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],
     "who": [{
@@ -92,10 +92,10 @@
             "subCopy": "Michael A<br> Member since 2015"
         }],
         "media": [{
-            "mainImageSrc": "assets/image/topo-map.png",
+            "mainImageSrc": "assets/image/experience/topo-map.png",
             "mainImageAlt": "#"
         }],
-        "bgImageSrc": "assets/image/airplane-against-mountain-backdrop.jpg",
+        "bgImageSrc": "assets/image/experience/airplane-against-mountain-backdrop.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],
     "vs": [{
@@ -104,7 +104,7 @@
             "superTitle": "5000",
             "mainTitle": "Fewer steps from<br> your car to plane"
         }],
-        "bgImageSrc": "assets/image/woman-front-of-airplane.jpg",
+        "bgImageSrc": "assets/image/experience/woman-front-of-airplane.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],
     "change": [{
@@ -119,7 +119,7 @@
                 }
             }
         }],
-        "bgImageSrc": "assets/image/airplane-at-dusk-tail.jpg",
+        "bgImageSrc": "assets/image/experience/airplane-at-dusk-tail.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }]
 }

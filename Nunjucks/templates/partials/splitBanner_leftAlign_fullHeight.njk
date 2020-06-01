@@ -1,4 +1,4 @@
-<section class="section__content flex-v split__banner split__banner--{{ section['class'] }} split__banner--left-{{ pageTitle }} col-xs-12"{% if section['onload'] != false %} data-interaction="{{section['onload']}}"{% endif %}>
+<section class="split__banner section__content flex-v {{ section['class'] }} col-xs-12"{% if section['onload'] != false %} data-interaction="{{section['onload']}}"{% endif %}>
 {% for content in section['ref'] %}
     <div class="split__banner--main light inline col-xs-6">
         {% include "partials/components/_section_text.njk" %}

@@ -54,12 +54,20 @@ html, body {
    height: 0; 
    clear: both;
 }
+@mixin transition($time) {
+  -webkit-transition: all $time;
+  -moz-transition: all $time;
+  -o-transition: all $time;
+  -ms-transition: all $time;
+  transition: all $time;
+  transition-timing-function: cubic-bezier(0.25, 0.25, 0.005, 1); 
+}
 .transition {
-  -webkit-transition: all .15s;
-  -moz-transition: all .15s;
-  -o-transition: all .15;
-  -ms-transition: all .15s;
-  transition: all .15s;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -o-transition: all .5;
+  -ms-transition: all .5s;
+  transition: all .5s;
   transition-timing-function: cubic-bezier(0.25, 0.25, 0.005, 1);
 }
 .blur {
@@ -187,10 +195,24 @@ html, body {
   }
 }
 @media screen and (max-width: 700px) {
-
+  .col-xs-12,
+  .col-xs-11,
+  .col-xs-10,
+  .col-xs-9,
+  .col-xs-8,
+  .col-xs-7,
+  .col-xs-6,
+  .col-xs-5,
+  .col-xs-4,
+  .col-xs-3,
+  .col-xs-2,
+  .col-xs-1,
+  .col-xs-0 {
+    width: 100%;
+  }
 }
-@media screen and (max-width: 500px) {
-
+@media screen and (max-width: 600px) {
+  
 }
 @media screen and (max-width: 450px) {
     

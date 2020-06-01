@@ -20,22 +20,133 @@
                 }
             }
         }],
-        "bgImageSrc": "assets/image/airplane-from-hangar.jpg",
+        "bgImageSrc": "assets/image/index/group-walking-to-plane.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],
-    "welcome": [{
-        "main": [{
-            "mainTitle": "Welcome to<br> personalized aviation"
+    "cta": [{
+        "1": [{
+            "main": [{
+                "superCopy": "On demand",
+                "mainCopy": "Design a flight to meet your exact travel needs.",
+                "btn": {
+                    "1": {
+                        "btnSize": "lg",
+                        "btnType": "transparent",
+                        "btnHref": "#",
+                        "btnText": "EXPLORE ON DEMAND"
+                    }
+                }
+            }],
+            "bgImageSrc": "assets/image/index/woman-walking-into-plane.jpg",
+            "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
         }],
-        "itemList": [
-            {
-                "mainTitleIcon": "assets/image/health.svg",
-                "mainTitle": "Health",
-                "mainCopy": "We go above and beyond to ensure your mental and physical wellbeing",
-                "btnText": "DISCOVER"
+        "2": [{
+            "main": [{
+                "superCopy": "Scheduled",
+                "mainCopy": "Over 50 scheduled flights per day to private airports in California and Texas.",
+                "btn": {
+                    "1": {
+                        "btnSize": "lg",
+                        "btnType": "transparent",
+                        "btnHref": "#",
+                        "btnText": "Explore Schedule"
+                    }
+                }
+            }],
+            "bgImageSrc": "assets/image/index/pilot-in-airplane-front.jpg",
+            "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+        }]
+    }],
+    "any": [{
+        "main": [{
+            "miniTitle": "Fly any time to anywhere",
+            "mainTitle": "Every moment makes a difference"
+        }],
+        "sub": [{
+            "mainCopy": "Created around the lives of busy flyers, Surf Air is easier, healthier, and more enjoyable than commercial airlines.",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "EXPORE THE DIFFERENCE"
+                }
             }
-        ],
-        "bgImageSrc": "assets/image/businessman-reading-newpaper.jpg",
-        "bgImageAlt": "An alt tag for services section"
+        }],
+        "bgImageSrc": "assets/image/index/man-holding-smart-phone.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "saving": [{
+        "main": [{
+            "mainTitle": "We're passionate about saving you time and eliminating hassles.",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "SIGN UP"
+                }
+            }
+        }],
+        "sub": [{
+            "superCopyIcon": "#",
+            "superCopy": "A different model than flying commercial that offers so much flexibility",
+            "subCopy": "Michael K"
+        }],
+        "bgImageSrc": "assets/image/index/plane-back-surfair-logo.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "join": [{
+        "main": [{
+            "mainTitle": "Join the club",
+            "subTitle": "Memberships from just $199 per month. Unlock access to a new world of possibility.",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "EXPLORE MEMBERSHIPS"
+                }
+            }
+        }],
+        "bgImageSrc": "assets/image/index/man-walking-into-plane-sunset.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "these": [{
+        "main": [{
+            "subTitle": "“This airline memberships lets you book unlimited flights on a private jet every month”"
+        }],
+        "carousel": [{
+            "1": [{
+                "img": {
+                    "imgSrc": "assets/image/wsj-logo.png",
+                    "imgAlt": "Wall Street Journal"
+                }
+            }],
+            "2": [{
+                "img": {
+                    "imgSrc": "assets/image/tech-crunch-logo.png",
+                    "imgAlt": "Tech Crunch"
+                }
+            }],
+            "3": [{
+                "img": {
+                    "imgSrc": "assets/image/active-travel+leisure.svg",
+                    "imgAlt": "Active Travel &amp; Leisure"
+                }
+            }],
+            "4": [{
+                "img": {
+                    "imgSrc": "assets/image/forbes-logo.png",
+                    "imgAlt": "Forbes"
+                }
+            }],
+            "5": [{
+                "img": {
+                    "imgSrc": "assets/image/robb-report-logo.png",
+                    "imgAlt": "Robb Report"
+                }
+            }]
+        }]
     }]
 }

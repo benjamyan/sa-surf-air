@@ -1,50 +1,19 @@
 .nav {
-    &__item {
-        @extend %font-stack-reg;
-        font-size: 11px;
-        font-weight: 900;
-        letter-spacing: 2.5px;
-        line-height: 1;
-        text-align: center;
-        text-transform: uppercase;
-        color: white;
-        p {
-            display: inline-block;
-        }
-        &--button {
-            @extend %font-stack-bold;
+    &__main, &__sub {
+        .nav__item {
+            @extend %font-stack-reg;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 2.5px;
+            line-height: 1;
             text-align: center;
-            &-sm {
-                padding: 12px 20px 10px 20px;
-                border-radius: 17.5px;
+            text-transform: uppercase;
+            color: white;
+            p {
+                display: inline-block;
             }
-            /*&-lg {
-                font-size: 14px;
-                font-weight: 600;
-                letter-spacing: 2.5px;
-                line-height: 1;
-                padding: 10px 90px;
-                border-radius: 25px;
-            }*/
-            &-sm, &-lg {
-                a {
-                    color: $super-grey;
-                    text-decoration: none;
-                }
-            }
-            &-solid {
-                color: black;
-                background-color: $white;
-            }
-            &-transparent {
-                color: #FFFFFF;
-                background-color: transparent;
-                border: 2px solid $white;
-            }
-            &-naked {
-                color: black;
-                background-color: transparent;
-                border: none;
+            svg {
+                vertical-align: middle;
             }
         }
     }
@@ -53,6 +22,51 @@
             @extend %font-stack-light;
             font-weight: 300;
         }
+        .button {
+            a {
+                color: black;
+            }
+        }
+    }
+    &__mobile {
+        display: none;
+        pointer-events: none;
+    }
+    &__item--button {
+        @extend %font-stack-bold;
+        text-align: center;
+        &-sm {
+            padding: 12px 20px 10px 20px;
+            border-radius: 25px;
+        }
+        /*&-lg {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            line-height: 1;
+            padding: 10px 90px;
+            border-radius: 25px;
+        }*/
+        &-sm, &-lg {
+            a {
+                color: $super-grey;
+                text-decoration: none;
+            }
+        }
+        &-solid {
+            color: black;
+            background-color: $white;
+        }
+        &-transparent {
+            color: #FFFFFF;
+            background-color: transparent;
+            border: 2px solid $white;
+        }
+        &-naked {
+            color: black;
+            background-color: transparent;
+            border: none;
+        }
     }
 }
 .header__nav {
@@ -60,7 +74,7 @@
     padding: 23px 40px 0 40px;
     align-items: center;
     position: fixed;
-    z-index: 2;
+    z-index: 1002;
     .nav {
         &__logo {
             margin-right: auto;
@@ -79,10 +93,30 @@
             position: absolute;
             margin: 0 auto;
         }
+        &__sub {
+            svg {
+                margin-right: 5px;
+            }
+            .button {
+                 a {
+                    color: black;
+                 }
+            }
+        }
         &__item {
             text-align: center;
             margin: 0 7.5px;
             vertical-align: middle;
+        }
+    }
+    .blur {
+        display: none;
+    }
+    &.active {
+        background: $mid-blue;
+        padding: 15px 40px 15px;
+        .nav__item--button {
+            padding: 10px 20px 8px 20px;
         }
     }
 }
@@ -113,6 +147,96 @@
         margin-right: 25px;
         &--icon {
             margin-left: 35px;
+        }
+    }
+}
+@media screen and (max-width: 1400px) {
+    .header__nav {
+        .nav__main {
+            position: relative;
+        }
+    }
+}
+@media screen and (max-width: 1160px) {
+    .header__nav {
+        padding: 15px 20px 15px !important;
+        .nav__item {
+            font-size: 10px;
+            margin: 0 5px;
+        }
+    }
+}
+@media screen and (max-width: 1023px) {
+    .header__nav {
+        @include transition(2s);
+        &.open {  
+            @include transition(2s);
+            background-color: rgba(255,255,255,0.5) !important;
+            .nav {
+                &__main, &__sub {
+                    position: relative !important;
+                    display: block;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    margin: 0 auto;
+                    p {
+                        display: block;
+                        text-align: center;
+                        padding-bottom: 7%;
+                        .nav__item {
+                            font-size: 16px;
+                        }
+                    }
+                }
+                &__main {
+                    height: 65vh;
+                    padding-top: 25%;
+                }
+                &__sub {
+                    height: 30vh;
+                    display: -webkit-box;
+                    display: -moz-box;
+                    display: -ms-flexbox;
+                    display: -webkit-flex;
+                    display: flex;
+                    -webkit-flex-flow: column;
+                    flex-flow: column;
+                    justify-content: center;
+                    resize: vertical;
+                    .text {
+                        order: 2;
+                        &:first-child {
+                            display: none;
+                        }
+                    }
+                    .nav__item--button {
+                        padding: 12px 25px 10px 25px;
+                    }
+                }
+            }
+            
+        }
+        .nav {
+            &__mobile {
+                display: inline-block;
+                cursor: pointer;
+                pointer-events: all;
+                > div {
+                    width: 35px;
+                    height: 2px;
+                    background-color: white;
+                    &:nth-child(2) {
+                        margin: 6px 0;
+                    }
+                }
+            }
+            &__main, &__sub {
+                display: none;
+            }
+        }
+        .blur {
+            display: block;
         }
     }
 }

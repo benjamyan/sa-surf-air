@@ -16,9 +16,10 @@
   {% set section = {
     ref: hero,
     class: 'hero',
-    onload: 'frostedGlass',
-    onenter: 'fadeIn',
-    onexit: 'fadeOut'
+    onload: false,
+    onenter: 'fadeElIn',
+    onclick: false,
+    onexit: 'fadeElOut'
   } %}
   {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
 
@@ -26,9 +27,9 @@
     ref: welcome,
     class: 'welcome',
     onload: false,
-    onenter: 'fadeIn',
+    onenter: 'fadeElIn',
     onclick: 'slideItemIn(event); return false;',
-    onexit: 'fadeOut'
+    onexit: 'fadeElOut'
   } %}
   {% include "partials/serviceBanner_fullHeight.njk" %}
 
@@ -36,35 +37,39 @@
     ref: why,
     class: 'why',
     onload: false,
-    onenter: 'fadeIn',
-    onexit: 'fadeOut'
+    onenter: 'fadeElIn',
+    onclick: false,
+    onexit: 'fadeElOut'
   } %}
   {% include "partials/textBanner_rightAlign_fullHeight.njk" %}
 
   {% set section = {
     ref: who,
     class: 'who',
-    onload: false,
-    onenter: 'fadeIn',
-    onexit: 'fadeOut'
+    onload: 'panelSlideIn',
+    onenter: 'fadeElIn',
+    onclick: false,
+    onexit: 'fadeElOut'
   } %}
   {% include "partials/textBanner_leftAlign_fullHeight.njk" %}
 
   {% set section = {
     ref: vs,
-    class: 'vs',
-    onload: false,
-    onenter: 'fadeIn',
-    onexit: 'fadeOut'
+    class: 'vs light',
+    onload: 'sectionPin sectionWipe',
+    onenter: 'fadeElIn',
+    onclick: false,
+    onexit: 'fadeElOut'
   } %}
   {% include "partials/splitBanner_leftAlign_fullHeight.njk" %}
 
   {% set section = {
     ref: change,
     class: 'change',
-    onload: 'contentLock',
-    onenter: 'fadeIn',
-    onexit: 'fadeOut'
+    onload: false,
+    onenter: 'fadeElIn',
+    onclick: false,
+    onexit: 'fadeElOut'
   } %}
   {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
 
