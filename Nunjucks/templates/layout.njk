@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% include '_css_files.njk' %}
-    {% block meta %}{% endblock %}
+    {% include '_head_files.njk' %}
+    {% block data %}
+        {% import 'macros/head_meta.njk' as meta %}
+            {{ meta.active(pageTitle) }}
+    {% endblock %}
 </head>
-<body class="{{ pageTitle }}" data-barba="wrapper">
+<body class="{{ pageTitle }}" data-barba="wrapper"{% if openScrolling %} open-scroll{% endif %}>
     <main data-barba="container" data-barba-namespace="{{ pageTitle }}">
         {% block header %}{% endblock %}
         {% block content %}{% endblock %}
+        {% if openScrolling == false %}
+            {% block counter %}{% endblock %}
+        {% endif %}
         {% block footer %}{% endblock %}
     </main>
-    {% include '_js_files.njk' %}
+    {% include '_body_files.njk' %}
 </body>
 </html>
