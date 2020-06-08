@@ -1,177 +1,191 @@
-const DOM = {
-    counter: ".section__counter",
-    serviceBanner: ".service__banner",
-    serviceBannerItem: ".service__banner--item"
-};
-const counter = document.querySelector(DOM.counter),
-      sections = Array.from(document.querySelectorAll("section")),
-      totalSections = sections.length,
-      viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-let running = false;
-
-
-setDOMcontentHTML = ()=> {                  // setup the HTML of content sectins in DOM
-    sections.forEach(function(current, index){          //  run a loop on array with total content sections in DOM
-        current.id = `section${index + 1}`;
-        counter.innerHTML += `
-            <div id="${index+1}" onclick="counterController(document.querySelector('#section${index+1}'))" ></div>
-        `                                               // return div w id relevant to amount of sections in DOM
-    });
-}
-setDOMcontentOnload = (targetEl)=> {        // initial setup of the DOM when page loads
-    let activeSection, activeCounter;                   //
-    sections.forEach(function(current, index){          //
-        if (isInViewport(current)) {                    //
-            activeSection = current;                    //
-            activeCounter = index + 1;                  //
-        } 
-    });
-    activeSection.classList.add("isActive");
-    document.querySelector(`${DOM.counter} div[id="${activeCounter}"]`).classList.add("active");
-    navApplyClass();
-}
-
-
-buildInteractionObj = (el, int)=> {         // function to build an interaction object
-    return {                                // return these variables as an object
-        target: el,                         // DOM element targetted
-        interaction: int                    // name of the interaction to be fired
+/////////////////////////////////////////
+/////////////////////////////////////////
+// Controllers //////////////////////////
+function sliderItem(targetEl) {
+    // console.log("sliderItem")
+    if (!targetEl.hasAttribute("fired")) {
+        const targetSetup = targetEl.dataset.setup;
+        if (targetSetup === "carousel") {
+            carouselSlider(targetEl);
+        };
+        if (targetSetup === "testimonial") {
+            testimonialSlider(targetEl);
+        };
     }
 }
-getInteraction = (targetEl)=> {             // retrieve the interaction from the given DOM node
-    let targetElData, targetInteraction, currTarget, currInt;
-    if (!Array.isArray(targetEl)) {                                 // if targetEl is not an array
-        targetElData = targetEl.dataset.interaction;                // get target data-set
-        if (targetElData) {                                         // if targetEl has a data-set
-            targetElData.indexOf(' ') === -1 ?                      // test for white-space
-                targetInteraction = [ targetElData ] :              // split into an array if has whitespace
-                targetInteraction =  targetElData.split(" ")        // convert to Array for forEach
-            targetInteraction.forEach(function(current){            // set variables for return
-                currTarget = targetEl,                              // set currTarget
-                currInt = current                                   // set currInt = current iteration
+function parallaxItem(targetEl) {                                       // setup function for parallax interaction on element
+    // console.log("parallaxItem")
+    if (viewportWidth > 900) {
+        const intensity = (Math.random() * (50 - 25) + 25) / 350;                       // get our desired intensity based on random # between two values
+        fireParallax = ()=> {                                                           // our callback function for the listener
+            let currTarget = targetEl;
+            sections.forEach(function(current){
+                if (targetEl === current) {
+                    const currBgDOM = current.querySelector(".section__bg--media");
+                    if (currBgDOM.hasAttribute("style")) {
+                        currBgDOM.parentElement.style.overflow = "hidden";
+                        currBgDOM.style.width = "150%";
+                        currBgDOM.style.marginLeft = "-50%";
+                    };
+                    currTarget = currBgDOM;
+                };
             });
+            parallaxInteraction(currTarget, intensity);                                       // call our parallax function here with arguments
+        };
+        if (!targetEl.hasAttribute("listening")) {                                      // if the listener hasn't been attached - `listening` attribute not present
+            targetEl.setAttribute("listening",'');                                          // add `listening` attribute to DOM node
+            scrollTypes.forEach(function(current){                                          // loop through all scroll types were targeting
+                window.addEventListener(                                                        // add our event listener
+                    current,                                                                        // target the current scroll type
+                    fireParallax                                                                    // fire our callback
+                )                                                                               // end listener
+            });                                                                             // end loop
+        };                                                                              // end if
+    }
+}
+function sectionWipe(targetEl) {                                        // setup function for section wiping interaction
+    // console.log("sectionWipe")
+    const currInt = "wiped";                                                  // declare the current interaction
+    if (targetEl.hasAttribute(currInt)) {                                     // if target node doesnt hasnt been fired - checks for attribute
+        targetEl.setAttribute(currInt, '')                                      // add the attribute to target node 
+        wipeInteraction(targetEl)                                               // fire the wiping interaction
+    } else return                                                             // else end the function
+}
+function sectionPin(targetEl) {                                         // setup function for section pinning interaction
+    // console.log("secitonPin")
+    return (function() {                                                                // base it off a closure so it doesnt fire inacturately
+        if (!intRunning) {                                                              // if not alreayd running
+            intRunning = true;                                                          // turn running to true so last line with return falsy
+            const pinned = targetEl.querySelector(".pinned"),                           // get pin container DOM node
+                  pinnedInner = Array.from(pinned.children);                            // build an array of interal pin items
+            pinListener(targetEl);                                                      // setup event listeners for control later                                     
+            if (!pinnedInner[pinnedInner.length-1].classList.contains("visible")) {     // if scrolling back into section from bottom (last item is visible)
+                pinned.children[0].classList.add("visible");                                // if truthy add visible class to first element            
+            };                                                                          // end if
+            numCountUpAnimation(Array.from(targetEl.querySelectorAll(".visible h1")))   // call our number counting animation
+            setTimeout(function(){                                                      // set timeouet for throttle to end
+                intRunning = false;                                                         // intRuning to false so the function can be fired again
+            },time );                                                                   // end timeout
         }
-    } else {                                                        // if targetEl is an array
-        targetEl.forEach(function(current){                         // set variables for return
-            currTarget = current,                                   // currtarget = current ieration
-            currInt = current.dataset.interaction                   // set currInt
-        });
-    };
-    return buildInteractionObj( currTarget, currInt )               // return the elements to build an object
+    })()
 }
-setInteraction = (targetEl, num)=> {        // setup and fire an interaction of a given DOM node
-    const newFunc = eval(targetEl.interaction);                 // No EVAL! Reformat this using `new Function`
-    if (targetEl.interaction === "fadeElIn")                    // if element has fadeElIn data-interaction          
-        targetEl.target.style.opacity = 0;                      // ^ set the opactityy to 0 for smooth transition
-    setTimeout(function(){                                      // timeout fire the function on a stagger
-        newFunc(targetEl.target);                               // call the new function
-    }, (num * 200) );                                           // this will stagger the interactions if need-be
-}
-interactionController = (targetEl)=> {      // central controller for all interaction-related function
-    const targetArr = Array.from(targetEl.querySelectorAll("[data-interaction]")),
-          allTargets = [ targetEl, targetArr ],
-          sectionInterations = [];
-    allTargets.forEach(function(current){
-        if (!Array.isArray(current)) {
-            sectionInterations.push(getInteraction(current));
-        } else {
-            current.forEach(function(currTarget) {
-                sectionInterations.push(getInteraction(currTarget));
-            })
+function interactionController(targetEl) {                              // central controller for all interaction-related function
+    const targetArr = Array.from(targetEl.querySelectorAll("[data-interaction]")),   // get all nodes with `data-interaction` attribute
+          allTargets = [ targetEl, targetArr ],                                         // merge all elements to be targetted later
+          sectionInterations = [];                                                      // declare new array to store our interaction objects
+    allTargets.forEach(function(current){                                               // build an array of interactions to be fired later
+        if (!Array.isArray(current)) {                                                  // if current is not an array object
+            sectionInterations.push(getInteraction(current));                               // push current to new array
+        } else {                                                                        // if current is an array
+            current.forEach(function(currTarget) {                                          // run this array through a looop to target each node
+                sectionInterations.push(getInteraction(currTarget));                            // push the current node to new array
+            });
         };
     });
-    sectionInterations.forEach(function(current, index) {
-        if (typeof current.interaction !== "undefined") {
-            setInteraction(current, index)
+    sectionInterations.forEach(function(current, index) {                            // fire all interactions inside of array previously build (44)
+        if (typeof current.interaction !== "undefined") {                               // if current has an interaction
+            if (isOpenScrolling()) {                                                        // if scroll-lock is disabled
+                if (!current.target.hasAttribute("fired")) {                                    // if current does not have `fired` attribute (this is how we dont fire multiple instances of one interaction)
+                    current.target.setAttribute("fired",'')                                         // add `fixed` attribute to current element
+                } else {                                                                         
+                    return;                                                                     // else end and exit function
+                }
+            };
+            const newFunc = eval(current.interaction);                 // No EVAL! Reformat this using `new Function`
+            if (current.interaction === "fadeElIn") {                  // if element has fadeElIn data-interaction 
+                current.target.style.opacity = 0;                          // set the opactity to 0 for smooth transition
+            };
+            if (current.interaction === "parallaxItem") {
+                return;
+            }
+            setTimeout(function(){                                     // timeout fire the function on a stagger
+                newFunc(current.target);                               // call the new function
+            }, (index * 200) );                                          // this will stagger the interactions if need-be
         }
     });
 }
-
-
-changeClassOnScroll = (targetEl)=> {        // change class of a DOM node when section changes
-    if (targetEl.classList.contains("light")) {
-        toggleClassName( 
-            "dark", 
-            document.querySelector(`${DOM.counter}`),
-            document.querySelector(`${DOM.counter}`)
-        );
-    } else {
-        document.querySelector(`${DOM.counter}`).classList.remove("dark")
-    };
-    // toggle state for the navigation
-    if (targetEl === sections[0]) { 
-        navDOM.nav.classList.remove("active");
-    } else {
-        setTimeout(function(){
-            navApplyClass();
-        }, 100);
-    };
-    toggleClassName( // toggle active state for counter
-        "active", 
-        document.querySelector(`${DOM.counter} .active`),
-        document.querySelector(`${DOM.counter} div[id="${targetEl.id.split("section")[1]}"`)
-    );
-    toggleClassName( // toggle active state for sections
-        "isActive", 
-        document.querySelector(".isActive"), 
-        targetEl
-    );
+function counterController(targetEl) {                                  // central controller for breadcrumb-counter click events
+    if (document.querySelector(".pinFiring")) {                             // if `pinFiring` class exists in target DOM node
+        running = false;                                                        // set running to false
+        pinCleaner(false);                                                      // clean up the listeners from pining function
+    };                                                                      // end if
+    return (function() {                                                    // return function for throttle
+        if (!running) {                                                         // if function isnt firing already
+            running = true;                                                         // set running to `true` - throttles this function so it can only fire once
+            lockViewport( false, time );                                            // lock the viewport first-thing
+            if (document.querySelector(".isActive")) {                              // if isActive exists (DOM check)
+                changeClassOnScroll(targetEl);                                          // change the isActive class
+                showCounter(targetEl);                                                  // show the counter interaction
+                scrolltoYPoint(document.querySelector(".isActive"));                    // scroll to the new isActive class
+                interactionController(targetEl);                                        // fire interactions from new section
+                setTimeout(function(){                                                  // timeout to fire function
+                    headerMenuActive();                                                     // test for navigation changes
+                }, time / 3 );                                                          // end timeout
+                setTimeout(function() {                                                 // timeout to function finish
+                    running = false;                                                        // set running = `false` so function can fired again
+                }, time );                                                              // end timeout
+            } else running = false;                                                 // if isActive does not exist end throttle
+        }                                                                       // end if
+    })()                                                                    // end return
 }
-getScrollSection = (dir)=> {                // get the next DOM node to move to
-    let targetEl;
-    sections.forEach(function(current, index){
-        if (isInViewport(current)) {
-            const next = sections[index + 1],
-                  prev = sections[index - 1];
-            dir === 0 ? targetEl = next : targetEl = prev;
-        }
-    });
-    return targetEl;
-}
-goToSection = (targetEl)=> {                // move to the given DOM node 
-    TweenLite.to( // tween to the next section
-        window, {
-            duration: 1,
-            scrollTo: {
-                y: window.scrollY + targetEl.getBoundingClientRect().y
-            },
-            ease:"expo.out"
-        }
-    );
-}
-counterController = (targetEl)=> {          // central controller breadcrumb-counter click events
-    lockViewport( targetEl, 1500 );             // lock the viewport first-thing
-    goToSection(targetEl);
-    interactionController(targetEl);
-    changeClassOnScroll(targetEl);
-}
-scrollController = (dir)=> {                // central controller for all scroll events
-    if (viewportWidth < 1024) {
-        targetEl = getScrollSection(dir)
-        changeClassOnScroll(targetEl);
-    } else {
-        return (function() {
-            if (!running) {
-                running = true;
-                lockViewport( 1500 );                   // lock the viewport first-thing
-                targetEl = getScrollSection(dir)
-                if (targetEl) {                         // if isnt beginning or end of the document
-                    goToSection(targetEl);
-                    changeClassOnScroll(targetEl);
-                    interactionController(targetEl);
-                    setTimeout(function() {
-                        running = false;
-                    }, 1500);
-                } else running = false;
+function scrollController(dir) {                                        // central controller for all scroll events
+    let targetEl;                                                           // declare our target element for the function
+    /*if (viewportWidth < 1024) {                                             // if viewport width is below ipad landscape
+        targetEl = getScrollSection(dir)                                        // declare our target as usual
+        if (viewportWidth > 768) {                                              // if viewport width is greater than ipad vertical
+            changeClassOnScroll(targetEl);                                          // change the current class of active section
+        } else return                                                           // else stop firing
+    } else {*/                                                                // if viewport width is above ipad landscape
+        return (function() {                                                    // start our throttle
+            if (!running) {                                                         // if throttle is not running
+                running = true;                                                         // start our throttle - stops it from running again
+                targetEl = getScrollSection(dir);                                       // declare our target elemnet as next section
+                if ( isOpenScrolling()) {                                               // if open-scrolling is enabled       
+                    sections.forEach(function(current){                                         // loop through our page sections
+                        if (isInViewport(current)) targetEl = current;                              // if is in the viewport declare it as target
+                    });                                                                         // end loop
+                    if (targetEl && !targetEl.classList.contains("isActive")) {                 // if target exists and it doesnt have class `isActive`
+                        sections.forEach(function(current){                                         // loop through our sections again
+                            if (isInViewport(current)) {                                                // if current section is still in viewport
+                                changeClassOnScroll(current);                                               // change the class
+                                interactionController(current);                                             // fire section interactions
+                            }                                                                           // end if
+                        });                                                                         // end loop
+                    };                                                                          // end if
+                    setTimeout(function() {                                                     // timeout to throttle
+                        headerMenuActive();                                                            // check is nav should be active
+                        running = false;                                                            // end the throttle
+                        return;                                                                     // end the function
+                    }, time / 8);                                                               // end timeout
+                } else if (targetEl) {                                                  // if isnt beginning or end of the document
+                    lockViewport( targetEl, time );                                             // lock the viewport
+                    scrolltoYPoint(targetEl);                                                   // scroll to the next section
+                    showCounter(targetEl);                                                      // change coutner to reflect section change
+                    changeClassOnScroll(targetEl);                                              // change class of active section
+                    interactionController(targetEl);                                            // fire interactions of next section
+                    setTimeout(function(){                                                      // timeout for our nav
+                        headerMenuActive();                                                            // check if nav needs to change
+                    }, time / 4);                                                               // end timeout
+                    setTimeout(function() {                                                     // timeout for throttle
+                        // const targetInt = targetEl.dataset.interaction;                             // declare our dataset interaction to test later
+                        if (targetEl.classList.contains("sectionPin")) {                                     // if interaction includes sectionPin
+                            running = true;                                                             // keep running true to stop function firing
+                        } else {                                                                    // if none of thse interactions
+                            running = false;                                                            // close the throttle
+                        };                                                                          // end if
+                    }, time );                                                                  // end timeout
+                } else running = false;                                                 // else end the entire thing so it can run again
             }
         })()
-    }
+    // }
 }
-
-
-function setupListeners() {
+/////////////////////////////////////////
+/////////////////////////////////////////
+// Initializers /////////////////////////
+function setupListeners() {                                             // initial setup for event listeners on page
+    // console.log("setupListeners")
     const listenerTargets = {
-        scroll:    [ "onwheel", "wheel", "mousewheel", "onmousewheel","DOMMouseScroll", "touchstart", "touchmove", "touchend", "touchcancel" ],
+        scroll:    scrollTypes,
         key:       [ 38,40 ]
     };
     for (let i = 0; i < Object.keys(listenerTargets).length; i++) {
@@ -182,7 +196,7 @@ function setupListeners() {
             if (event.deltaY > 0) scrollDirection = 0;
             else scrollDirection = 1;
             scrollController(scrollDirection);
-        }
+        };
         keyFunc = (event)=> {
             if (event.keyCode === 40 || event.key === "ArrowDown") {
                 scrollDirection = 0;
@@ -192,26 +206,61 @@ function setupListeners() {
                 scrollDirection = 1;
                 scrollController(scrollDirection);
             };
-        }
+        };
         if ( currentObj === "scroll") {
             currentObjItem.forEach(function(current) {
-                window.addEventListener(current, scrollFunc, false)
-            })
-        };
-        if ( currentObj === "key") {
-            window.addEventListener("keydown", keyFunc, false)
+                window.addEventListener(current, scrollFunc, false);
+            });
+        } else if ( currentObj === "key") {
+            window.addEventListener("keydown", keyFunc, false);
         };
     }
 }
-function baseSetup() {
-    setupListeners();
-    setDOMcontentHTML();
-    setDOMcontentOnload();
-    if (document.querySelector(DOM.serviceBannerItem))
-        setEqualHeight(Array.from(document.querySelectorAll(DOM.serviceBannerItem)));
+function setupDOM() {                                                   // initial setup of the DOM when page loads
+    // console.log("setupDOM")
+    let activeSection, activeCounter;                                           // declare early for setting and use throughout
+    (function setActiveSection() {                                              // start iife to set those variables ^^
+        sections.forEach(function(current, index){                              // loop through all sections on DOM
+            current.id = `section${index + 1}`;                                     // set the id of each 
+            if (isInViewport(current)) {                                            // check if current element is inside viewport
+                activeSection = current;                                                // set activeSection var as current in loop
+                activeCounter = index + 1;                                              // set activeCounter var as index in loop
+            }                                                                       // end if
+        });                                                                     // end loop
+        activeSection.classList.add("isActive");                                // add `isActive` class to DOM inside viewport
+    })();
+    (function setInteraction() {                                                // start iife to set up interactions on content load
+        const parallaxEl = Array.from(document.querySelectorAll("[data-interaction]"))              // build an array from all data-interactions in DOM
+        parallaxEl.forEach(function(current){                                                       // run through array ^^^
+            const currInt = current.dataset.interaction.toString();                                     // declare our interaction as a string to be parsed
+            if (currInt.includes("parallaxItem")) parallaxItem(current);                                // if includes `parallaxItem` in string
+            if (currInt.includes("sliderItem")) sliderItem(current);
+        });                                                                                         // end loop
+    })();
+    setCounter = ()=> {                                                         // setup the breadcrumb counter - needs to be optional no iife
+        Array.from(counter.children).forEach(function(current){                             // build an array from breadcrumb counter children elements and loop it
+            if (current.id == activeCounter)                                                    // if the current child id is activeCounter 
+                current.classList.add("active")                                                     // add active class to current child
+            if (!current.classList.contains("active"))                                          // if the current element does not have active class
+                fadeElOut(current.querySelector("p"), 1, 0.15, 1, false);                           // fire animation
+            else                                                                                // if it does have active class
+                fadeElOut(current.querySelector("p"), 1.25, false, 1.5, false);                     // fire slightly slower animation
+        });                                                                                 // end our loop
+    };
+    headerMenuActive();                                                            // does nav need to be active?
+    scrolltoYPoint(sections[0], 0.01);                                          // scroll to the top of the DOM
+    interactionController(activeSection);                                       // fire interactions in current target element
+    if (!isOpenScrolling()) {                                                   // if open-scrolling is not enabled
+        setCounter();                                                               // setup the breadcrumb counter
+    };                                                                          // end if
+    if (DOM.serviceBannerItem) {                                                // if we have service banner items (block-list items)
+        setEqualHeight(Array.from(DOM.serviceBannerItem));                          // set there height equal to eachother
+    };                                                                          // end if
 }
-// init
-(function init(){
-    console.log('App Initialized')
-    baseSetup();
-})();
+function init(){                                                        // initializer for the setup of page
+    console.log("App Initialized");
+    document.addEventListener("DOMContentLoaded", ()=> {
+        setupDOM();
+        setupListeners();
+    });
+};

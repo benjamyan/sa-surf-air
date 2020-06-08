@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <!--CSS-->
+<link rel="stylesheet" type="text/css" href="css/normalize.css">
 <link rel="stylesheet" type="text/css" href="css/output.css">
+<!--Pre-->
+<link rel="preload" href="../../assets/fonts/FFKievitWebProLight.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/FFKievitWebProItalic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/FFKievitWebPro.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/FFKievitWebProBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/Klavika-bold.woff2" as="font" type="font/woff2" crossorigin>
     
-    <title>
+        
+            <title>
     
     Experience
 </title>
+    
 </head>
 <body class="experience" data-barba="wrapper">
     <main data-barba="container" data-barba-namespace="experience">
@@ -18,7 +27,7 @@
     
 <header class="header__nav header__nav--experience flex-h transition col-xs-12">
     <a href="index.html" class="nav__logo header__nav--logo inline"><img class="nav__logo--image" src="assets/image/base/surfair-logo.png" /></a>
-    <div class="nav__mobile header__nav--mobile inline" onclick="navMobileMenu(event);">
+    <div class="nav__mobile header__nav--mobile inline" onclick="headerMobileToggle(event);">
         <div></div>
         <div></div>
         <div></div>
@@ -46,11 +55,10 @@
         
 
   
-  <section class="cta__banner section__content hero col-xs-12">
+  <section class="cta__banner section__content cta__banner--center hero col-xs-12">
 
     <center class="cta__banner--content col-xs-12 col-sm-11">
-        
-    <div class="section__content--item section__content--main">
+        <div class="section__content--item section__content--main">
 
     <h5 data-interaction="fadeElIn">PERSONALIZED AVIATION SETS YOU FREE</h5>
     
@@ -87,9 +95,8 @@
 </section>
 
   
-  <section class="service__banner section__content welcome col-xs-12">
+  <section class="service__banner section__content service__banner--bottom welcome col-xs-12">
 
-    
     
     <div class="section__content--item section__content--main">
 
@@ -108,96 +115,96 @@
     
         <div class="service__banner--item-wrapper flex-h col-xs-12">
             
-                <article class="service__banner--item service__banner--item-1 col-xs-4" onclick="slideItemIn(event); return false;">
-    <div class="service__banner--item-inner" data-interaction="fadeElIn">
+                <article class="service__banner--item service__banner--item-1 col-xs-4" onclick="slideItemIn(event); return false;" data-interaction="fadeElIn">
+    <div class="service__banner--item-inner">
         <div class="service__banner--item-close">
-            <svg viewPort="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="11" x2="11" y2="1"/><line x1="1" y1="1" x2="11" y2="11"/></svg>
-        </div>
+                <svg viewPort="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="11" x2="11" y2="1"/><line x1="1" y1="1" x2="11" y2="11"/></svg>
+            </div>
         
-            <div class="service__banner--item-title">
-                <img class="section__content--sub-icon" src="assets/image/experience/health.svg" />
+        <div class="service__banner--item-title">
+                
+                    <img class="section__content--sub-icon" src="assets/image/experience/health.svg" />
+                
                 <h3>Health</h3>
             </div>
-        
-        
-            <p>We go above and beyond to ensure your mental and physical wellbeing</p>
-        
+        <p>We go above and beyond to ensure your mental and physical wellbeing</p>
         <details class="service__banner--item-list">
-            <summary>DISCOVER</summary>
-            <ul>
-            
-                <li>Thousands of hyper local airports</li>
-            
-                <li>Fleet of aircraft from turboprops &amp; jets to seaplanes &amp; helicopters</li>
-            
-                <li>Arrive just 15 minutes before departure</li>
-            
-            </ul>
-        </details>
+                <summary>DISCOVER</summary>
+                <ul>
+                
+                    <li>Thousands of hyper local airports</li>
+                
+                    <li>Fleet of aircraft from turboprops &amp; jets to seaplanes &amp; helicopters</li>
+                
+                    <li>Arrive just 15 minutes before departure</li>
+                
+                </ul>
+            </details>
+        
     </div>
     <div class="blur col-xs-12"></div>
 </article>
 
             
-                <article class="service__banner--item service__banner--item-2 col-xs-4" onclick="slideItemIn(event); return false;">
-    <div class="service__banner--item-inner" data-interaction="fadeElIn">
+                <article class="service__banner--item service__banner--item-2 col-xs-4" onclick="slideItemIn(event); return false;" data-interaction="fadeElIn">
+    <div class="service__banner--item-inner">
         <div class="service__banner--item-close">
-            <svg viewPort="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="11" x2="11" y2="1"/><line x1="1" y1="1" x2="11" y2="11"/></svg>
-        </div>
+                <svg viewPort="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="11" x2="11" y2="1"/><line x1="1" y1="1" x2="11" y2="11"/></svg>
+            </div>
         
-            <div class="service__banner--item-title">
-                <img class="section__content--sub-icon" src="assets/image/experience/optionality.svg" />
+        <div class="service__banner--item-title">
+                
+                    <img class="section__content--sub-icon" src="assets/image/experience/optionality.svg" />
+                
                 <h3>Optionality</h3>
             </div>
-        
-        
-            <p>Make the important choices, while we take care of the rest.</p>
-        
+        <p>Make the important choices, while we take care of the rest.</p>
         <details class="service__banner--item-list">
-            <summary>DISCOVER</summary>
-            <ul>
-            
-                <li>Thousands of hyper local airports</li>
-            
-                <li>Fleet of aircraft from turboprops &amp; jets to seaplanes &amp; helicopters</li>
-            
-                <li>Easy-to-use mobile app</li>
-            
-                <li>Arrive just 15 minutes before departure</li>
-            
-            </ul>
-        </details>
+                <summary>DISCOVER</summary>
+                <ul>
+                
+                    <li>Thousands of hyper local airports</li>
+                
+                    <li>Fleet of aircraft from turboprops &amp; jets to seaplanes &amp; helicopters</li>
+                
+                    <li>Easy-to-use mobile app</li>
+                
+                    <li>Arrive just 15 minutes before departure</li>
+                
+                </ul>
+            </details>
+        
     </div>
     <div class="blur col-xs-12"></div>
 </article>
 
             
-                <article class="service__banner--item service__banner--item-3 col-xs-4" onclick="slideItemIn(event); return false;">
-    <div class="service__banner--item-inner" data-interaction="fadeElIn">
+                <article class="service__banner--item service__banner--item-3 col-xs-4" onclick="slideItemIn(event); return false;" data-interaction="fadeElIn">
+    <div class="service__banner--item-inner">
         <div class="service__banner--item-close">
-            <svg viewPort="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="11" x2="11" y2="1"/><line x1="1" y1="1" x2="11" y2="11"/></svg>
-        </div>
-        
-            <div class="service__banner--item-title">
-                <img class="section__content--sub-icon" src="assets/image/experience/zero.svg" />
-                <h3>Zero Hassles</h3>
+                <svg viewPort="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="11" x2="11" y2="1"/><line x1="1" y1="1" x2="11" y2="11"/></svg>
             </div>
         
-        
-            <p>Never wait in line. We’ve eliminated all the bad parts.</p>
-        
+        <div class="service__banner--item-title">
+                
+                    <img class="section__content--sub-icon" src="assets/image/experience/zero.svg" />
+                
+                <h3>Zero Hassles</h3>
+            </div>
+        <p>Never wait in line. We’ve eliminated all the bad parts.</p>
         <details class="service__banner--item-list">
-            <summary>DISCOVER</summary>
-            <ul>
-            
-                <li>Thousands of hyper local airports</li>
-            
-                <li>Fleet of aircraft from turboprops &amp; jets to seaplanes &amp; helicopters</li>
-            
-                <li>Easy-to-use mobile app</li>
-            
-            </ul>
-        </details>
+                <summary>DISCOVER</summary>
+                <ul>
+                
+                    <li>Thousands of hyper local airports</li>
+                
+                    <li>Fleet of aircraft from turboprops &amp; jets to seaplanes &amp; helicopters</li>
+                
+                    <li>Easy-to-use mobile app</li>
+                
+                </ul>
+            </details>
+        
     </div>
     <div class="blur col-xs-12"></div>
 </article>
@@ -218,9 +225,15 @@
   
   <section class="text__banner section__content why col-xs-12">
 
+    
+<div class="section__bg col-xs-12">
+    
+    
+        <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/experience/person-on-bike-on-road.jpg" alt="Surf Air description goes here for SEO and screen readers" />
+    
+</div>
     <div class="text__banner--main flex-v text__banner--right col-xs-5 col-sm-10">
-        
-    <div class="section__content--item section__content--main">
+        <div class="section__content--item section__content--main">
 
     <h5 data-interaction="fadeElIn">WHY FLY SURF AIR</h5>
     
@@ -233,9 +246,7 @@
     
 
 </div>
-
-
-    <div class="section__content--item section__content--sub">
+<div class="section__content--item section__content--sub">
 
     
         <div class="section__content--sub-title" data-interaction="fadeElIn">
@@ -265,13 +276,6 @@
 
         <div class="blur col-xs-12"></div>
     </div>
-    
-<div class="section__bg col-xs-12">
-    
-    
-        <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/experience/person-on-bike-on-road.jpg" alt="Surf Air description goes here for SEO and screen readers" />
-    
-</div>
 
 </section>
 
@@ -279,8 +283,7 @@
   <section class="text__banner section__content who col-xs-12" data-interaction="panelSlideIn">
 
     <div class="text__banner--main flex-v text__banner--left col-xs-6 col-sm-10">
-        
-    <div class="section__content--item section__content--main">
+        <div class="section__content--item section__content--main">
 
     <h5 data-interaction="fadeElIn">WHO FLIES SURF AIR</h5>
     
@@ -293,9 +296,7 @@
     
 
 </div>
-
-
-    <div class="section__content--item section__content--sub">
+<div class="section__content--item section__content--sub">
 
     
     
@@ -305,9 +306,7 @@
     
 
 </div>
-
-
-    <div class="section__content--item section__content--media">
+<div class="section__content--item section__content--media">
  
     
     
@@ -329,18 +328,32 @@
 </section>
 
   
-  <section class="split__banner section__content flex-v vs light col-xs-12" data-interaction="sectionPin sectionWipe">
+  <section class="split__banner section__content split__banner--left flex-v vs light sectionPin col-xs-12" data-interaction="sectionPin">
 
     <div class="split__banner--main light inline col-xs-6">
-        
-    <div class="section__content--item section__content--main">
+        <div class="section__content--item section__content--main">
 
     <h5 data-interaction="fadeElIn">SURF AIR VS. COMMERCIAL</h5>
+    
+    
+    
+    
+
+</div>
+
+
+<div class="pinned">
+        
+            
+
+    <div class="section__content--item section__content--main">
+
+    
     
         <h1 data-interaction="fadeElIn">5000</h1>
     
     
-        <h2 data-interaction="fadeElIn">Fewer steps from<br> your car to plane</h2>
+        <h2 data-interaction="fadeElIn">Fewer steps from <br>your car to plane</h2>
     
     
     
@@ -349,6 +362,65 @@
 
 
 
+        
+            
+
+    <div class="section__content--item section__content--main">
+
+    
+    
+        <h1 data-interaction="fadeElIn">123</h1>
+    
+    
+        <h2 data-interaction="fadeElIn">Domas lamprey bryeal <br>krampel dorma</h2>
+    
+    
+    
+
+</div>
+
+
+
+        
+            
+
+    <div class="section__content--item section__content--main">
+
+    
+    
+        <h1 data-interaction="fadeElIn">38525</h1>
+    
+    
+        <h2 data-interaction="fadeElIn">Lorem ipsum dolor sit <br>amet consectetor</h2>
+    
+    
+    
+
+</div>
+
+
+
+        
+            
+
+    <div class="section__content--item section__content--main">
+
+    
+    
+        <h1 data-interaction="fadeElIn">9283</h1>
+    
+    
+        <h2 data-interaction="fadeElIn">Kripmas premant lorem <br> misca brenta</h2>
+    
+    
+    
+
+</div>
+
+
+
+        
+    </div>
     </div>
     <div class="split__banner--sub light inline col-xs-6">
         
@@ -363,11 +435,10 @@
 </section>
 
   
-  <section class="cta__banner section__content change col-xs-12">
+  <section class="cta__banner section__content cta__banner--center change col-xs-12">
 
     <center class="cta__banner--content col-xs-12 col-sm-11">
-        
-    <div class="section__content--item section__content--main">
+        <div class="section__content--item section__content--main">
 
     
     
@@ -401,11 +472,27 @@
 
 </section>
 
-  <aside class="section__counter transition">
-    
+
+        
+            
+  
+  <aside class="section__counter section__counter--experience transition">
+    <div id="1" onclick="counterController(document.querySelector('#section1'))">
+            <i></i><p>Experience</p>
+        </div><div id="2" onclick="counterController(document.querySelector('#section2'))">
+            <i></i><p>Personalized aviation</p>
+        </div><div id="3" onclick="counterController(document.querySelector('#section3'))">
+            <i></i><p>Why fly Surf Air</p>
+        </div><div id="4" onclick="counterController(document.querySelector('#section4'))">
+            <i></i><p>Who flies Surf Air</p>
+        </div><div id="5" onclick="counterController(document.querySelector('#section5'))">
+            <i></i><p>Surf Air vs. commercial</p>
+        </div><div id="6" onclick="counterController(document.querySelector('#section6'))">
+            <i></i><p>Change the way you fly</p>
+        </div>
 </aside>
 
-
+        
         
   
     
@@ -434,7 +521,7 @@
             <a href="site-credit.html" class="nav__item nav__main--item">site credit</a>
         
     </nav>
-    <div class="footer__social nav__sub inline">
+    <div class="footer__nav--social nav__sub inline">
         <a href="#" class="footer__social--icon inline"><img src="assets/image/base/facebook.png" /></a>
         <a href="#" class="footer__social--icon inline"><img src="assets/image/base/twitter.png" /></a>
         <a href="#" class="footer__social--icon inline"><img src="assets/image/base/instagram.png" /></a>
@@ -444,14 +531,48 @@
 
 
     </main>
-    <script src="js/barba.min.js"></script>
-
-
-
+    <!--JS-->
+<script src="js/barba.min.js"></script>
+<script src="js/jquery-latest.js"></script>
+<script src="js/scrollMagic.min.js"></script>
 <script src="js/gsap.min.js"></script>
-
+<script src="js/helper.js"></script>
+<script src="js/animation.js"></script>
 <script src="js/interaction.js"></script>
+<script src="js/transition.js"></script>
 <script src="js/app.js"></script>
 <script src="js/polyfill.js"></script>
+<script type="text/javascript">
+    console.log("Preload");
+    const mediaTypes = [ "jpg", "png", "gif", "mp4", "flv", "mov", "webm", "ogg" ],
+        loadMedia = new Array;
+    running = true;
+    document.querySelector("body").style.opacity = '0';
+    mediaTypes.forEach(function(current){
+        const currMedia = Array.from(
+            document.querySelectorAll(`*[src$=".${current}"]`)
+        );
+        if (currMedia.length > 0) {
+            currMedia.forEach(function(current){
+                if ( current.width >= ((window.innerWidth / 4)*3) ) {
+                    loadMedia.push(current)
+                } 
+            })
+        }
+    });
+    loadMedia.forEach(function(current, index, arr){
+        const img = new Image();
+        img.src = current.src;
+        img.onload = function () { 
+            // console.log("Loaded " + current.src)
+        };
+        img.onerror = function () { 
+            // console.log("Failed " + current.src)
+        };
+    });
+    document.querySelector("body").style.opacity = '1';
+    running = false
+    init();
+</script>
 </body>
 </html>

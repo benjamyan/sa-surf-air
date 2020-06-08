@@ -3,22 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <!--CSS-->
+<link rel="stylesheet" type="text/css" href="css/normalize.css">
 <link rel="stylesheet" type="text/css" href="css/output.css">
+<!--Pre-->
+<link rel="preload" href="../../assets/fonts/FFKievitWebProLight.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/FFKievitWebProItalic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/FFKievitWebPro.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/FFKievitWebProBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/Klavika-bold.woff2" as="font" type="font/woff2" crossorigin>
     
-    <title>
+        
+            <title>
     Homepage
     
 </title>
+    
 </head>
-<body class="home" data-barba="wrapper">
+<body class="home" data-barba="wrapper" open-scroll>
     <main data-barba="container" data-barba-namespace="home">
         
   
     
 <header class="header__nav header__nav--home flex-h transition col-xs-12">
     <a href="index.html" class="nav__logo header__nav--logo inline"><img class="nav__logo--image" src="assets/image/base/surfair-logo.png" /></a>
-    <div class="nav__mobile header__nav--mobile inline" onclick="navMobileMenu(event);">
+    <div class="nav__mobile header__nav--mobile inline" onclick="headerMobileToggle(event);">
         <div></div>
         <div></div>
         <div></div>
@@ -44,28 +53,26 @@
 
 
         
+
   
-    <section class="cta__banner section__content hero col-xs-12" data-interaction="">
+  <section class="cta__banner section__content cta__banner--center hero col-xs-12">
 
     <center class="cta__banner--content col-xs-12 col-sm-11">
-        
-    <div class="section__content--item section__content--main">
+        <div class="section__content--item section__content--main">
 
     
     
     
-        <h2 data-interaction="">Better travel <br>for the modern world</h2>
+        <h2 data-interaction="fadeElIn">Better travel <br>for the modern world</h2>
     
     
     
 
 </div>
-
-
-    <div class="section__content--item section__content--sub">
+<div class="section__content--item section__content--sub">
 
     
-        <div class="section__content--sub-title" data-interaction="">
+        <div class="section__content--sub-title" data-interaction="fadeElIn">
             
             <h3>Travel on your terms, starting at just $199 per month.</h3>
         </div>
@@ -76,11 +83,11 @@
         
         <div class="section__content--button-wrapper nav__item--button-wrapper">
     
-    <div class="section__content--button section__content--button-lg" data-interaction="">
+    <div class="section__content--button section__content--button-lg" data-interaction="fadeElIn">
         <a class="nav__item nav__item--button nav__item--button-lg nav__item--button-transparent" href="#">ON DEMAND</a>
     </div>
     
-    <div class="section__content--button section__content--button-lg" data-interaction="">
+    <div class="section__content--button section__content--button-lg" data-interaction="fadeElIn">
         <a class="nav__item nav__item--button nav__item--button-lg nav__item--button-transparent" href="#">SCHEDULED</a>
     </div>
     
@@ -104,11 +111,403 @@
 </section>
 
   
-    <aside class="section__counter transition">
+  <section class="service__banner section__content service__banner--top available float light col-xs-12">
+
     
-</aside>
     
 
+
+
+    
+        <div class="service__banner--item-wrapper flex-h col-xs-12">
+            
+                <article class="service__banner--item service__banner--item-1 col-xs-6" data-interaction="fadeElIn parallaxItem">
+    <div class="service__banner--item-inner">
+        
+        <div class="service__banner--item-fg" style="background-image:url(assets/image/index/woman-walking-into-plane.jpg)">
+                
+            </div>
+        <div class="service__banner--item-title">
+                
+                <h3>On demand</h3>
+            </div>
+        <p>Design a flight to meet your exact travel needs.</p>
+        
+        
+            
+            <div class="section__content--button-wrapper nav__item--button-wrapper">
+    
+    <div class="section__content--button section__content--button-lg">
+        <a class="nav__item nav__item--button nav__item--button-lg nav__item--button-transparent" href="#">EXPLORE ON DEMAND</a>
+    </div>
+    
+</div>
+        
+    </div>
+    <div class="blur col-xs-12"></div>
+</article>
+
+            
+                <article class="service__banner--item service__banner--item-2 col-xs-6" data-interaction="fadeElIn parallaxItem">
+    <div class="service__banner--item-inner">
+        
+        <div class="service__banner--item-fg" style="background-image:url(assets/image/index/pilot-in-airplane-front.jpg)">
+                
+            </div>
+        <div class="service__banner--item-title">
+                
+                <h3>Scheduled</h3>
+            </div>
+        <p>Over 50 scheduled flights per day to private airports in California and Texas.</p>
+        
+        
+            
+            <div class="section__content--button-wrapper nav__item--button-wrapper">
+    
+    <div class="section__content--button section__content--button-lg">
+        <a class="nav__item nav__item--button nav__item--button-lg nav__item--button-transparent" href="#">EXPLORE SCHEDULE</a>
+    </div>
+    
+</div>
+        
+    </div>
+    <div class="blur col-xs-12"></div>
+</article>
+
+            
+        </div>
+    
+    
+
+</section>
+
+  
+  <section class="text__banner section__content every col-xs-12">
+
+    <div class="text__banner--main flex-h text__banner--bottom col-xs- col-sm-10">
+        <div class="section__content--item section__content--main">
+
+    <h5 data-interaction="fadeElIn">FLY ANY TIME TO ANYWHERE</h5>
+    
+    
+        <h2 data-interaction="fadeElIn">Every moment<br> makes a difference</h2>
+    
+    
+    
+
+</div>
+<div class="section__content--item section__content--sub">
+
+    
+    
+        <p data-interaction="fadeElIn">Created around the lives of busy flyers, Surf Air is easier, healthier, and more enjoyable than commercial airlines.</p>
+    
+    
+    
+        
+        <div class="section__content--button-wrapper nav__item--button-wrapper">
+    
+    <div class="section__content--button section__content--button-lg" data-interaction="fadeElIn">
+        <a class="nav__item nav__item--button nav__item--button-lg nav__item--button-transparent" href="#">EXPORE THE DIFFERENCE</a>
+    </div>
+    
+</div>
+    
+
+</div>
+
+
+        <div class="blur col-xs-12"></div>
+    </div>
+    
+<div class="section__bg col-xs-12">
+    
+    
+        <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/index/man-holding-smart-phone.jpg" alt="Surf Air description goes here for SEO and screen readers" />
+    
+</div>
+
+</section>
+
+  
+  <section class="split__banner section__content split__banner--left flex-v saving light  col-xs-12">
+
+    <div class="split__banner--main light inline col-xs-6">
+        <div class="section__content--item section__content--main">
+
+    
+    
+    
+        <h2 data-interaction="fadeElIn">We're passionate about saving you time and eliminating hassles.</h2>
+    
+    
+    
+        
+        <div class="section__content--button-wrapper nav__item--button-wrapper">
+    
+    <div class="section__content--button section__content--button-lg" data-interaction="fadeElIn">
+        <a class="nav__item nav__item--button nav__item--button-lg nav__item--button-transparent" href="#">SIGN UP</a>
+    </div>
+    
+</div>
+    
+
+</div>
+
+    
+    <div class="slider testimonial" data-interaction="sliderItem" data-setup="testimonial" autoplay>
+        
+            
+                
+    <div id="slide1" class="section__content--item slider-item section__content--testimonial visible">
+        
+            <div class="section__content--testimonial-title" data-interaction="fadeElIn">
+                
+                    <img src="assets/image/base/michael-k.jpg" />
+                
+                <h3><q>A different model than flying commercial that offers so much flexibility</q></h3>
+            </div>
+        
+        
+        
+            <p data-interaction="fadeElIn"><sub>Michael K</sub></p>
+        
+        
+    </div>
+
+
+            
+                
+    <div id="slide2" class="section__content--item slider-item section__content--testimonial">
+        
+            <div class="section__content--testimonial-title" data-interaction="fadeElIn">
+                
+                    <img src="assets/image/base/michael-k.jpg" />
+                
+                <h3><q>Lorem ipum dolor sit amet consectetor domas lamprey oscipmentum kremp</q></h3>
+            </div>
+        
+        
+        
+            <p data-interaction="fadeElIn"><sub>Audrey M.</sub></p>
+        
+        
+    </div>
+
+
+            
+                
+    <div id="slide3" class="section__content--item slider-item section__content--testimonial">
+        
+            <div class="section__content--testimonial-title" data-interaction="fadeElIn">
+                
+                    <img src="assets/image/base/michael-k.jpg" />
+                
+                <h3><q>Consectetor domas lamprey oscipmentum kremp lorem ipum dolor sit amet </q></h3>
+            </div>
+        
+        
+        
+            <p data-interaction="fadeElIn"><sub>Aaron P.</sub></p>
+        
+        
+    </div>
+
+
+            
+                
+
+            
+                
+
+            
+        
+        
+        
+        <div class="slider-nav" data-interaction="fadeElIn">
+                
+                    
+    <div id="1"  class="visible"><i></i></div>
+
+                
+                    
+    <div id="2" ><i></i></div>
+
+                
+                    
+    <div id="3" ><i></i></div>
+
+                
+                    
+                
+                    
+                
+            </div>
+    </div>
+
+
+
+    </div>
+    <div class="split__banner--sub light inline col-xs-6">
+        
+<div class="section__bg col-xs-12">
+    
+    
+        <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/index/plane-back-surfair-logo.jpg" alt="Surf Air description goes here for SEO and screen readers" />
+    
+</div>
+    </div>
+
+</section>
+
+  
+  <section class="cta__banner section__content cta__banner--center club col-xs-12">
+
+    <center class="cta__banner--content col-xs-12 col-sm-11">
+        <div class="section__content--item section__content--main">
+
+    
+    
+    
+        <h2 data-interaction="fadeElIn">Join the club</h2>
+    
+    
+        <h4 data-interaction="fadeElIn">Memberships from just $199 per month. Unlock access to a new world of possibility.</h4>
+    
+    
+
+</div>
+<div class="section__content--item section__content--sub">
+
+    
+    
+    
+    
+        
+        <div class="section__content--button-wrapper nav__item--button-wrapper">
+    
+    <div class="section__content--button section__content--button-lg" data-interaction="fadeElIn">
+        <a class="nav__item nav__item--button nav__item--button-lg nav__item--button-transparent" href="#">EXPLORE MEMBERSHIPS</a>
+    </div>
+    
+</div>
+    
+
+</div>
+
+
+    </center>
+    
+<div class="section__bg col-xs-12">
+    
+    
+        <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/index/man-walking-into-plane-sunset.jpg" alt="Surf Air description goes here for SEO and screen readers" />
+    
+</div>
+
+</section>
+
+  
+  <section class="cta__banner section__content section__content--half-height cta__banner--center member light col-xs-12">
+
+    <center class="cta__banner--content col-xs-12 col-sm-11">
+        
+<div class="section__content--item section__content--sub">
+
+    
+        <div class="section__content--sub-title" data-interaction="fadeElIn">
+            
+            <h3>“This airline memberships lets you book unlimited <br>flights on a private jet every month”</h3>
+        </div>
+    
+    
+    
+    
+
+</div>
+    
+    <div class="slider carousel" data-interaction="sliderItem" data-setup="carousel" autoplay>
+        
+        
+            
+                
+<div id="slide1" class="section__content--item slider-item section__content--carousel">
+    <img src="assets/image/index/wsj-logo.svg" alt="Wall Street Journal"  data-interaction="fadeElIn" />
+</div>
+
+            
+                
+<div id="slide2" class="section__content--item slider-item section__content--carousel">
+    <img src="assets/image/index/tech-crunch-logo.svg" alt="Tech Crunch"  data-interaction="fadeElIn" />
+</div>
+
+            
+                
+<div id="slide3" class="section__content--item slider-item section__content--carousel">
+    <img src="assets/image/index/active-travel+leisure.svg" alt="Active Travel &amp;amp; Leisure"  data-interaction="fadeElIn" />
+</div>
+
+            
+                
+<div id="slide4" class="section__content--item slider-item section__content--carousel">
+    <img src="assets/image/index/forbes-logo.svg" alt="Forbes"  data-interaction="fadeElIn" />
+</div>
+
+            
+                
+<div id="slide5" class="section__content--item slider-item section__content--carousel">
+    <img src="assets/image/index/robb-report-logo.svg" alt="Robb Report"  data-interaction="fadeElIn" />
+</div>
+
+            
+                
+            
+                
+            
+        
+        
+        <div class="slider-nav" data-interaction="fadeElIn">
+                
+                    
+    <div id="1"  class="visible"><i></i></div>
+
+                
+                    
+    <div id="2" ><i></i></div>
+
+                
+                    
+    <div id="3" ><i></i></div>
+
+                
+                    
+    <div id="4" ><i></i></div>
+
+                
+                    
+    <div id="5" ><i></i></div>
+
+                
+                    
+                
+                    
+                
+            </div>
+    </div>
+
+
+
+    </center>
+    
+<div class="section__bg col-xs-12">
+    
+    
+</div>
+
+</section>
+    
+
+        
         
   
     
@@ -137,7 +536,7 @@
             <a href="site-credit.html" class="nav__item nav__main--item">site credit</a>
         
     </nav>
-    <div class="footer__social nav__sub inline">
+    <div class="footer__nav--social nav__sub inline">
         <a href="#" class="footer__social--icon inline"><img src="assets/image/base/facebook.png" /></a>
         <a href="#" class="footer__social--icon inline"><img src="assets/image/base/twitter.png" /></a>
         <a href="#" class="footer__social--icon inline"><img src="assets/image/base/instagram.png" /></a>
@@ -147,14 +546,48 @@
 
 
     </main>
-    <script src="js/barba.min.js"></script>
-
-
-
+    <!--JS-->
+<script src="js/barba.min.js"></script>
+<script src="js/jquery-latest.js"></script>
+<script src="js/scrollMagic.min.js"></script>
 <script src="js/gsap.min.js"></script>
-
+<script src="js/helper.js"></script>
+<script src="js/animation.js"></script>
 <script src="js/interaction.js"></script>
+<script src="js/transition.js"></script>
 <script src="js/app.js"></script>
 <script src="js/polyfill.js"></script>
+<script type="text/javascript">
+    console.log("Preload");
+    const mediaTypes = [ "jpg", "png", "gif", "mp4", "flv", "mov", "webm", "ogg" ],
+        loadMedia = new Array;
+    running = true;
+    document.querySelector("body").style.opacity = '0';
+    mediaTypes.forEach(function(current){
+        const currMedia = Array.from(
+            document.querySelectorAll(`*[src$=".${current}"]`)
+        );
+        if (currMedia.length > 0) {
+            currMedia.forEach(function(current){
+                if ( current.width >= ((window.innerWidth / 4)*3) ) {
+                    loadMedia.push(current)
+                } 
+            })
+        }
+    });
+    loadMedia.forEach(function(current, index, arr){
+        const img = new Image();
+        img.src = current.src;
+        img.onload = function () { 
+            // console.log("Loaded " + current.src)
+        };
+        img.onerror = function () { 
+            // console.log("Failed " + current.src)
+        };
+    });
+    document.querySelector("body").style.opacity = '1';
+    running = false
+    init();
+</script>
 </body>
 </html>
