@@ -1,10 +1,7 @@
 {% set pageTitle = "experience" %}
-{% extends "layout.njk" %}
+{% set openScrolling = false %}
 
-{% block meta -%}
-  {% import 'macros/head_meta.njk' as meta %}
-    {{ meta.active(pageTitle) }}
-{%- endblock %}
+{% extends "layout.njk" %}
 
 {% block header %}
   {% import 'macros/header_navigation.njk' as header %}
@@ -31,7 +28,7 @@
     onclick: 'slideItemIn(event); return false;',
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/serviceBanner_fullHeight.njk" %}
+  {% include "partials/serviceBanner_bottomAlign_fullHeight.njk" %}
 
   {% set section = {
     ref: why,
@@ -56,7 +53,7 @@
   {% set section = {
     ref: vs,
     class: 'vs light',
-    onload: 'sectionPin sectionWipe',
+    onload: 'sectionPin',
     onenter: 'fadeElIn',
     onclick: false,
     onexit: 'fadeElOut'
@@ -73,8 +70,18 @@
   } %}
   {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
 
-  {% include "partials/components/_counter.njk" %}
+{% endblock %}
 
+{% block counter %}
+  {% set counter = [
+    'Experience',
+    'Personalized aviation',
+    'Why fly Surf Air',
+    'Who flies Surf Air',
+    'Surf Air vs. commercial',
+    'Change the way you fly'
+  ] %}
+  {% include "components/_counter.njk" %}
 {% endblock %}
 
 {% block footer %}

@@ -23,10 +23,12 @@
         "bgImageSrc": "assets/image/index/group-walking-to-plane.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],
-    "cta": [{
-        "1": [{
-            "main": [{
-                "superCopy": "On demand",
+    "available": [{
+        "itemList": [
+            {
+                "fgImageSrc": "assets/image/index/woman-walking-into-plane.jpg",
+                "fgImageAlt": "Surf Air description goes here for SEO and screen readers",
+                "mainTitle": "On demand",
                 "mainCopy": "Design a flight to meet your exact travel needs.",
                 "btn": {
                     "1": {
@@ -36,31 +38,27 @@
                         "btnText": "EXPLORE ON DEMAND"
                     }
                 }
-            }],
-            "bgImageSrc": "assets/image/index/woman-walking-into-plane.jpg",
-            "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
-        }],
-        "2": [{
-            "main": [{
-                "superCopy": "Scheduled",
+            },
+            {
+                "fgImageSrc": "assets/image/index/pilot-in-airplane-front.jpg",
+                "fgImageAlt": "Surf Air description goes here for SEO and screen readers",
+                "mainTitle": "Scheduled",
                 "mainCopy": "Over 50 scheduled flights per day to private airports in California and Texas.",
                 "btn": {
                     "1": {
                         "btnSize": "lg",
                         "btnType": "transparent",
                         "btnHref": "#",
-                        "btnText": "Explore Schedule"
+                        "btnText": "EXPLORE SCHEDULE"
                     }
                 }
-            }],
-            "bgImageSrc": "assets/image/index/pilot-in-airplane-front.jpg",
-            "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
-        }]
+            }
+        ]
     }],
-    "any": [{
+    "every": [{
         "main": [{
-            "miniTitle": "Fly any time to anywhere",
-            "mainTitle": "Every moment makes a difference"
+            "miniTitle": "FLY ANY TIME TO ANYWHERE",
+            "mainTitle": "Every moment<br> makes a difference"
         }],
         "sub": [{
             "mainCopy": "Created around the lives of busy flyers, Surf Air is easier, healthier, and more enjoyable than commercial airlines.",
@@ -88,18 +86,34 @@
                 }
             }
         }],
-        "sub": [{
-            "superCopyIcon": "#",
-            "superCopy": "A different model than flying commercial that offers so much flexibility",
-            "subCopy": "Michael K"
+        "slider": [{
+            "type": "testimonial",
+            "autoplay": true,
+            "1": {
+                "superCopyIcon": "assets/image/base/michael-k.jpg",
+                "superCopy": "<q>A different model than flying commercial that offers so much flexibility</q>",
+                "subCopy": "Michael K"
+            },
+            "2": {
+                "superCopyIcon": "assets/image/base/michael-k.jpg",
+                "superCopy": "<q>Lorem ipum dolor sit amet consectetor domas lamprey oscipmentum kremp</q>",
+                "subCopy": "Audrey M."
+            },
+            "3": {
+                "superCopyIcon": "assets/image/base/michael-k.jpg",
+                "superCopy": "<q>Consectetor domas lamprey oscipmentum kremp lorem ipum dolor sit amet </q>",
+                "subCopy": "Aaron P."
+            }
         }],
         "bgImageSrc": "assets/image/index/plane-back-surfair-logo.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],
-    "join": [{
+    "club": [{
         "main": [{
             "mainTitle": "Join the club",
-            "subTitle": "Memberships from just $199 per month. Unlock access to a new world of possibility.",
+            "subTitle": "Memberships from just $199 per month. Unlock access to a new world of possibility."
+        }],
+        "sub": [{
             "btn": {
                 "1": {
                     "btnSize": "lg",
@@ -112,41 +126,43 @@
         "bgImageSrc": "assets/image/index/man-walking-into-plane-sunset.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],
-    "these": [{
-        "main": [{
-            "subTitle": "“This airline memberships lets you book unlimited flights on a private jet every month”"
+    "member": [{
+        "sub": [{
+            "superCopy": "“This airline memberships lets you book unlimited <br>flights on a private jet every month”"
         }],
-        "carousel": [{
-            "1": [{
+        "slider": [{
+            "type": "carousel",
+            "autoplay": true,
+            "1": {
                 "img": {
-                    "imgSrc": "assets/image/wsj-logo.png",
+                    "imgSrc": "assets/image/index/wsj-logo.svg",
                     "imgAlt": "Wall Street Journal"
                 }
-            }],
-            "2": [{
+            },
+            "2": {
                 "img": {
-                    "imgSrc": "assets/image/tech-crunch-logo.png",
+                    "imgSrc": "assets/image/index/tech-crunch-logo.svg",
                     "imgAlt": "Tech Crunch"
                 }
-            }],
-            "3": [{
+            },
+            "3": {
                 "img": {
-                    "imgSrc": "assets/image/active-travel+leisure.svg",
+                    "imgSrc": "assets/image/index/active-travel+leisure.svg",
                     "imgAlt": "Active Travel &amp; Leisure"
                 }
-            }],
-            "4": [{
+            },
+            "4": {
                 "img": {
-                    "imgSrc": "assets/image/forbes-logo.png",
+                    "imgSrc": "assets/image/index/forbes-logo.svg",
                     "imgAlt": "Forbes"
                 }
-            }],
-            "5": [{
+            },
+            "5": {
                 "img": {
-                    "imgSrc": "assets/image/robb-report-logo.png",
+                    "imgSrc": "assets/image/index/robb-report-logo.svg",
                     "imgAlt": "Robb Report"
                 }
-            }]
+            }
         }]
     }]
 }

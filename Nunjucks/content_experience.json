@@ -99,11 +99,35 @@
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],
     "vs": [{
-        "main":[{
-            "miniTitle": "SURF AIR VS. COMMERCIAL",
-            "superTitle": "5000",
-            "mainTitle": "Fewer steps from<br> your car to plane"
+        "main": [{
+            "miniTitle": "SURF AIR VS. COMMERCIAL"
         }],
+        "pin": {
+            "1": {
+                "main": [{
+                    "superTitle": "5000",
+                    "mainTitle": "Fewer steps from <br>your car to plane"
+                }]
+            },
+            "2": {
+                "main": [{
+                    "superTitle": "123",
+                    "mainTitle": "Domas lamprey bryeal <br>krampel dorma"
+                }]
+            },
+            "3": {
+                "main": [{
+                    "superTitle": "38525",
+                    "mainTitle": "Lorem ipsum dolor sit <br>amet consectetor"
+                }]
+            },
+            "4": {
+                "main": [{
+                    "superTitle": "9283",
+                    "mainTitle": "Kripmas premant lorem <br> misca brenta"
+                }]
+            }
+        },
         "bgImageSrc": "assets/image/experience/woman-front-of-airplane.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],

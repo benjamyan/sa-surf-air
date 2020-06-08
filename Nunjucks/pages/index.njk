@@ -1,10 +1,7 @@
 {% set pageTitle = "home" %}
-{% extends "layout.njk" %}
+{% set openScrolling = true %}
 
-{% block meta -%}
-  {% import 'macros/head_meta.njk' as meta %}
-    {{ meta.active(pageTitle) }}
-{%- endblock %}
+{% extends "layout.njk" %}
 
 {% block header %}
   {% import 'macros/header_navigation.njk' as header %}
@@ -12,17 +9,66 @@
 {% endblock %}
 
 {% block content %}
+
   {% set section = {
     ref: hero,
     class: 'hero',
-    int1: 'frostedGlass',
-    int2: 'slideInOut',
-    int3: 'fadeSlideIn'
+    onload: false,
+    onenter: 'fadeElIn',
+    onclick: false,
+    onexit: 'fadeElOut'
   } %}
-    {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
+  {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
 
-  {% set sectionCount = 1 %}
-    {% include "partials/components/_counter.njk" %}
+  {% set section = {
+    ref: available,
+    class: 'available float light',
+    onload: false,
+    onenter: 'fadeElIn parallaxItem',
+    onclick: false,
+    onexit: 'fadeElOut'
+  } %}
+  {% include "partials/serviceBanner_topAlign_fullHeight.njk" %}
+
+  {% set section = {
+    ref: every,
+    class: 'every',
+    onload: false,
+    onenter: 'fadeElIn',
+    onclick: false,
+    onexit: 'fadeElOut'
+  } %}
+  {% include "partials/textBanner_bottomAlign_fullHeight.njk" %}
+
+  {% set section = {
+    ref: saving,
+    class: 'saving light',
+    onload: false,
+    onenter: 'fadeElIn',
+    onclick: false,
+    onexit: 'fadeElOut'
+  } %}
+  {% include "partials/splitBanner_leftAlign_fullHeight.njk" %}
+
+  {% set section = {
+    ref: club,
+    class: 'club',
+    onload: false,
+    onenter: 'fadeElIn',
+    onclick: false,
+    onexit: 'fadeElOut'
+  } %}
+  {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
+
+  {% set section = {
+    ref: member,
+    class: 'member light',
+    onload: false,
+    onenter: 'fadeElIn',
+    onclick: false,
+    onexit: 'fadeElOut'
+  } %}
+  {% include "partials/ctaBanner_centerAlign_halfHeight.njk" %}
     
 {% endblock %}
 
