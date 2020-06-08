@@ -1,0 +1,23 @@
+{% for base in content.slider %}
+    {% set type = base.type %}
+    <div class="slider {{ type }}" data-interaction="sliderItem" data-setup="{{ type }}"{% if base.autoplay %} autoplay{% endif %}>
+        {% if type == "testimonial" %}
+            {% for value, text in base %}
+                {% include "components/_slider_testimonial.njk" %}
+            {% endfor %}
+        {% endif %}
+        {% if type == "carousel" %}
+            {% for value, text in base %}
+                {% include "components/_slider_carousel.njk" %}
+            {% endfor %}
+        {% endif %}
+        {# Call the navigation #}
+        {% if base | length != 1 -%}
+            <div class="slider-nav"{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>
+                {% for value, text in base %}
+                    {% include "components/_slider_nav.njk" %}
+                {% endfor %}
+            </div>
+        {%- endif %}
+    </div>
+{% endfor %}

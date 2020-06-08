@@ -1,0 +1,22 @@
+{% if value == loop.index %}
+    <div id="slide{{ loop.index }}" class="section__content--item slider-item section__content--testimonial{% if loop.index == 1 %} visible{% endif %}">
+        {% if text.superCopy %}
+            <div class="section__content--testimonial-title"{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>
+                {% if text.superCopyIcon %}
+                    <img src="{{text.superCopyIcon}}" />
+                {% endif %}
+                <h3>{{text.superCopy | safe}}</h3>
+            </div>
+        {% endif %}
+        {% if text.mainCopy %}
+            <p{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>{{text.mainCopy | safe}}</p>
+        {% endif %}
+        {% if text.subCopy %}
+            <p{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}><sub>{{text.subCopy | safe}}</sub></p>
+        {% endif %}
+        {% if text.btn %}
+            {% set btnRef = text %}
+            {% include "components/_text_button.njk" %}
+        {% endif %}
+    </div>
+{% endif %}

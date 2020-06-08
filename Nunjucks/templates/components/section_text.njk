@@ -1,0 +1,19 @@
+{% if content.main -%}
+    {% include "components/_text_main.njk" %}
+{%- endif %}
+{% if content.sub -%}
+    {% include "components/_text_sub.njk" %}
+{%- endif -%}
+{% if content.slider -%}
+    {% include "components/section_slider.njk" %}
+{%- endif %}
+{% if content.media -%}
+    {% include "components/_text_media.njk" %}
+{%- endif %}
+{% if section['onload'] == 'sectionPin' -%}
+    <div class="pinned">
+        {% for value, item in content.pin %}
+            {% include "components/section_pin.njk" %}
+        {% endfor %}
+    </div>
+{%- endif %}

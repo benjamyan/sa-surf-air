@@ -1,0 +1,5 @@
+{% if text.img %}
+<div id="slide{{ loop.index }}" class="section__content--item slider-item section__content--carousel">
+    <img src="{{text.img['imgSrc']}}" alt="{{text.img['imgAlt']}}" {% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %} />
+</div>
+{% endif %}

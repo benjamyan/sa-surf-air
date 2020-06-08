@@ -1,0 +1,7 @@
+<div class="section__content--button-wrapper nav__item--button-wrapper">
+    {% for value, item in btnRef.btn %}
+    <div class="section__content--button section__content--button-{{ item.btnSize }}"{% if section['onenter'] == 'fadeElIn' %} data-interaction="{{section['onenter']}}"{% endif %}>
+        <a class="nav__item nav__item--button nav__item--button-{{ item.btnSize }} nav__item--button-{{ item.btnType }}" href="{{ item.btnHref }}">{{ item.btnText | safe }}</a>
+    </div>
+    {% endfor %}
+</div>

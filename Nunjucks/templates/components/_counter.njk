@@ -1,0 +1,7 @@
+<aside class="section__counter section__counter--{{ pageTitle }} transition">
+    {% for content in range(0, counter | length) -%}
+        <div id="{{loop.index}}" onclick="counterController(document.querySelector('#section{{loop.index}}'))">
+            <i></i><p>{{ counter[loop.index0] }}</p>
+        </div>
+    {%- endfor %}
+</aside>
