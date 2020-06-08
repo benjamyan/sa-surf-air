@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap');
+/*COLORS*/
+$text-default: #404040;
+$mid-blue: #264562;
+$black: #000000;
+$super-grey: #0A253E;
+$dark-grey: #333333;
+$med-grey: #666666;
+$light-grey: #999999;
+$pale-grey: #DEDEDE;
+$off-white: #EFEFEF;
+$white: #FFFFFF;
+/*FONTS*/
+%font-stack-light {
+    font-family: ("Kievit-light", "Open Sans", Helvetica, Arial, sans-serif);
+    font-weight: 200;
+    font-style: normal;
+}
+%font-stack-ital {
+    font-family: ("Kievit-ital", "Open Sans", Helvetica, Arial, sans-serif);
+    font-weight: 400;
+}
+%font-stack-reg {
+    font-family: ("Kievit-reg", "Open Sans", Helvetica, Arial, sans-serif);
+    font-weight: 400;
+    font-style: normal;
+}
+%font-stack-bold {
+    font-family: ("Kievit-bold", "Open Sans", Helvetica, Arial, sans-serif);
+    font-weight: 800;
+    font-style: normal;
+}
+%font-stack-num {
+    font-family: ("Klavika-bold", "Titillium Web", Helvetica, Arial, sans-serif);
+    font-weight: 800;
+    font-style: normal;
+}
