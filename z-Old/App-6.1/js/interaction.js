@@ -24,7 +24,7 @@ headerMenuActive = ()=> {
         navDOM.nav.classList.remove("active");
     } 
 }
-clearElementChanges = (targetEl)=> {
+clearDOMchanges = (targetEl)=> {
     if (targetEl && Array.isArray(targetEl)) {
         targetEl.forEach(function(current){
             if (current && current.hasAttribute("style"))
@@ -121,7 +121,7 @@ isInViewport = (targetEl)=> {
         (rect.left <= windowWidth) && ((rect.left + rect.width) >= 0)
     );
 }
-clearElementChanges = (targetEl)=> {
+clearDOMchanges = (targetEl)=> {
     const targetArr = Array.from(navDOM.mainText.concat(navDOM.subText, navDOM.subButton))
     if (targetEl && Array.isArray(targetEl)) {
         targetArr.forEach(function(current){
@@ -281,7 +281,7 @@ function headerMobileToggle(event) {
             duration: 1,
             opacity: 1,
             ease: "expo.out",
-            onComplete: clearElementChanges,
+            onComplete: clearDOMchanges,
             onCompleteParams: [ fadeBlurEffect ]
         }).to( fadeTargets, {
             delay: 0.1,
@@ -290,7 +290,7 @@ function headerMobileToggle(event) {
             opacity: 1,
             translateY: 0,
             ease:"expo.out",
-            onComplete: clearElementChanges,
+            onComplete: clearDOMchanges,
             onCompleteParams: [ fadeTargets ] 
         }, "-=0.9")
     } else {
@@ -420,7 +420,7 @@ function slideItemOut(target) {
     closeDetails = ()=> {
         detailsDOM.removeAttribute("open")
     };
-    clearElementChanges = ()=> {
+    clearDOMchanges = ()=> {
         if (detailsClose.hasAttribute("style"))
             detailsClose.removeAttribute("style");
         if (targetElInner && targetElInner.hasAttribute("style"))   
@@ -441,7 +441,7 @@ function slideItemOut(target) {
             duration: 1,
             height: targetEl.offsetHeight / 1.75,
             ease: "expo.out",
-            onComplete: clearElementChanges
+            onComplete: clearDOMchanges
         }, "-=1" )
         .to(detailsDOM.querySelector("summary"), {
             duration: .5,
@@ -459,7 +459,7 @@ function slideItemOut(target) {
             translateY: 0,
             opacity: 1,
             ease: "expo.out",
-            onComplete: clearElementChanges
+            onComplete: clearDOMchanges
         }, "-=.5" )
 }
 /////////////////////////////////////////
@@ -479,7 +479,7 @@ function headerNavigationIntro() {
         translateY:-50 ,
         opacity:0,
         ease:"expo.out",
-        onComplete: clearElementChanges,
+        onComplete: clearDOMchanges,
         onCompleteParams: [navDOM.logo]
     } )
     .from ( navDOM.mobile, {
@@ -487,7 +487,7 @@ function headerNavigationIntro() {
         translateY:-50 ,
         opacity:0,
         ease:"expo.out",
-        onComplete: clearElementChanges,
+        onComplete: clearDOMchanges,
         onCompleteParams: [navDOM.mobile]
     }, "-=2" )
     .from( navDOM.subButton, {
@@ -497,7 +497,7 @@ function headerNavigationIntro() {
         translateY:-50 ,
         opacity:0,
         ease:"expo.out",
-        onComplete: clearElementChanges,
+        onComplete: clearDOMchanges,
         onCompleteParams: [navDOM.subButton]
     }, "-=2" )
     .from( navDOM.mainText, { 
@@ -507,7 +507,7 @@ function headerNavigationIntro() {
         translateY:20 ,
         opacity:0,
         ease:"expo.out",
-        onComplete: clearElementChanges,
+        onComplete: clearDOMchanges,
         onCompleteParams: [navDOM.mainText]
     }, "-=2" )
     .from( navDOM.subText, {
@@ -517,7 +517,7 @@ function headerNavigationIntro() {
         translateY:20 ,
         opacity:0,
         ease:"expo.out",
-        onComplete: clearElementChanges,
+        onComplete: clearDOMchanges,
         onCompleteParams: [navDOM.subText]
     }, "-=2" );
 }

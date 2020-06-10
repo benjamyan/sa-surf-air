@@ -9,8 +9,8 @@
             {{ meta.active(pageTitle) }}
     {% endblock %}
 </head>
-<body class="{{ pageTitle }}" data-barba="wrapper"{% if openScrolling %} open-scroll{% endif %}>
-    <main data-barba="container" data-barba-namespace="{{ pageTitle }}">
+<body class="{{ pageTitle }}" data-barba="wrapper">
+    <main data-barba="container" data-barba-namespace="{{ pageTitle }}"{% if openScrolling %} open-scroll{% endif %}>
         {% block header %}{% endblock %}
         {% block content %}{% endblock %}
         {% if openScrolling == false %}
