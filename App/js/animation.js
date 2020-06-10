@@ -2,6 +2,7 @@
 /////////////////////////////////////////
 // Animation ////////////////////////////
 function breakStringByLine(targetEl) {                              // break down each line in string and wrap in span tag
+    console.log("breakStringByLine")
     /*const originalText = ()=> {
             if (targetEl.innerHTML.indexOf("<br>") !== -1) {
                 const targetArr = targetEl.innerHTML.split("<br>");
@@ -54,7 +55,7 @@ function numCountUpAnimation(targetArr) {
 }
 function numberTransition(targetEl, nextTarget) {
     console.log("numberTransition")
-    const timeline = gsap.timeline({ onComplete:clearElementChanges, onCompletParams:[targetEl, targetEl.parentElement, nextTarget] })
+    const timeline = gsap.timeline({ onComplete:clearDOMchanges, onCompletParams:[targetEl, targetEl.parentElement, nextTarget] })
     timeline.from( targetEl, {
         duration: 0,
         opacity: 1
@@ -62,7 +63,7 @@ function numberTransition(targetEl, nextTarget) {
         duration: 1,
         opacity: 0,
         ease: "expo.out",
-        onComplete: clearElementChanges,
+        onComplete: clearDOMchanges,
         onCompleteParams: [targetEl]
     }).from( nextTarget.querySelectorAll("h1"), {
         translateY: 0,
@@ -72,13 +73,13 @@ function numberTransition(targetEl, nextTarget) {
         opacity: 1,
         ease: "expo.out",
         onStart: numCountUpAnimation(Array.from(nextTarget.querySelectorAll("h1"))),
-        onComplete: clearElementChanges,
+        onComplete: clearDOMchanges,
         onCompleteParams: [Array.from(nextTarget.querySelectorAll("h1"))]
     }, "-=0.9");
 }
 function textTransition(targetEl, nextTarget) {
     console.log("textTransition")
-    const timeline = gsap.timeline({ onComplete:clearElementChanges, onCompletParams:[targetEl, targetEl.parentElement, nextTarget] }),
+    const timeline = gsap.timeline({ onComplete:clearDOMchanges, onCompletParams:[targetEl, targetEl.parentElement, nextTarget] }),
           targetArr = Array.from(nextTarget.children);
     targetArr.forEach(function(current){
         if (current.tagName === "H1") {
@@ -95,7 +96,7 @@ function textTransition(targetEl, nextTarget) {
         translateY: 200,
         opacity: 0,
         ease: "expo.out",
-        onComplete: clearElementChanges,
+        onComplete: clearDOMchanges,
         onCompleteParams: [targetEl.parentElement, targetEl]
     }).from( nextTarget, {
         opacity: 0
@@ -108,7 +109,7 @@ function textTransition(targetEl, nextTarget) {
         translateY: 0,
         opacity: 1,
         ease: "expo.out",
-        onComplete: clearElementChanges,
+        onComplete: clearDOMchanges,
         onCompleteParams: [nextTarget, ...targetArr]
     }, "-=0.9");
 }
@@ -237,12 +238,13 @@ function slideItemOut(target) {
           targetChildren = Array.from(targetEl.children),
           detailsDOMul = detailsDOM.querySelector("ul"),
           tl = gsap.timeline();
-    if (targetActive)
+    if (targetActive) {
         targetActive.classList.remove("activeItem");
+    };
     closeDetails = ()=> {
         detailsDOM.removeAttribute("open")
     };
-    clearElementChanges = ()=> {
+    clearDOMchanges = ()=> {
         if (detailsClose.hasAttribute("style"))
             detailsClose.removeAttribute("style");
         if (targetElInner && targetElInner.hasAttribute("style"))   
@@ -251,38 +253,34 @@ function slideItemOut(target) {
     targetChildren.forEach(function(current, index){
         if (current.classList.contains("blur")) targetChildren.splice(index, 1)
     });
-    tl.to (detailsDOMul.children, {
+    tl.to (Array.from(detailsDOMul.children).reverse(), {
         duration: 1,
         stagger: 0.15,
         opacity: 0,
         translateY: 0,
         ease:"expo.out",
         onComplete: closeDetails
-    })
-        .to(targetEl, {
-            duration: 1,
-            height: targetEl.offsetHeight / 1.75,
-            ease: "expo.out",
-            onComplete: clearElementChanges
-        }, "-=1" )
-        .to(detailsDOM.querySelector("summary"), {
-            duration: .5,
-            display: "block",
-            opacity: 1,
-            ease: "expo.out",
-        }, "-=1" )
-        .to(detailsClose, {
-            duration: .5,
-            opacity: 0,
-            ease: "expo.out"
-        }, "-=1" )
-        .to(targetChildren, {
-            duration: .5,
-            translateY: 0,
-            opacity: 1,
-            ease: "expo.out",
-            onComplete: clearElementChanges
-        }, "-=.5" )
+    }).to(targetEl, {
+        duration: 1,
+        height: targetEl.offsetHeight / 1.75,
+        ease: "expo.out",
+        onComplete: clearDOMchanges
+    }, "-=1" ).to(detailsDOM.querySelector("summary"), {
+        duration: .5,
+        display: "block",
+        opacity: 1,
+        ease: "expo.out",
+    }, "-=1" ).to(detailsClose, {
+        duration: .5,
+        opacity: 0,
+        ease: "expo.out"
+    }, "-=1" ).to(targetChildren, {
+        duration: .5,
+        translateY: 0,
+        opacity: 1,
+        ease: "expo.out",
+        onComplete: clearDOMchanges
+    }, "-=.5" )
 }
 function panelSlideIn(targetEl) {                                       // slide panel of DOM element into viewport
     //

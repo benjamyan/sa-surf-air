@@ -1,32 +1,33 @@
 const scrollTypes = [ "onwheel", "wheel", "mousewheel", "onmousewheel","DOMMouseScroll", "touchstart", "touchmove", "touchend", "touchcancel" ];
-const Page = {
+let Page = {
         home: document.querySelector(".home"),
         experience: document.querySelector(".experience"),
         ondemand: document.querySelector(".ondemand"),
         scheduled: document.querySelector(".scheduled"),
         memberships: document.querySelector(".memberships")
-      },
-      DOM = {
+    },
+    DOM = {
         body: document.querySelector("body"),
+        main: document.querySelector("main"),
         textTags: ["h1","h2","h3","h4","h5","p"],
         counter: ".section__counter",
         serviceBanner: ".service__banner",
         serviceBannerItem: document.querySelectorAll(".service__banner--item"),
         bgMedia: document.querySelector(".section__bg--media")
-      },
-      navDOM = {
+    },
+    navDOM = {
         nav: document.querySelector(".header__nav"),
         logo: document.querySelector(".nav__logo"),
         mobile: document.querySelector(".nav__mobile"),
         mainText: Array.from(document.querySelectorAll(".nav__main p")),
         subText: Array.from(document.querySelectorAll(".nav__sub .text")),
         subButton: document.querySelector(".nav__sub .button")
-      };
-const counter = document.querySelector(DOM.counter),
-      sections = Array.from(document.querySelectorAll("section")),
-      totalSections = sections.length,
-      viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-let time = 1500,
+    };
+let counter = document.querySelector(DOM.counter),
+    sections = Array.from(document.querySelectorAll("section")),
+    totalSections = sections.length,
+    viewportWidth = window.innerWidth || document.documentElement.clientWidth,
+    time = 1500,
     running = false,
     intRunning = false,
     wipeRunning = false,
@@ -47,7 +48,7 @@ randomNumber = ()=> {                                               // random nu
     return ( Math.floor( Math.random() * (20 * precision - 1 * precision) + 1 * precision) / (1 * precision ) )
 },
 isOpenScrolling = ()=> {                                            // tests whether scroll-lock is turned off -- returns Bool
-    return DOM.body.hasAttribute("open-scroll")                             // if DOM body has `open-scroll` attribute if truthy
+    return DOM.main.hasAttribute("open-scroll")                             // if DOM body has `open-scroll` attribute if truthy
 },
 isInViewport = (targetEl)=> {                                       // tests whether a DOM node is in the viewport -- returns Bool
     const rect = targetEl.getBoundingClientRect(),                                          // get element position using ClientRect
@@ -142,23 +143,6 @@ parseArrForClass = (targetArr, className)=> {                       // parses gi
 /////////////////////////////////////////
 /////////////////////////////////////////
 // Helper functions /////////////////////
-function toggleClassName(className, target1, target2) {             // remove and add (respectively) a given class name to DOM nodes
-    target1.classList.remove(className);                                        // remove class from first element given
-    target2.classList.add(className);                                           // add class to section element given
-}
-function clearElementChanges(targetEl) {                                   // remove certain attributes from DOM nodes in Array or given element
-    const removeStyle = (targetEl)=> {                                     // DRY
-        if (targetEl && targetEl.hasAttribute("style"))                     // if the currently element has style attribute
-            targetEl.removeAttribute("style");                                  // remove that attribute on current element
-    }
-    if (targetEl && Array.isArray(targetEl)) {                          // if targetEl is an array 
-        targetEl.forEach(function(current){                                 // forEach on the array
-            removeStyle(current);                                                  // remove styles from element
-        });
-    } else if (targetEl && targetEl instanceof HTMLDocument) {           // else if is individual targetEl
-        removeStyle(current);                                                  // remove styles from element
-    }
-}
 function setEqualHeight(targetEl) {                                 // set each element in Array to have the same height (tallest of them)
     let itemHeight = targetEl[0].offsetHeight;                                  // set the global variable as the first elements height
     targetEl.forEach(function(current){                                         // loop through the array to get the greatest height of all elements
@@ -168,6 +152,34 @@ function setEqualHeight(targetEl) {                                 // set each 
     targetEl.forEach(function(current){                                         // loop through array to apply the greatest height found
         current.style.height = itemHeight + "px";                                   // add the height as a CSS style to DOM node
     });                                                                         // end the loop
+}
+function toggleClassName(className, target1, target2) {             // remove and add (respectively) a given class name to DOM nodes
+    // console.log("toggleClassName")
+    target1.classList.remove(className);                                        // remove class from first element given
+    target2.classList.add(className);                                           // add class to section element given
+}
+function changeClassOnScroll(targetEl) {                            // change class of a DOM node when section changes
+    // console.log("changeClassOnScroll")
+    if (!isOpenScrolling()) {                                                           // if open-scrolling is enabled
+        if (targetEl.classList.contains("light")) {                                         // tests if target node has `light` class
+            counter.classList.add("dark")                                                       // add `dark` class to breadcrumb counter
+        } else {                                                                            // if it does not
+            if (counter.classList.contains("dark"))
+                counter.classList.remove("dark");                                                    // remove `dark` class from counter
+        };                                                                                  // END IF
+        toggleClassName(                                                                    // toggle active state for counter
+            "active",                                                                           // toggle `active` class
+            counter.querySelector("div.active"),                                                // remove it from currently `active` item
+            counter.querySelector(`div[id="${targetEl.id.split("section")[1]}"`)                // add it to our new element that matched target nodes id
+        );                                                                                  // end toggle
+    };                                                                                  // end if
+    if (!targetEl.classList.contains("isActive")) {                                     // if target node does not have `isActive` class name
+        toggleClassName(                                                                    // toggle active state for sections
+            "isActive",                                                                         // toggle `isActive` class
+            document.querySelector(".isActive"),                                                // remove it from current `isActive` item
+            targetEl                                                                            // add it to target DOM node
+        );                                                                                  // end toggle
+    }                                                                                   // end if
 }
 function lockViewport(targetEl=false,time=1000) {                   // locks the scrolling of page for period of time
     const keys = {37: 1, 38: 1, 39: 1, 40: 1};
@@ -232,9 +244,9 @@ function lockViewport(targetEl=false,time=1000) {                   // locks the
             setupListeners();
         }
     }, time);
-    
 }
 function scrolltoYPoint(targetEl, dur=1) {                          // move to the given DOM node 
+    // console.log("scrolltoYPoint")
     const yValue = getTargetYpoint(targetEl);                               // get the y value we need to scroll to
     TweenLite.to(                                                           // tween to the next section
         window, {                                                               // target the window to scroll without bs
@@ -246,24 +258,17 @@ function scrolltoYPoint(targetEl, dur=1) {                          // move to t
         }
     );
 }
-function changeClassOnScroll(targetEl) {                            // change class of a DOM node when section changes
-    if (!isOpenScrolling()) {                                                           // if open-scrolling is enabled
-        if (targetEl.classList.contains("light")) {                                         // tests if target node has `light` class
-            counter.classList.add("dark")                                                       // add `dark` class to breadcrumb counter
-        } else {                                                                            // if it does not
-            counter.classList.remove("dark")                                                    // remove `dark` class from counter
-        };                                                                                  // END IF
-        toggleClassName(                                                                    // toggle active state for counter
-            "active",                                                                           // toggle `active` class
-            counter.querySelector("div.active"),                                                // remove it from currently `active` item
-            counter.querySelector(`div[id="${targetEl.id.split("section")[1]}"`)                // add it to our new element that matched target nodes id
-        );                                                                                  // end toggle
-    };                                                                                  // end if
-    if (!targetEl.classList.contains("isActive")) {                                     // if target node does not have `isActive` class name
-        toggleClassName(                                                                    // toggle active state for sections
-            "isActive",                                                                         // toggle `isActive` class
-            document.querySelector(".isActive"),                                                // remove it from current `isActive` item
-            targetEl                                                                            // add it to target DOM node
-        );                                                                                  // end toggle
-    }                                                                                   // end if
+function clearDOMchanges(targetEl) {                                   // remove certain attributes from DOM nodes in Array or given element
+    // console.log("clearDOMchanges")
+    const removeStyle = (targetEl)=> {                                     // DRY
+        if (targetEl && targetEl.hasAttribute("style"))                     // if the currently element has style attribute
+            targetEl.removeAttribute("style");                                  // remove that attribute on current element
+    }
+    if (targetEl && Array.isArray(targetEl)) {                          // if targetEl is an array 
+        targetEl.forEach(function(current){                                 // forEach on the array
+            removeStyle(current);                                                  // remove styles from element
+        });
+    } else if (targetEl && targetEl instanceof HTMLDocument) {           // else if is individual targetEl
+        removeStyle(current);                                                  // remove styles from element
+    }
 }

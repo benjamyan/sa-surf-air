@@ -399,6 +399,12 @@ html, body {
 }
 
 .header__nav {
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  transition: all 0.8s;
+  transition-timing-function: cubic-bezier(0.25, 0.25, 0.005, 1);
   margin: 0 auto;
   padding: 23px 40px 0 40px;
   align-items: center;
@@ -712,6 +718,12 @@ html, body {
   vertical-align: middle;
 }
 .section__counter div i {
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  transition: all 0.8s;
+  transition-timing-function: cubic-bezier(0.25, 0.25, 0.005, 1);
   height: 6px;
   width: 6px;
   border-radius: 50%;
@@ -972,6 +984,9 @@ html, body {
   padding-bottom: 50px;
   padding-top: 25px;
 }
+.service__banner.float .service__banner--item-wrapper .service__banner--item .blur {
+  display: none;
+}
 
 .split__banner {
   padding: 0 150px;
@@ -995,10 +1010,13 @@ html, body {
 /**********************************
 ************INTERACTION************
 **********************************/
-body[open-scroll] *[data-interaction=fadeElIn] {
+main[open-scroll] *[data-interaction=fadeElIn] {
   opacity: 0;
 }
-body[open-scroll] *[data-interaction=fadeElIn][fired] {
+main[open-scroll] *[data-interaction=fadeElIn][fired] {
+  opacity: 1;
+}
+main[open-scroll] section:first-of-type *[data-interaction=fadeElIn] {
   opacity: 1;
 }
 
@@ -1389,7 +1407,7 @@ body[open-scroll] *[data-interaction=fadeElIn][fired] {
   .service__banner.float .service__banner--item-wrapper article:not(:first-child) .service__banner--item-fg {
     content: "";
     width: 80%;
-    height: 1.5px;
+    height: 1px;
     margin: 0 auto;
     margin-bottom: 50px;
     background-color: #0A253E;

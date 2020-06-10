@@ -2,7 +2,7 @@
 /////////////////////////////////////////
 // Navigation ///////////////////////////
 headerMenuActive = ()=> {                                           // activates header navigation on scroll
-    if (window.scrollY > 99 ) {                                                         // if window Y coordinates are greater than 1
+    if (window.scrollY > 149 ) {                                                         // if window Y coordinates are greater than 1
         if (!navDOM.nav.classList.contains("active")) {                                     // if nav does not have active class
             navDOM.nav.classList.add("active");                                                 // add the active class to nav DOM
         };                                                  
@@ -28,7 +28,7 @@ headerMobileToggle = (event)=> {                                    // mobile na
             duration: 1,
             opacity: 1,
             ease: "expo.out",
-            onComplete: clearElementChanges,
+            onComplete: clearDOMchanges,
             onCompleteParams: [ fadeBlurEffect ]
         }).to( fadeTargets, {
             delay: 0.1,
@@ -37,7 +37,7 @@ headerMobileToggle = (event)=> {                                    // mobile na
             opacity: 1,
             translateY: 0,
             ease:"expo.out",
-            onComplete: clearElementChanges,
+            onComplete: clearDOMchanges,
             onCompleteParams: [ fadeTargets ] 
         }, "-=0.9")
     } else {
@@ -139,7 +139,8 @@ pinInteraction = (targetEl, nextTarget)=> {                       // function re
         if (current.tagName !== 'H1') textTransition(current, nextTarget);
     });
 }
-pinCleaner = (direction)=> {                                      // break out of pinning section 
+pinCleaner = (direction=false, isBarba=0)=> {                                      // break out of pinning section 
+    console.log("pinCleaner")
     let targetEl = getScrollSection(direction),
         pinFiringDOM = document.querySelector(".pinFiring");
     if (direction === 1) {
@@ -150,7 +151,9 @@ pinCleaner = (direction)=> {                                      // break out o
     if (pinFiringDOM) {
         pinFiringDOM.classList.remove("pinFiring");
     };
-    lockViewport(targetEl, time);
+    if (direction === false) {
+        lockViewport(targetEl, time);
+    };
     scrolltoYPoint(targetEl);
     changeClassOnScroll(targetEl);
     interactionController(targetEl);
@@ -178,13 +181,13 @@ carouselInteraction = (targetEl)=> {
     //
 }
 carouselSlider = (targetEl)=> {
-    console.log("carouselSlider");
+    // console.log("carouselSlider");
 }
 testimonialChange = (targetEl)=> {
-    console.log("testimonialChange"); 
+    // console.log("testimonialChange"); 
 }
 testimonialInteraction = (targetEl)=> {
-    console.log("testimonialInteraction");
+    // console.log("testimonialInteraction");
     const tl = gsap.timeline();
     const currSlider = targetEl.closest(".slider"),
           currSliderItem = currSlider.querySelector(".slider-item.visible"),
@@ -236,7 +239,7 @@ testimonialInteraction = (targetEl)=> {
     toggleClasses();
 }
 testimonialSlider = (targetEl)=> {
-    console.log("testimonialSlider");
+    // console.log("testimonialSlider");
     return (function() {                                                                // base it off a closure so it doesnt fire inacturately
         if (!intRunning) {                                                              // if not alreayd running
             intRunning = true;                                                          // turn running to true so last line with return falsy
@@ -262,9 +265,21 @@ testimonialSlider = (targetEl)=> {
     })()
     
 }
+sliderCleaner = (isBarba=0)=> {
+    console.log("sliderCleaner")
+}
 /////////////////////////////////////////
 /////////////////////////////////////////
 // Parallax /////////////////////////////
+parallaxCleaner = (isBarba=0)=> {
+    console.log("parallaxCleaner")
+    scrollTypes.forEach(function(current){                                          // loop through all scroll types were targeting
+        window.removeEventListener(                                                        // remove our event listener
+            current,                                                                        // target the current scroll type
+            fireParallax                                                                    // fire our callback
+        )                                                                               // end listener
+    });
+};
 parallaxInteraction = (targetEl, intensity)=> {
     // console.log("parallaxInteraction")
     targetEl.style.transform = "translateY(" + (window.pageYOffset * -intensity + "px") + ')';

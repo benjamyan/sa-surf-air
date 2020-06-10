@@ -1,6 +1,6 @@
 /////////////////////////////////////////
 /////////////////////////////////////////
-// Controllers //////////////////////////
+// Interaction controllers //////////////
 function sliderItem(targetEl) {
     // console.log("sliderItem")
     if (!targetEl.hasAttribute("fired")) {
@@ -19,6 +19,7 @@ function parallaxItem(targetEl) {                                       // setup
         const intensity = (Math.random() * (50 - 25) + 25) / 350;                       // get our desired intensity based on random # between two values
         fireParallax = ()=> {                                                           // our callback function for the listener
             let currTarget = targetEl;
+            // console.log(currTarget)
             sections.forEach(function(current){
                 if (targetEl === current) {
                     const currBgDOM = current.querySelector(".section__bg--media");
@@ -69,6 +70,9 @@ function sectionPin(targetEl) {                                         // setup
         }
     })()
 }
+/////////////////////////////////////////
+/////////////////////////////////////////
+// Interaction controllers //////////////
 function interactionController(targetEl) {                              // central controller for all interaction-related function
     const targetArr = Array.from(targetEl.querySelectorAll("[data-interaction]")),   // get all nodes with `data-interaction` attribute
           allTargets = [ targetEl, targetArr ],                                         // merge all elements to be targetted later
@@ -91,7 +95,7 @@ function interactionController(targetEl) {                              // centr
                     return;                                                                     // else end and exit function
                 }
             };
-            const newFunc = eval(current.interaction);                 // No EVAL! Reformat this using `new Function`
+            const newFunc = eval(current.interaction);                 // Evil EVAL! Reformat this using `new Function`
             if (current.interaction === "fadeElIn") {                  // if element has fadeElIn data-interaction 
                 current.target.style.opacity = 0;                          // set the opactity to 0 for smooth transition
             };
@@ -140,7 +144,7 @@ function scrollController(dir) {                                        // centr
             if (!running) {                                                         // if throttle is not running
                 running = true;                                                         // start our throttle - stops it from running again
                 targetEl = getScrollSection(dir);                                       // declare our target elemnet as next section
-                if ( isOpenScrolling()) {                                               // if open-scrolling is enabled       
+                if ( isOpenScrolling()) {                                               // if open-scrolling is enabled    
                     sections.forEach(function(current){                                         // loop through our page sections
                         if (isInViewport(current)) targetEl = current;                              // if is in the viewport declare it as target
                     });                                                                         // end loop
@@ -216,18 +220,15 @@ function setupListeners() {                                             // initi
         };
     }
 }
-function setupDOM() {                                                   // initial setup of the DOM when page loads
+function setupDOM(target) {                                             // initial setup of the DOM when page loads
     // console.log("setupDOM")
-    let activeSection, activeCounter;                                           // declare early for setting and use throughout
+    let activeSection = sections[0],
+        activeCounter = 1;
+    activeSection.classList.add("isActive");                                    // add `isActive` class to DOM inside viewport
     (function setActiveSection() {                                              // start iife to set those variables ^^
-        sections.forEach(function(current, index){                              // loop through all sections on DOM
+        sections.forEach(function(current, index, arr){                             // loop through all sections on DOM
             current.id = `section${index + 1}`;                                     // set the id of each 
-            if (isInViewport(current)) {                                            // check if current element is inside viewport
-                activeSection = current;                                                // set activeSection var as current in loop
-                activeCounter = index + 1;                                              // set activeCounter var as index in loop
-            }                                                                       // end if
         });                                                                     // end loop
-        activeSection.classList.add("isActive");                                // add `isActive` class to DOM inside viewport
     })();
     (function setInteraction() {                                                // start iife to set up interactions on content load
         const parallaxEl = Array.from(document.querySelectorAll("[data-interaction]"))              // build an array from all data-interactions in DOM
@@ -237,30 +238,24 @@ function setupDOM() {                                                   // initi
             if (currInt.includes("sliderItem")) sliderItem(current);
         });                                                                                         // end loop
     })();
-    setCounter = ()=> {                                                         // setup the breadcrumb counter - needs to be optional no iife
-        Array.from(counter.children).forEach(function(current){                             // build an array from breadcrumb counter children elements and loop it
+    if (!isOpenScrolling()) {   
+        let counterArr;
+        counterArr = Array.from(counter.children)
+        counterArr.forEach(function(current){                             // build an array from breadcrumb counter children elements and loop it
             if (current.id == activeCounter)                                                    // if the current child id is activeCounter 
-                current.classList.add("active")                                                     // add active class to current child
+                current.classList.add("active");                                                    // add active class to current child
             if (!current.classList.contains("active"))                                          // if the current element does not have active class
                 fadeElOut(current.querySelector("p"), 1, 0.15, 1, false);                           // fire animation
             else                                                                                // if it does have active class
                 fadeElOut(current.querySelector("p"), 1.25, false, 1.5, false);                     // fire slightly slower animation
-        });                                                                                 // end our loop
+        });
     };
-    headerMenuActive();                                                            // does nav need to be active?
-    scrolltoYPoint(sections[0], 0.01);                                          // scroll to the top of the DOM
-    interactionController(activeSection);                                       // fire interactions in current target element
-    if (!isOpenScrolling()) {                                                   // if open-scrolling is not enabled
-        setCounter();                                                               // setup the breadcrumb counter
-    };                                                                          // end if
     if (DOM.serviceBannerItem) {                                                // if we have service banner items (block-list items)
         setEqualHeight(Array.from(DOM.serviceBannerItem));                          // set there height equal to eachother
-    };                                                                          // end if
+    };
 }
-function init(){                                                        // initializer for the setup of page
-    console.log("App Initialized");
-    document.addEventListener("DOMContentLoaded", ()=> {
-        setupDOM();
-        setupListeners();
-    });
-};
+function init(target=0){                                                // initializer for the setup of page
+    // console.log("App Initialized");
+    setupDOM(target);
+    setupListeners();
+}

@@ -70,6 +70,7 @@
     }
 }
 .header__nav {
+    @include transition(.8s);
     margin: 0 auto;
     padding: 23px 40px 0 40px;
     align-items: center;
