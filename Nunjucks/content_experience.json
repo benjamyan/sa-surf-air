@@ -23,7 +23,9 @@
             {
                 "mainTitleIcon": "assets/image/experience/health.svg",
                 "mainTitle": "Health",
-                "mainCopy": "We go above and beyond to ensure your mental and physical wellbeing",
+                "mainCopy": {
+                    "1": "We go above and beyond to ensure your mental and physical wellbeing."
+                },
                 "listItems": {
                     "1": "Thousands of hyper local airports",
                     "2": "Fleet of aircraft from turboprops & jets to seaplanes & helicopters",
@@ -34,7 +36,9 @@
             {
                 "mainTitleIcon": "assets/image/experience/optionality.svg",
                 "mainTitle": "Optionality",
-                "mainCopy": "Make the important choices, while we take care of the rest.",
+                "mainCopy": {
+                    "1": "Make the important choices, while we take care of the rest."
+                },
                 "listItems": {
                     "1": "Thousands of hyper local airports",
                     "2": "Fleet of aircraft from turboprops & jets to seaplanes & helicopters",
@@ -46,7 +50,9 @@
             {
                 "mainTitleIcon": "assets/image/experience/zero.svg",
                 "mainTitle": "Zero Hassles",
-                "mainCopy": "Never wait in line. We’ve eliminated all the bad parts.",
+                "mainCopy": {
+                    "1": "Never wait in line. We’ve eliminated all the bad parts."
+                },
                 "listItems": {
                     "1": "Thousands of hyper local airports",
                     "2": "Fleet of aircraft from turboprops & jets to seaplanes & helicopters",

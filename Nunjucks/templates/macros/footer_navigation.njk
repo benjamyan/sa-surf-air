@@ -1,34 +1,39 @@
 {% macro active(activePage='') %}
-<footer class="footer__nav flex-v footer__nav--{{ activePage }} flex-h col-xs-12">
-    <p class="footer__nav--copyright inline">©2020 Surf Airlines</p>
-    <nav class="nav__main footer__nav--main inline">
-        {% if activePage != 'about' %}
-            <a href="about.html" class="nav__item nav__main--item">about</a>
-        {% endif %}
-        {% if activePage != 'faq' %}
-            <a href="faq.html" class="nav__item nav__main--item">faq</a>
-        {% endif %}
-        {% if activePage != 'newsroom' %}
-            <a href="newsroom.html" class="nav__item nav__main--item">newsroom</a>
-        {% endif %}
-        {% if activePage != 'press' %}
-            <a href="press.html" class="nav__item nav__main--item">press</a>
-        {% endif %}
-        {% if activePage != 'careers' %}
-            <a href="careers.html" class="nav__item nav__main--item">careers</a>
-        {% endif %}
-        {% if activePage != 'legal' %}
-            <a href="legal.html" class="nav__item nav__main--item">legal</a>
-        {% endif %}
-        {% if activePage != 'site-credit' %}
-            <a href="site-credit.html" class="nav__item nav__main--item">site credit</a>
-        {% endif %}
-    </nav>
-    <div class="footer__nav--social nav__sub inline">
-        <a href="#" class="footer__social--icon inline"><img src="assets/image/base/facebook.png" /></a>
-        <a href="#" class="footer__social--icon inline"><img src="assets/image/base/twitter.png" /></a>
-        <a href="#" class="footer__social--icon inline"><img src="assets/image/base/instagram.png" /></a>
-        <a href="#" class="footer__social--icon inline"><img src="assets/image/base/linkedin.png" /></a>
+<footer class="footer__nav flex-v footer__nav--{{ activePage }} col-xs-12">
+    <div class="footer__main footer__nav col-xs-12 flex-h">
+        <p class="footer__nav--copyright inline">©2020 Surf Airlines</p>
+        <nav class="nav__main footer__nav--main inline">
+            {% if activePage != 'about' %}
+                <a href="about.html" class="nav__item nav__main--item">about</a>
+            {% endif %}
+            {% if activePage != 'faq' %}
+                <a href="faq.html" class="nav__item nav__main--item">faq</a>
+            {% endif %}
+            {% if activePage != 'newsroom' %}
+                <a href="newsroom.html" class="nav__item nav__main--item">newsroom</a>
+            {% endif %}
+            {% if activePage != 'press' %}
+                <a href="press.html" class="nav__item nav__main--item">press</a>
+            {% endif %}
+            {% if activePage != 'careers' %}
+                <a href="careers.html" class="nav__item nav__main--item">careers</a>
+            {% endif %}
+            {% if activePage != 'legal' %}
+                <a href="legal.html" class="nav__item nav__main--item">legal</a>
+            {% endif %}
+            {% if activePage != 'site-credit' %}
+                <a href="site-credit.html" class="nav__item nav__main--item">site credit</a>
+            {% endif %}
+        </nav>
+        <div class="footer__nav--social nav__sub inline">
+            <a href="#" class="footer__social--icon inline"><img src="assets/image/base/facebook.png" /></a>
+            <a href="#" class="footer__social--icon inline"><img src="assets/image/base/twitter.png" /></a>
+            <a href="#" class="footer__social--icon inline"><img src="assets/image/base/instagram.png" /></a>
+            <a href="#" class="footer__social--icon inline"><img src="assets/image/base/linkedin.png" /></a>
+        </div>
+    </div>
+    <div class="footer__sub footer__copy col-xs-12">
+        <p><sub>Surf Air does not own or operate any aircraft. Surf Air arranges travel and other services solely as a manager of the Surf Air membership program and as an agent of its membership. <br>All flights arranged by Surf Air for its members are performed by independent, third party FAA-licensed and DOT-registered air carriers.</sub></p>
     </div>
 </footer>
 {% endmacro %}

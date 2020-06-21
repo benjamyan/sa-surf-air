@@ -18,5 +18,10 @@
             {% set btnRef = text %}
             {% include "components/_text_button.njk" %}
         {% endif %}
+        {% if text.media %}
+            {% for item in text.media %}
+                <img src="{{ item.mainImageSrc }}" alt="{{ item.mainImageAlt }}" />
+            {% endfor %}
+        {% endif %}
     </div>
 {% endif %}

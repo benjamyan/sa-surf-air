@@ -14,7 +14,7 @@
         </video>
     {% endif %}
     {% if media.mainImageSrc %}
-        <img class="{{ sectionRef }}__image main__image section__main--media section__main--image col-xs-9" src="{{media.mainImageSrc}}" alt="{{media.mainImageAlt}}"{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %} />
+        <img class="{{ section['ref'] }}__image main__image section__main--media section__main--image col-xs-9" src="{{media.mainImageSrc}}" alt="{{media.mainImageAlt}}"{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %} />
     {% endif %}
 {% endfor %}
 </div>

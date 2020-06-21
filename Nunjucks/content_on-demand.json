@@ -1,0 +1,147 @@
+{
+    "hero": [{
+        "main": [{
+            "mainTitle": "Soar, on demand"
+        }],
+        "sub": [{
+            "superCopy": "Go anywhere, anytime and enjoy the control, <br>flexibility and piece of mind of flying private.",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "FLY ON DEMAND"
+                }
+            }
+        }],
+        "bgImageSrc": "assets/image/on-demand/woman-beside-plane.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "perfect": [{
+        "main": [{
+            "mainTitle": "Find your perfect aircraft <br>for every type of trip"
+        }],
+        "itemList": [
+            {
+                "superTitle": "Cirrus SR-22",
+                "mainTitle": "<sub>$</sub>500<br><sub>per hour</sub>",
+                "mainImageSrc": "assets/image/on-demand/SR22.png",
+                "mainCopy": {
+                    "1": "3 passengers",
+                    "2": "1200 mile range",
+                    "3": "SFO > DEN"
+                },
+                "btn": {
+                    "1": {
+                        "btnSize": "lg",
+                        "btnType": "transparent",
+                        "btnHref": "#",
+                        "btnText": "EXPLORE DESTINATIONS"
+                    }
+                }
+            },
+            {
+                "superTitle": "Pilatus PC-12",
+                "mainTitle": "<sub>$</sub>1200<br><sub>per hour</sub>",
+                "mainImageSrc": "assets/image/on-demand/PC12.png",
+                "mainCopy": {
+                    "1": "8 passengers",
+                    "2": "1700 mile range",
+                    "3": "LAX > TME"
+                },
+                "btn": {
+                    "1": {
+                        "btnSize": "lg",
+                        "btnType": "transparent",
+                        "btnHref": "#",
+                        "btnText": "EXPLORE DESTINATIONS"
+                    }
+                }
+            },
+            {
+                "superTitle": "Citation X",
+                "mainTitle": "<sub>$</sub>4000<br><sub>per hour</sub>",
+                "mainImageSrc": "assets/image/on-demand/Citation.png",
+                "mainCopy": {
+                    "1": "9 passengers",
+                    "2": "3700 mile range",
+                    "3": "SFO > JFK"
+                },
+                "btn": {
+                    "1": {
+                        "btnSize": "lg",
+                        "btnType": "transparent",
+                        "btnHref": "#",
+                        "btnText": "EXPLORE DESTINATIONS"
+                    }
+                }
+            }
+        ]
+    }],
+    "thousands": [{
+        "main": [{
+            "mainTitle": "Thousands of aircraft",
+            "subTitle": "From pistons to heavy jets, seaplanes to helicopters. <br>Quickly find the best aircraft for your mission.",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "FLY ON DEMAND"
+                }
+            }
+        }],
+        "media": [{
+            "mainImageSrc": "assets/image/on-demand/sa-webapp-screen.png",
+            "mainImageAlt": "#"
+        }]
+    }],
+    "gang": [{
+        "fgWidth": "6",
+        "main": [{
+            "mainTitle": "Take the <br>whole gang"
+        }],
+        "slider": [{
+            "type": "testimonial",
+            "autoplay": true,
+            "1": {
+                "mainCopy": "<q>Sophie and her best friends took a day trip to Napa. They left in the morning and were sloshed by midday. Best trip ever.</q>",
+                "subCopy": "Sophie <br>On-demand member",
+                "media": [{
+                    "mainImageSrc": "assets/image/on-demand/topo-map.png",
+                    "mainImageAlt": "#"
+                }]
+            },
+            "2": {
+                "mainCopy": "<q>Lorem ipum dolor sit amet consectetor domas lamprey oscipmentum.</q>",
+                "subCopy": "Audrey M. <br>On-demand member",
+                "media": [{
+                    "mainImageSrc": "assets/image/on-demand/topo-map.png",
+                    "mainImageAlt": "#"
+                }]
+            },
+            "3": {
+                "mainCopy": "<q>Consectetor domas lamprey oscipmentum kremp lorem ipum dolor.</q>",
+                "subCopy": "Aaron P. <br>On-demand member",
+                "media": [{
+                    "mainImageSrc": "assets/image/on-demand/topo-map.png",
+                    "mainImageAlt": "#"
+                }]
+            }
+        }],
+        "bgImageSrc": "assets/image/on-demand/vineyard.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "best": [{
+        "main": [{
+            "mainTitle": "Only the best"
+        }],
+        "sub": [{
+            "mainCopy": "Flying you is an honor we take seriously. Surf Air only partners with trusted Part 135 third-party operators and F.A.A. certified and commercial-rated pilots to be listed in our on-demand marketplace and scheduled flight service. After a rigorous 50-point safety standard onboarding procedure, we continually monitor and audit each operator to ensure our partners are going above and beyond to maintain best-in-class safety and health standards."
+        }]
+    }],
+    "final": [{
+        "bgImageSrc": "assets/image/on-demand/man-walking-into-plane.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }]
+}

@@ -1,0 +1,207 @@
+{
+    "hero": [{
+        "main": [{
+            "mainTitle": "Memberships from just $199"
+        }],
+        "sub": [{
+            "superCopy": "There has never been a way to fly private <br>like this before",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "SIGN UP"
+                }
+            }
+        }],
+        "bgImageSrc": "assets/image/index/group-walking-to-plane.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "individuals": [{
+        "main": [{
+            "mainTitle": "Individuals <br>and families"
+        }],
+        "itemList": [
+            {
+                "superTitle": "Access",
+                "mainTitle": "<sub>$</sub>199<br><sub>per month</sub>",
+                "mainCopy": {
+                    "1": "Join the world of private aviation for cheaper than ever before."
+                },
+                "btn": {
+                    "1": {
+                        "btnSize": "sm",
+                        "btnType": "transparent",
+                        "btnHref": "#",
+                        "btnText": "SIGN UP"
+                    }
+                }
+            },
+            {
+                "superTitle": "Off-Peak",
+                "mainTitle": "<sub>$</sub>599<br><sub>per month</sub>",
+                "mainCopy": {
+                    "1": "Fly off-peak for free and get discounts on everything else."
+                },
+                "btn": {
+                    "1": {
+                        "btnSize": "sm",
+                        "btnType": "transparent",
+                        "btnHref": "#",
+                        "btnText": "SIGN UP"
+                    }
+                }
+            },
+            {
+                "superTitle": "Peak",
+                "mainTitle": "<sub>$</sub>1599<br><sub>per month</sub>",
+                "mainCopy": {
+                    "1": "Book in advance and fly for free, even on popular flights."
+                },
+                "btn": {
+                    "1": {
+                        "btnSize": "sm",
+                        "btnType": "transparent",
+                        "btnHref": "#",
+                        "btnText": "SIGN UP"
+                    }
+                }
+            },
+            {
+                "superTitle": "Freedom",
+                "mainTitle": "<sub>$</sub>2099<br><sub>per month</sub>",
+                "mainCopy": {
+                    "1": "Fly how you want, wherever you want, whenever you want."
+                },
+                "btn": {
+                    "1": {
+                        "btnSize": "sm",
+                        "btnType": "transparent",
+                        "btnHref": "#",
+                        "btnText": "SIGN UP"
+                    }
+                }
+            }
+        ]
+    }],
+    "companies": [{
+        "main": [{
+            "mainTitle": "Companies and Enterprise"
+        }],
+        "sub": [{
+            "mainCopy": "Want a flexible solution for your business?",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "FIND OUT MORE"
+                }
+            }
+        }],
+        "bgImageSrc": "assets/image/index/group-walking-to-plane.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "more": [{
+        "main": [{
+            "mainTitle": "All this and more.",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "EXPLORE MEMBERSHIPS"
+                }
+            }
+        }],
+        "itemList": [
+            {
+                "mainTitleIcon": "assets/image/memberships/plane.svg",
+                "mainTitle": "Standardized fleet",
+                "mainCopy": {
+                    "1": "Access the planes you all over the US for a flat rate."
+                }
+            },
+            {
+                "mainTitleIcon": "assets/image/memberships/ticket.svg",
+                "mainTitle": "Guest passes",
+                "mainCopy": {
+                    "1": "Bring your friends and family with you on your adventures."
+                }
+            },
+            {
+                "mainTitleIcon": "assets/image/memberships/invite.svg",
+                "mainTitle": "Exclusive events",
+                "mainCopy": {
+                    "1": "Get access to members only flights to the top events across the country."
+                }
+            },
+            {
+                "mainTitleIcon": "assets/image/memberships/seat.svg",
+                "mainTitle": "Seats",
+                "mainCopy": {
+                    "1": "Fly unlimited seats every month."
+                }
+            },
+            {
+                "mainTitleIcon": "assets/image/memberships/calendar.svg",
+                "mainTitle": "Risk free",
+                "mainCopy": {
+                    "1": "Cancel anytime for the first month."
+                }
+            },
+            {
+                "mainTitleIcon": "assets/image/memberships/family.svg",
+                "mainTitle": "Family Discounts",
+                "mainCopy": {
+                    "1": "Add your family members - fly more, pay less."
+                }
+            }
+        ],
+        "bgImageSrc": "assets/image/index/group-walking-to-plane.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "questions": [{
+        "main": [{
+            "mainTitle": "Have questions?"
+        }],
+        "sub": [{
+            "mainCopy": "We're here to help.",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "CHAT NOW"
+                }
+            }
+        }],
+        "bgImageSrc": "assets/image/index/group-walking-to-plane.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "smartest": [{
+        "main": [{
+            "mainTitle": "The smartest way to fly"
+        }],
+        "sub": [{
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "ON DEMAND",
+                    "btnSubCopy": "Take control and fly private anywhere, anytime."
+                },
+                "2": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "SCHEDULED",
+                    "btnSubCopy": "Grab a seat on our network of scheduled private flights."
+                }
+            }
+        }],
+        "bgImageSrc": "assets/image/index/group-walking-to-plane.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }]    
+}

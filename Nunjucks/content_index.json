@@ -29,7 +29,9 @@
                 "fgImageSrc": "assets/image/index/woman-walking-into-plane.jpg",
                 "fgImageAlt": "Surf Air description goes here for SEO and screen readers",
                 "mainTitle": "On demand",
-                "mainCopy": "Design a flight to meet your exact travel needs.",
+                "mainCopy": {
+                    "1": "Design a flight to meet your exact travel needs."
+                },
                 "btn": {
                     "1": {
                         "btnSize": "lg",
@@ -43,7 +45,9 @@
                 "fgImageSrc": "assets/image/index/pilot-in-airplane-front.jpg",
                 "fgImageAlt": "Surf Air description goes here for SEO and screen readers",
                 "mainTitle": "Scheduled",
-                "mainCopy": "Over 50 scheduled flights per day to private airports in California and Texas.",
+                "mainCopy": {
+                    "1": "Over 50 scheduled flights per day to private airports in California and Texas."
+                },
                 "btn": {
                     "1": {
                         "btnSize": "lg",
@@ -96,12 +100,12 @@
             },
             "2": {
                 "superCopyIcon": "assets/image/base/michael-k.jpg",
-                "superCopy": "<q>Lorem ipum dolor sit amet consectetor domas lamprey oscipmentum kremp</q>",
+                "superCopy": "<q>Lorem ipum dolor sit amet consectetor domas lamprey oscipmentum.</q>",
                 "subCopy": "Audrey M."
             },
             "3": {
                 "superCopyIcon": "assets/image/base/michael-k.jpg",
-                "superCopy": "<q>Consectetor domas lamprey oscipmentum kremp lorem ipum dolor sit amet </q>",
+                "superCopy": "<q>Consectetor domas lamprey oscipmentum kremp lorem ipum dolor.</q>",
                 "subCopy": "Aaron P."
             }
         }],
@@ -111,7 +115,7 @@
     "club": [{
         "main": [{
             "mainTitle": "Join the club",
-            "subTitle": "Memberships from just $199 per month. Unlock access to a new world of possibility."
+            "subTitle": "Memberships from just $199 per month. <br>Unlock access to a new world of possibility."
         }],
         "sub": [{
             "btn": {

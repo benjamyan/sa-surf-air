@@ -1,5 +1,5 @@
-{% set pageTitle = "experience" %}
-{% set openScrolling = false %}
+{% set pageTitle = "on-demand" %}
+{% set openScrolling = true %}
 
 {% extends "layout.njk" %}
 
@@ -21,48 +21,18 @@
   {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
 
   {% set section = {
-    ref: welcome,
-    class: 'welcome services-panel',
-    onload: false,
-    onenter: 'fadeElIn',
-    onclick: 'slideItemIn(event); return false;',
-    onexit: 'fadeElOut'
-  } %}
-  {% include "partials/serviceBanner_bottomAlign_fullHeight.njk" %}
-
-  {% set section = {
-    ref: why,
-    class: 'why',
+    ref: perfect,
+    class: 'perfect light services-display',
     onload: false,
     onenter: 'fadeElIn',
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/textBanner_rightAlign_fullHeight.njk" %}
+  {% include "partials/serviceBanner_topAlign_fullHeight.njk" %}
 
   {% set section = {
-    ref: who,
-    class: 'who',
-    onload: 'panelSlideIn',
-    onenter: 'fadeElIn',
-    onclick: false,
-    onexit: 'fadeElOut'
-  } %}
-  {% include "partials/textBanner_leftAlign_fullHeight.njk" %}
-
-  {% set section = {
-    ref: vs,
-    class: 'vs light',
-    onload: 'sectionPin',
-    onenter: 'fadeElIn',
-    onclick: false,
-    onexit: 'fadeElOut'
-  } %}
-  {% include "partials/splitBanner_leftAlign_fullHeight.njk" %}
-
-  {% set section = {
-    ref: change,
-    class: 'change',
+    ref: thousands,
+    class: 'thousands light bg-off-white',
     onload: false,
     onenter: 'fadeElIn',
     onclick: false,
@@ -70,18 +40,36 @@
   } %}
   {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
 
-{% endblock %}
+  {% set section = {
+    ref: gang,
+    class: 'gang',
+    onload: false,
+    onenter: 'fadeElIn',
+    onclick: false,
+    onexit: 'fadeElOut'
+  } %}
+  {% include "partials/textBanner_leftAlign_fullHeight.njk" %}
 
-{% block counter %}
-  {% set counter = [
-    'Experience',
-    'Personalized aviation',
-    'Why fly Surf Air',
-    'Who flies Surf Air',
-    'Surf Air vs. commercial',
-    'Change the way you fly'
-  ] %}
-  {% include "components/_counter.njk" %}
+  {% set section = {
+    ref: best,
+    class: 'best light',
+    onload: false,
+    onenter: 'fadeElIn',
+    onclick: false,
+    onexit: 'fadeElOut'
+  } %}
+  {% include "partials/ctaBanner_centerAlign_halfHeight.njk" %}
+
+  {% set section = {
+    ref: final,
+    class: 'final',
+    onload: false,
+    onenter: 'fadeElIn',
+    onclick: false,
+    onexit: 'fadeElOut'
+  } %}
+  {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
+
 {% endblock %}
 
 {% block footer %}

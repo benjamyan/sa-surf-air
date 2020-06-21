@@ -1,5 +1,5 @@
-{% set pageTitle = "experience" %}
-{% set openScrolling = false %}
+{% set pageTitle = 'memberships' %}
+{% set openScrolling = true %}
 
 {% extends "layout.njk" %}
 
@@ -21,48 +21,48 @@
   {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
 
   {% set section = {
-    ref: welcome,
-    class: 'welcome services-panel',
+    ref: individuals,
+    class: 'individuals light services-display align-center',
     onload: false,
     onenter: 'fadeElIn',
-    onclick: 'slideItemIn(event); return false;',
+    onclick: false,
+    onexit: 'fadeElOut'
+  } %}
+  {% include "partials/serviceBanner_topAlign_fullHeight.njk" %}
+
+  {% set section = {
+    ref: companies,
+    class: 'companies',
+    onload: false,
+    onenter: 'fadeElIn',
+    onclick: false,
+    onexit: 'fadeElOut'
+  } %}
+  {% include "partials/splitBanner_leftAlign_halfHeight.njk" %}
+
+  {% set section = {
+    ref: more,
+    class: 'more services-block align-center',
+    onload: false,
+    onenter: 'fadeElIn',
+    onclick: false,
     onexit: 'fadeElOut'
   } %}
   {% include "partials/serviceBanner_bottomAlign_fullHeight.njk" %}
 
   {% set section = {
-    ref: why,
-    class: 'why',
+    ref: questions,
+    class: 'questions',
     onload: false,
     onenter: 'fadeElIn',
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/textBanner_rightAlign_fullHeight.njk" %}
+  {% include "partials/splitBanner_rightAlign_halfHeight.njk" %}
 
   {% set section = {
-    ref: who,
-    class: 'who',
-    onload: 'panelSlideIn',
-    onenter: 'fadeElIn',
-    onclick: false,
-    onexit: 'fadeElOut'
-  } %}
-  {% include "partials/textBanner_leftAlign_fullHeight.njk" %}
-
-  {% set section = {
-    ref: vs,
-    class: 'vs light',
-    onload: 'sectionPin',
-    onenter: 'fadeElIn',
-    onclick: false,
-    onexit: 'fadeElOut'
-  } %}
-  {% include "partials/splitBanner_leftAlign_fullHeight.njk" %}
-
-  {% set section = {
-    ref: change,
-    class: 'change',
+    ref: smartest,
+    class: 'smartest',
     onload: false,
     onenter: 'fadeElIn',
     onclick: false,
@@ -70,18 +70,6 @@
   } %}
   {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
 
-{% endblock %}
-
-{% block counter %}
-  {% set counter = [
-    'Experience',
-    'Personalized aviation',
-    'Why fly Surf Air',
-    'Who flies Surf Air',
-    'Surf Air vs. commercial',
-    'Change the way you fly'
-  ] %}
-  {% include "components/_counter.njk" %}
 {% endblock %}
 
 {% block footer %}

@@ -6,27 +6,33 @@
             </div>
         {%- endif %}
         {% if list.fgImageSrc -%}
-            <div class="service__banner--item-fg" style="background-image:url({{ list.fgImageSrc }})">
-                {#<img src="{{ list.fgImageSrc }}" alt="{{ fgImageAlt }}" />#}
-            </div>
+            <div class="service__banner--item-fg" style="background-image:url({{ list.fgImageSrc }})"></div>
         {%- endif %}
+        {% if list.superTitle -%}
+            <h3 class="super">{{list.superTitle | safe}}</h3>
+        {% endif %}
         {% if list.mainTitle -%}
             <div class="service__banner--item-title">
                 {% if list.mainTitleIcon %}
                     <img class="section__content--sub-icon" src="{{list.mainTitleIcon}}" />
                 {% endif %}
-                <h3>{{list.mainTitle}}</h3>
+                <h3>{{list.mainTitle | safe}}</h3>
             </div>
         {%- endif %}
+        {% if list.mainImageSrc -%}
+            <img class="section__content--main-image" src="{{list.mainImageSrc}}" />
+        {% endif %}
         {% if list.mainCopy -%}
-            <p>{{list.mainCopy}}</p>
+            {% for value, item in list.mainCopy %}
+                <p>{{item | safe}}</p>
+            {% endfor %}
         {%- endif %}
         {% if list.listItems -%}
             <details class="service__banner--item-list">
-                <summary>{{list.btnText}}</summary>
+                <summary>{{list.btnText | safe}}</summary>
                 <ul>
                 {% for value, item in list.listItems %}
-                    <li>{{item}}</li>
+                    <li>{{item | safe}}</li>
                 {% endfor %}
                 </ul>
             </details>
