@@ -204,12 +204,12 @@ function setupListeners() {
         const currentObj = Object.keys(listenerTargets)[i],
               currentObjItem = listenerTargets[currentObj];
         let scrollDirection;
-        scrollFunc = (event)=> {
+        onScrollEvent = (event)=> {
             if (event.deltaY > 0) scrollDirection = 0;
             else scrollDirection = 1;
             scrollController(scrollDirection);
         }
-        keyFunc = (event)=> {
+        onKeyEvent = (event)=> {
             if (event.keyCode === 40 || event.key === "ArrowDown") {
                 scrollDirection = 0;
                 scrollController(scrollDirection);
@@ -221,11 +221,11 @@ function setupListeners() {
         }
         if ( currentObj === "scroll") {
             currentObjItem.forEach(function(current) {
-                window.addEventListener(current, scrollFunc, false)
+                window.addEventListener(current, onScrollEvent, false)
             })
         };
         if ( currentObj === "key") {
-            window.addEventListener("keydown", keyFunc, false)
+            window.addEventListener("keydown", onKeyEvent, false)
         };
         // counter.addEventListener("mouseover", counterHover);
     }

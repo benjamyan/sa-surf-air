@@ -64,10 +64,10 @@ lockViewport = (targetEl=false, time=1000)=> {
     function disableScroll() {
         const wheelArr = [ "scroll", "onwheel", "wheel", "mousewheel", "onmousewheel","DOMMouseScroll", "touchstart", "touchmove", "touchend", "touchcancel" ];
         wheelArr.forEach(function(current) {
-            window.removeEventListener(current, scrollFunc, false)
-            window.removeEventListener(current, scrollFunc, wheelOpt)
+            window.removeEventListener(current, onScrollEvent, false)
+            window.removeEventListener(current, onScrollEvent, wheelOpt)
         });
-        window.removeEventListener("keydown", keyFunc, false)
+        window.removeEventListener("keydown", onKeyEvent, false)
         window.addEventListener("keydown", arrow_keys_handler, false);
         window.addEventListener('onwheel', preventDefault, false); // older FF
         window.addEventListener('onmousewheel', preventDefault, false); // older FF
