@@ -4,7 +4,6 @@ const nunjucks = require('gulp-nunjucks');
 const nunjucksRender = require('gulp-nunjucks-render');
 const data = require('gulp-data');
 const nunEnv = new nunjucksRender.nunjucks.Environment();
-// const minify = require('gulp-minify');
 
 const destination = 'App'
 const pages = [
@@ -28,7 +27,7 @@ gulp.task('nunjucks', async function() {
 });
 gulp.task('image', async function() {
     return pages.forEach(function(current) {
-        gulp.src(`Nunjucks/media/image/${current}/*.+(jpg|svg|gif|png|)`)
+        gulp.src(`Nunjucks/media/image/${current}/*.+(jpg|svg|gif|png)`)
             .pipe(image({
                 pngquant: true,
                 optipng: false,
@@ -39,9 +38,9 @@ gulp.task('image', async function() {
                 gifsicle: true,
                 svgo: true,
                 concurrent: 10,
-                quiet: true // defaults to false
+                quiet: true
             }))
-            .pipe(gulp.dest(`./${destination}/media/image/${current}`)
+            .pipe(gulp.dest(`${destination}/media/image/${current}`)
         );
     })
 });
