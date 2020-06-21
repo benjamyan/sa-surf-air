@@ -49,7 +49,7 @@
         }*/
         &-sm, &-lg {
             a {
-                color: $super-grey;
+                color: $sa-blue;
                 text-decoration: none;
             }
         }
@@ -126,10 +126,13 @@
     }
 }
 .footer__nav {
-    height: 100px;
+    height: 145px;
     align-items: center;
     justify-content: space-evenly;
     background-color: #0A253E;
+    .footer__main {
+        height: 35px;
+    }
     p, nav, div {
         vertical-align: middle;;
     }
@@ -154,6 +157,17 @@
             margin-right: 35px;
         }
     }
+    .footer__sub {
+        margin-top: -20px;
+        p {
+            text-align: center;
+            line-height: 18px;
+            sub {
+                @extend %font-stack-light;
+                font-size: 12px;
+            }
+        }
+    }
 }
 @media screen and (max-width: 1400px) {
     .header__nav {
@@ -176,11 +190,30 @@
 }
 @media screen and (max-width: 1023px) {
     .header__nav {
+        .nav {
+            &__mobile {
+                div {
+                    @include transition(.5s)
+                }
+            }
+        }
         &.open { 
             height: 100vh;
             width: 100%;
             background: rgba(0,0,0,0.2);
             .nav {
+                &__mobile {
+                    margin-right: -10px;
+                    div:nth-child(1) {
+                        transform: rotate(45deg) translateY(11px);
+                    }
+                    div:nth-child(2) {
+                        opacity: 0;
+                    }
+                    div:nth-child(3) {
+                        transform: rotate(-45deg) translateY(-11px);
+                    }
+                }
                 &__main, &__sub {
                     position: relative !important;
                     display: block;
@@ -229,7 +262,9 @@
                     @include transition(1s);
                 }
             }
-            
+            .blur {
+                opacity: 1;
+            }
         }
         .nav {
             &__mobile {

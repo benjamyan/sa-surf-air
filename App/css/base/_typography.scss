@@ -6,7 +6,7 @@ h1, h2, h3, h4, h5, h6, p, em, body, html, input, textarea, strong {
   text-align: left;
 }
 h1 {
-  @extend %font-stack-num;
+  @extend %font-stack-num-reg;
   font-size: calc(54px + (86 - 54) * ((99vw - 300px) / (1900 - 300)));
   font-weight: 800;
   letter-spacing: 1px;
@@ -59,14 +59,20 @@ p, li {
     @extend %font-stack-ital;
     font-size:20px;
     letter-spacing: .06rem;
+    bottom: 0;
   }
 }
 a {
   text-decoration: none;
 }
+q {
+  &:before, &:after {
+    display: inline-block;
+  }
+}
 .light {
   h1, h2, h3, h4, h5, h6, p, li, a {
-    color: $super-grey;
+    color: $sa-blue;
   }
 }
 @media screen and (max-width: 600px) {

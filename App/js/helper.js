@@ -1,4 +1,3 @@
-const scrollTypes = [ "onwheel", "wheel", "mousewheel", "onmousewheel","DOMMouseScroll", "touchstart", "touchmove", "touchend", "touchcancel" ];
 let Page = {
         home: document.querySelector(".home"),
         experience: document.querySelector(".experience"),
@@ -9,7 +8,7 @@ let Page = {
     DOM = {
         body: document.querySelector("body"),
         main: document.querySelector("main"),
-        textTags: ["h1","h2","h3","h4","h5","p"],
+        textTags: ["h1","h2","h3","h4","h5","p","img"],
         counter: ".section__counter",
         serviceBanner: ".service__banner",
         serviceBannerItem: document.querySelectorAll(".service__banner--item"),
@@ -35,7 +34,7 @@ let counter = document.querySelector(DOM.counter),
 /////////////////////////////////////////
 /////////////////////////////////////////
 // Helper variables /////////////////////
-const delay = (n)=> {                                                     // timeout function for async functions -- returns Promise
+const delay = (n)=> {                                               // timeout function for async functions -- returns Promise
     n = n || 2000;                                                      // declare a default for number to be used for timeout
     return new Promise(done => {                                        // return the promise to origin function
         setTimeout(() => {                                                  // setTimeout
@@ -144,6 +143,7 @@ parseArrForClass = (targetArr, className)=> {                       // parses gi
 /////////////////////////////////////////
 // Helper functions /////////////////////
 function setEqualHeight(targetEl) {                                 // set each element in Array to have the same height (tallest of them)
+    // console.log("setEqualHeight")
     let itemHeight = targetEl[0].offsetHeight;                                  // set the global variable as the first elements height
     targetEl.forEach(function(current){                                         // loop through the array to get the greatest height of all elements
         if (current.offsetHeight > itemHeight)                                      // if current element height is greater than global variables height
@@ -182,66 +182,12 @@ function changeClassOnScroll(targetEl) {                            // change cl
     }                                                                                   // end if
 }
 function lockViewport(targetEl=false,time=1000) {                   // locks the scrolling of page for period of time
-    const keys = {37: 1, 38: 1, 39: 1, 40: 1};
-    function preventDefault(e) {
-        e.preventDefault();
-    }
-    function preventDefaultForScrollKeys(e) {
-        if (keys[e.keyCode]) {
-            preventDefault(e);
-            return false;
-        }
-    }
-    var supportsPassive = false;
-    try {
-        window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
-            get: function () { supportsPassive = true; } 
-        }));
-    } catch(e) {}
-    var wheelOpt = supportsPassive ? { passive: false } : false;
-    var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
-    var arrow_keys_handler = function(e) {
-        switch(e.keyCode){
-            case 37: case 39: case 38:  case 40: // Arrow keys
-            case 32: e.preventDefault(); break; // Space
-            default: break; // do not block other keys
-        }
-    };
-    function disableScroll() {
-        scrollTypes.forEach(function(current) {
-            window.removeEventListener(current, scrollFunc, false)
-            window.removeEventListener(current, scrollFunc, wheelOpt)
-        });
-        window.removeEventListener("keydown", keyFunc, false)
-        window.addEventListener("keydown", arrow_keys_handler, false);
-        window.addEventListener('onwheel', preventDefault, false); // older FF
-        window.addEventListener('onmousewheel', preventDefault, false); // older FF
-        window.addEventListener('mousewheel', preventDefault, false); // older FF
-        window.addEventListener("wheel", function(e){e.preventDefault();}, {passive: false} );
-        window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
-        window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
-        window.addEventListener('touchstart', preventDefault, wheelOpt); // track-pad + mobile
-        window.addEventListener('touchmove', preventDefault, wheelOpt); // track-pad + mobile
-        window.addEventListener('touchend', preventDefault, wheelOpt); // track-pad + mobile
-        window.addEventListener('keydown', preventDefaultForScrollKeys, false);
-    }
-    function enableScroll() {
-        window.removeEventListener('onwheel', preventDefault, false); // older FF
-        window.removeEventListener('onmousewheel', preventDefault, false); // older FF
-        window.removeEventListener('mousewheel', preventDefault, false); // older FF
-        window.removeEventListener("wheel", function(e){e.preventDefault();}, {passive: false} );
-        window.removeEventListener('DOMMouseScroll', preventDefault, false); // older FF
-        window.removeEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
-        window.removeEventListener('touchstart', preventDefault, wheelOpt); // track-pad + mobile
-        window.removeEventListener('touchmove', preventDefault, wheelOpt); // track-pad + mobile
-        window.removeEventListener('touchend', preventDefault, wheelOpt); // track-pad + mobile
-        window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
-    }
+    // console.log("lockViewport")
     disableScroll();
     setTimeout(function() {
-        enableScroll();
-        if (targetEl && !targetEl.classList.contains("sectionPin")) {
-            setupListeners();
+        setupListeners();
+        if (targetEl && !targetEl.classList.contains("pinFiring")) {
+            enableScroll();
         }
     }, time);
 }
@@ -258,17 +204,25 @@ function scrolltoYPoint(targetEl, dur=1) {                          // move to t
         }
     );
 }
-function clearDOMchanges(targetEl) {                                   // remove certain attributes from DOM nodes in Array or given element
+function clearDOMchanges(targetEl) {                                // remove certain attributes from DOM nodes in Array or given element
     // console.log("clearDOMchanges")
-    const removeStyle = (targetEl)=> {                                     // DRY
-        if (targetEl && targetEl.hasAttribute("style"))                     // if the currently element has style attribute
-            targetEl.removeAttribute("style");                                  // remove that attribute on current element
-    }
-    if (targetEl && Array.isArray(targetEl)) {                          // if targetEl is an array 
-        targetEl.forEach(function(current){                                 // forEach on the array
-            removeStyle(current);                                                  // remove styles from element
-        });
-    } else if (targetEl && targetEl instanceof HTMLDocument) {           // else if is individual targetEl
-        removeStyle(current);                                                  // remove styles from element
+    if (typeof targetEl !== "undefined") {
+        const removeStyle = (targetEl)=> {                                     // DRY
+            if (targetEl.hasAttribute("style"))                     // if the currently element has style attribute
+                targetEl.removeAttribute("style");                                  // remove that attribute on current element
+        };
+        if (targetEl) {
+            let currTarget = targetEl
+            if (currTarget === Object(currTarget)) {
+                // currTarget = Array.from(currTarget);
+            };
+            if (Array.isArray(currTarget)) {                          // if targetEl is an array 
+                currTarget.forEach(function(current){                                 // forEach on the array
+                    removeStyle(current);                                                  // remove styles from element
+                });
+            } else {
+                removeStyle(currTarget);
+            };
+        }
     }
 }

@@ -76,44 +76,49 @@ frostedGlassIntro = (target)=> {
     window.onbeforeunload = function () {
         window.scrollTo(0, 0);
     };
-    Array.from(sections[0].querySelectorAll("*[data-interaction='fadeElIn'")).forEach(function(current){
-        current.style.opacity = 0;
-    });
-    const baseTarget = target.container.querySelector("section");
-    const targetEl = baseTarget,
+    const targetEl = target.container.querySelector("section"),
           targetDOM = {
-              h1: targetEl.querySelector(".section__content--item h1"),
-              h2: targetEl.querySelector(".section__content--item h2"),
-              h3: targetEl.querySelector(".section__content--item h3"),
-              h4: targetEl.querySelector(".section__content--item h4"),
-              h5: targetEl.querySelector(".section__content--item h5"),
-              p: targetEl.querySelector(".section__content--item p"),
+              h1: targetEl.querySelector("h1"),
+              h2: targetEl.querySelector("h2"),
+              h3: targetEl.querySelector("h3"),
+              h4: targetEl.querySelector("h4"),
+              h5: targetEl.querySelector("h5"),
+              p: targetEl.querySelector("p"),
               button: targetEl.querySelector(".section__content--button-wrapper"),
               blur: targetEl.querySelector(".blur"),
               bg: targetEl.querySelector(".section__bg")
           },
-          textInteraction = (target, del, dur, trans, ease, pos)=> {
-            breakStringByLine(target)
-            tl.from( target.children, { 
-                    delay: del,
-                    duration: dur,
-                    translateY: trans,
+          textInteraction = (target, dur, trans, ease, pos)=> {
+            $(target).splitLines({
+                tag: `<div class="split-line" style="display:block;">`,
+                keepHtml: true
+            });
+            target.style.cssText = `height:${target.offsetHeight}px; position:relative; overflow:hidden; width:100%;`;
+            Array.from(target.children).forEach(function(current){
+                tl.from( current, {
                     opacity: 0,
-                    ease: ease,
-                    onComplete: clearSpanAndStyles
-                }, pos
-            );
+                    translateY: trans
+                }, pos)
+                .to( current, {
+                    duration: dur,
+                    translateY: 0,
+                    opacity: 1,
+                    ease: ease
+                });
+            });
           },
           frostedGlassIntroCleaner = ()=> {
-            console.log("frostedGlassIntroCleaner")
             Array.from(targetDOM).forEach(function(current){
-                clearDOMchanges(current)
-            })
+                clearDOMchanges(current);
+            });
             Array.from(targetDOM.button.children).forEach(function(current){
-                clearDOMchanges(current)
-            })
-            clearDOMchanges(targetDOM.bg)
-            clearDOMchanges(targetDOM.blur)
+                clearDOMchanges(current);
+            });
+            targetDOM.blur.parentElement.removeChild(targetDOM.blur)
+            clearDOMchanges(targetDOM.bg);
+            Array.from(targetEl.querySelectorAll("[data-interaction='fadeElIn']")).forEach(function(current){
+                !current.hasAttribute("fired") ? current.setAttribute("fired",'') : null;
+            });
           },
           tl = gsap.timeline();
     tl.from(targetDOM.bg, {
@@ -124,24 +129,26 @@ frostedGlassIntro = (target)=> {
         duration: .5, 
         opacity: 0
     }, "-=1").from(targetDOM.button.children, {
-        duration: 0.1,
+        // duration: 0,
         translateY: 50,
+        stagger: .25,
         opacity: 0,
     }, "-=1").to(targetDOM.button.children, {
-        delay: .25, 
-        duration: 1, 
-        stagger:.25,
+        // delay: .25, 
+        duration: 0.5, 
+        stagger: .25,
         translateY: 0,
         opacity: 1,
-        ease:"expo.out"
-    }, "-=.75");
-    if (targetDOM.h1) textInteraction(targetDOM.h1, 0.5, 1.5, 25, "expo.out", "-=1.35");
-    if (targetDOM.h2) textInteraction(targetDOM.h2, 0.5, 1.5, 25, "expo.out", "-=1.25");
-    if (targetDOM.h3) textInteraction(targetDOM.h3, 0.45, 1.65, 25, "expo.out", "-=1.45");
-    if (targetDOM.h4) textInteraction(targetDOM.h4, 0.5, 1.5, 25, "expo.out", "-=1.35");
-    if (targetDOM.h5) textInteraction(targetDOM.h5, 0.45, 1.75, 25, "expo.out", "-=1.85");
-    if (targetDOM.p)  textInteraction(targetDOM.p, 0.5, 1.5, 25, "expo.out", "-=1.35");
-    if (targetDOM.h3) targetDOM.h3.parentElement.style.opacity = 1;
+        ease: "expo.out"/*,
+        onComplete: clearDOMchanges,
+        onCompleteParams: [Array.from(targetDOM.button.children)]*/
+    }, "-=0.75");
+    if (targetDOM.h1) textInteraction(targetDOM.h1, 0.25, 25, "expo.out", "-=0.25");
+    if (targetDOM.h2) textInteraction(targetDOM.h2, 0.25, 25, "expo.out", "-=0.25");
+    if (targetDOM.h3) textInteraction(targetDOM.h3, 0.25, 25, "expo.out", "-=1");
+    if (targetDOM.h4) textInteraction(targetDOM.h4, 0.25, 25, "expo.out", "-=0.25");
+    if (targetDOM.h5) textInteraction(targetDOM.h5, 0.5, 25, "expo.out", "-=0.5");
+    if (targetDOM.p)  textInteraction(targetDOM.p, 0.5, 25, "expo.out", "-=0.25");
     setTimeout(function(){
         frostedGlassIntroCleaner();
     },time)
@@ -150,7 +157,7 @@ frostedGlassOutro = (target)=> {
     // console.log("frostedGlassOutro")
     const tl = gsap.timeline(),
           targetEl = target.container.querySelector("section.isActive"),
-          intTargets = [".section__content--main",".section__content--sub",".service__banner--item",".slider",".pinned",".section__bg"],
+          intTargets = ["h1","h2","h3","h4","h5","p",".section__content--button",".service__banner--item",".slider",".pinned",".section__bg"],
           finalArr = [];
     intTargets.forEach(function(current){
         const currentTarget = Array.from(targetEl.querySelectorAll(current));
@@ -163,21 +170,27 @@ frostedGlassOutro = (target)=> {
     finalArr.forEach(function(current, index){
         if (!current.classList.contains("section__bg")
             && !current.classList.contains("section__bg--media")) {
-                fadeElOut(current, del=0.1, stag=0.15, dur=1, offset=50, pos=0.15 * index)
+                tl.to( current, {
+                    delay: 0.25,
+                    duration: 1,
+                    stagger: 0.25,
+                    translateY: -25,
+                    opacity: 0,
+                    ease: "expo.out"
+                }, 0.15 * index )
         } else {
             tl.to(current, {
-                delay: 1,
-                duration: 2,
-                translateY: 0,
+                delay: 0.25,
+                duration: 2.5,
                 scale: 1.2,
                 opacity: 0,
                 ease: "expo.out"
-            })
+            }, 0.15 * index)
         }
     })
 };
 barba.hooks.leave((data)=> {
-    console.log("Barba beforeLeave");
+    // console.log("Barba beforeLeave");
     let supportsPassive = false;
     try {
         window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
@@ -188,25 +201,28 @@ barba.hooks.leave((data)=> {
     };
     let wheelOpt = supportsPassive ? { passive: false } : false;
     scrollTypes.forEach(function(current) {
-        window.removeEventListener(current, scrollFunc, false)
-        window.removeEventListener(current, scrollFunc, wheelOpt)
+        window.removeEventListener(current, onScrollEvent, false)
+        window.removeEventListener(current, onScrollEvent, wheelOpt)
     });
+    enableScroll();
     const baseTarget = data.current.container.children;
     Array.from(baseTarget).forEach(function(current){
-        const targetArr = Array.from(current.querySelectorAll("[data-interaction]"))
+        const targetArr = Array.from(current.querySelectorAll("[data-interaction]"));
+        if (current.dataset.interaction) targetArr.push(current);
         if (targetArr.length > 0) {
             targetArr.forEach(function(targetEl){
                 const targetInt = targetEl.dataset.interaction;
-                console.log(targetEl)
-                if (targetInt.includes("sectionPin")) console.log(targetEl), pinCleaner(false, data);
-                if (targetInt.includes("parallaxItem")) console.log(targetEl), parallaxCleaner(data)
-                if (targetInt.includes("sliderItem")) console.log(targetEl), sliderCleaner(data)
+                if (current.hasAttribute("fired")) current.removeAttribute("fired");
+                if (targetInt.includes("sectionPin")) pinCleaner(false, data);
+                if (targetInt.includes("parallaxItem")) parallaxCleaner(data);
+                if (targetInt.includes("sliderItem")) sliderCleaner(data);
             })
         };
-    })
+    });
+
 });
 barba.hooks.afterEnter((data) => {
-    console.log("Barba afterEnter")
+    // console.log("Barba afterEnter")
     Page = {
         home: data.next.container.parentElement.querySelector(".home"),
         experience: data.next.container.parentElement.querySelector(".experience"),
@@ -249,7 +265,7 @@ barba.init({
     sync: true,
     transitions: [{
         enter(data) {
-            console.log("Barba enter")
+            // console.log("Barba enter")
                 // problem with removing event listeners
                 // only seem to be removing a few of them on page leave
                 // need to remove them all - some arrays showing 10+
@@ -260,8 +276,7 @@ barba.init({
             counterNavigationIntro();
         },
         once(data) {
-            console.log("Barba once")
-            // DOM.body.innerHTML = DOM.body.innerHTML;
+            // console.log("Barba once")
             frostedGlassIntro(data.next);
             headerNavigationIntro();
             counterNavigationIntro();

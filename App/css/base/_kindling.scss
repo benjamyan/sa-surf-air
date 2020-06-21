@@ -81,6 +81,29 @@ html, body {
 .lock {
   overflow-y: hidden;
 }
+.align {
+  &-center {
+    h1, h2, h3, h4, h5, p, ul, li, sub {
+      text-align: center;
+    }
+  }
+  &-left {
+    h1, h2, h3, h4, h5, p, ul, li, sub {
+      text-align: left;
+    }
+  }
+}
+.bg {
+  &-sa-blue {
+    background-color: $sa-blue;
+  }
+  &-off-white {
+    background-color: $off-white;
+  }
+  &-pale-grey {
+    background-color: $pale-grey;
+  }
+}
 @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
   .blur {
     background-color: transparent;
@@ -127,7 +150,6 @@ html, body {
 .col-xs-0 {
   width: 4%;
 }
-
 /*Responsive*/
 @media screen and (max-width: 1920px) { 
 

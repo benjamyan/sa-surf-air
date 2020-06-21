@@ -1,5 +1,62 @@
 /////////////////////////////////////////
 /////////////////////////////////////////
+// Global events ////////////////////////
+onPinEvent = (event)=> {                                                // declare our listener function early
+    let targetEl = document.querySelector(".isActive");
+    if (event.deltaY >= 0 || event.deltaY <= 0) {                           // if is a mouse event
+        pinScroller(targetEl, event)                                            // fire controller
+    };                                                                      // end if
+    if (event.keyCode === 40 || event.key === "ArrowDown") {                // if is arrow up key
+        pinScroller(targetEl, event)                                            // fire controller
+    };                                                                      // end if
+    if (event.keyCode === 38 || event.key === "ArrowUp") {                  // if is arrow down key
+        pinScroller(targetEl, event)                                            // fire controller
+    };                                                                      // end if
+};
+onParallaxEvent = (event)=> {                                           // our callback function for the listener
+    // console.log("onParallaxEvent")
+    const targetArr = Array.from(document.querySelectorAll("[data-interaction]"));
+    targetArr.forEach(function(currTarget){ 
+        let targetEl = currTarget;
+        let targetIntesity = currTarget.getAttribute("parallax")
+        if (!targetEl.hasAttribute("parallax")) {
+            if (currTarget.dataset.interaction.includes("parallaxItem")) {
+                const intensity = (Math.random() * (50 - 25) + 25) / 350;                       // get our desired intensity based on random # between two values
+                let currTarget = targetEl;
+                currTarget.setAttribute("parallax", intensity);                                           // add `listening` attribute to DOM node with our intensity to be called later
+                /*sections.forEach(function(current){ // parallax function for BG images
+                    if (targetEl === current) {
+                        const currBgDOM = current.querySelector(".section__bg--media");
+                        if (currBgDOM.hasAttribute("style")) {
+                            currBgDOM.parentElement.style.overflow = "hidden";
+                            currBgDOM.style.width = "150%";
+                            currBgDOM.style.marginLeft = "-50%";
+                        };
+                        currTarget = currBgDOM;
+                    };
+                });*/
+            }
+        }
+        parallaxInteraction(currTarget, targetIntesity);
+    });
+};
+onKeyEvent = (event)=> {
+    if (event.keyCode === 40 || event.key === "ArrowDown") {
+        scrollDirection = 0;
+        scrollController(scrollDirection);
+    };
+    if (event.keyCode === 38 || event.key === "ArrowUp") {
+        scrollDirection = 1;
+        scrollController(scrollDirection);
+    };
+};
+onScrollEvent = (event)=> {
+    if (event.deltaY > 0) scrollDirection = 0;
+    else scrollDirection = 1;
+    scrollController(scrollDirection);
+};
+/////////////////////////////////////////
+/////////////////////////////////////////
 // Interaction controllers //////////////
 function sliderItem(targetEl) {
     // console.log("sliderItem")
@@ -10,37 +67,32 @@ function sliderItem(targetEl) {
         };
         if (targetSetup === "testimonial") {
             testimonialSlider(targetEl);
+            DOM.textTags.forEach(function(current){
+                const targetArr = Array.from(targetEl.querySelectorAll(current));
+                if (targetArr.length > 0) {
+                    targetArr.forEach(function(currTarget){
+                        if (currTarget.children) currTarget = currTarget.children[0];
+                        $(currTarget).splitLines({
+                            tag: '<div class="split-line" style="display:inline-block;">',
+                            keepHtml: true
+                        });
+                    })
+                }
+            })
         };
     }
 }
 function parallaxItem(targetEl) {                                       // setup function for parallax interaction on element
     // console.log("parallaxItem")
     if (viewportWidth > 900) {
-        const intensity = (Math.random() * (50 - 25) + 25) / 350;                       // get our desired intensity based on random # between two values
-        fireParallax = ()=> {                                                           // our callback function for the listener
-            let currTarget = targetEl;
-            // console.log(currTarget)
-            sections.forEach(function(current){
-                if (targetEl === current) {
-                    const currBgDOM = current.querySelector(".section__bg--media");
-                    if (currBgDOM.hasAttribute("style")) {
-                        currBgDOM.parentElement.style.overflow = "hidden";
-                        currBgDOM.style.width = "150%";
-                        currBgDOM.style.marginLeft = "-50%";
-                    };
-                    currTarget = currBgDOM;
-                };
-            });
-            parallaxInteraction(currTarget, intensity);                                       // call our parallax function here with arguments
-        };
-        if (!targetEl.hasAttribute("listening")) {                                      // if the listener hasn't been attached - `listening` attribute not present
-            targetEl.setAttribute("listening",'');                                          // add `listening` attribute to DOM node
+        if (!targetEl.hasAttribute("parallax")) {                         // if the listener hasn't been attached - `listening` attribute not present
             scrollTypes.forEach(function(current){                                          // loop through all scroll types were targeting
                 window.addEventListener(                                                        // add our event listener
                     current,                                                                        // target the current scroll type
-                    fireParallax                                                                    // fire our callback
+                    onParallaxEvent                                                                    // fire our callback
                 )                                                                               // end listener
             });                                                                             // end loop
+            // window.addEventListener("keydown", onParallaxEvent, false);
         };                                                                              // end if
     }
 }
@@ -56,10 +108,19 @@ function sectionPin(targetEl) {                                         // setup
     // console.log("secitonPin")
     return (function() {                                                                // base it off a closure so it doesnt fire inacturately
         if (!intRunning) {                                                              // if not alreayd running
+            // pinRunning = true;
             intRunning = true;                                                          // turn running to true so last line with return falsy
             const pinned = targetEl.querySelector(".pinned"),                           // get pin container DOM node
                   pinnedInner = Array.from(pinned.children);                            // build an array of interal pin items
-            pinListener(targetEl);                                                      // setup event listeners for control later                                     
+            if (!targetEl.classList.contains("pinFiring")) {                            // if section does not have pinFirinf classs
+                targetEl.classList.add("pinFiring");                                        // add pinFiring class so function doesn't repeat
+                window.addEventListener("keydown", onPinEvent, false);                   // add listener for keydown events
+                scrollTypes.forEach(function(current){                                      // loop through scrolling types
+                    setTimeout(function(){                                                      // i dont know why this works but it throttles the listener correctly
+                        window.addEventListener(current, onPinEvent, false)                      // add event listenere for current scroll event type
+                    }, time)                                                                    // end timeout
+                });                                                                         // end loop
+            };                                                                           // end if
             if (!pinnedInner[pinnedInner.length-1].classList.contains("visible")) {     // if scrolling back into section from bottom (last item is visible)
                 pinned.children[0].classList.add("visible");                                // if truthy add visible class to first element            
             };                                                                          // end if
@@ -72,7 +133,7 @@ function sectionPin(targetEl) {                                         // setup
 }
 /////////////////////////////////////////
 /////////////////////////////////////////
-// Interaction controllers //////////////
+// Global controllers ///////////////////
 function interactionController(targetEl) {                              // central controller for all interaction-related function
     const targetArr = Array.from(targetEl.querySelectorAll("[data-interaction]")),   // get all nodes with `data-interaction` attribute
           allTargets = [ targetEl, targetArr ],                                         // merge all elements to be targetted later
@@ -116,7 +177,7 @@ function counterController(targetEl) {                                  // centr
     return (function() {                                                    // return function for throttle
         if (!running) {                                                         // if function isnt firing already
             running = true;                                                         // set running to `true` - throttles this function so it can only fire once
-            lockViewport( false, time );                                            // lock the viewport first-thing
+            lockViewport( targetEl, time );                                            // lock the viewport first-thing
             if (document.querySelector(".isActive")) {                              // if isActive exists (DOM check)
                 changeClassOnScroll(targetEl);                                          // change the isActive class
                 showCounter(targetEl);                                                  // show the counter interaction
@@ -185,7 +246,7 @@ function scrollController(dir) {                                        // centr
 }
 /////////////////////////////////////////
 /////////////////////////////////////////
-// Initializers /////////////////////////
+// App initializers /////////////////////
 function setupListeners() {                                             // initial setup for event listeners on page
     // console.log("setupListeners")
     const listenerTargets = {
@@ -195,28 +256,12 @@ function setupListeners() {                                             // initi
     for (let i = 0; i < Object.keys(listenerTargets).length; i++) {
         const currentObj = Object.keys(listenerTargets)[i],
               currentObjItem = listenerTargets[currentObj];
-        let scrollDirection;
-        scrollFunc = (event)=> {
-            if (event.deltaY > 0) scrollDirection = 0;
-            else scrollDirection = 1;
-            scrollController(scrollDirection);
-        };
-        keyFunc = (event)=> {
-            if (event.keyCode === 40 || event.key === "ArrowDown") {
-                scrollDirection = 0;
-                scrollController(scrollDirection);
-            };
-            if (event.keyCode === 38 || event.key === "ArrowUp") {
-                scrollDirection = 1;
-                scrollController(scrollDirection);
-            };
-        };
         if ( currentObj === "scroll") {
             currentObjItem.forEach(function(current) {
-                window.addEventListener(current, scrollFunc, false);
+                window.addEventListener(current, onScrollEvent, false);
             });
         } else if ( currentObj === "key") {
-            window.addEventListener("keydown", keyFunc, false);
+            window.addEventListener("keydown", onKeyEvent, false);
         };
     }
 }

@@ -1,6 +1,6 @@
 /////////////////////////////////////////
 /////////////////////////////////////////
-// Navigation ///////////////////////////
+// Navigation interactions //////////////
 headerMenuActive = ()=> {                                           // activates header navigation on scroll
     if (window.scrollY > 149 ) {                                                         // if window Y coordinates are greater than 1
         if (!navDOM.nav.classList.contains("active")) {                                     // if nav does not have active class
@@ -69,30 +69,8 @@ showCounter = (targetEl)=> {                                        // show the 
 }
 /////////////////////////////////////////
 /////////////////////////////////////////
-// Pinning //////////////////////////////
-pinListener = (targetEl)=> {                                      // event listeners for the pinned section
-    pinEventFunc = (event)=> {                                              // declare our listener function early
-        if (event.deltaY >= 0 || event.deltaY <= 0) {                           // if is a mouse event
-            pinScroller(targetEl, event)                                            // fire controller
-        };                                                                      // end if
-        if (event.keyCode === 40 || event.key === "ArrowDown") {                // if is arrow up key
-            pinScroller(targetEl, event)                                            // fire controller
-        };                                                                      // end if
-        if (event.keyCode === 38 || event.key === "ArrowUp") {                  // if is arrow down key
-            pinScroller(targetEl, event)                                            // fire controller
-        };                                                                      // end if
-    };                                                                      // end declaration
-    if (!targetEl.classList.contains("pinFiring")) {                        // if section does not have pinFirinf classs
-        targetEl.classList.add("pinFiring");                                    // add pinFiring class so function doesn't repeat
-        window.addEventListener("keydown", pinEventFunc, false);                // add listener for keydown events
-        scrollTypes.forEach(function(current){                                  // loop through scrolling types
-            setTimeout(function(){                                                  // i dont know why this works but it throttles the listener correctly
-                window.addEventListener(current, pinEventFunc, false)                   // add event listenere for current scroll event type
-            }, time)                                                                // end timeout
-        });                                                                     // end loop
-    }                                                                       // end if
-}
-pinScroller = (targetEl, event)=> {                               // scrolling functionality for the pinnned section
+// Section pinning //////////////////////
+pinScroller = (targetEl, event)=> {                                 // scrolling functionality for the pinnned section
     return (function() {
         if (!pinRunning) {
             pinRunning = true;
@@ -132,14 +110,14 @@ pinScroller = (targetEl, event)=> {                               // scrolling f
         }
     })()
 }
-pinInteraction = (targetEl, nextTarget)=> {                       // function responsive for DOM based interactions
+pinInteraction = (targetEl, nextTarget)=> {                         // function responsive for DOM based interactions
     const targetElTags = Array.from(targetEl.children);
     targetElTags.forEach(function(current){
         if (current.tagName === 'H1') numberTransition(current, nextTarget);
         if (current.tagName !== 'H1') textTransition(current, nextTarget);
     });
 }
-pinCleaner = (direction=false, isBarba=0)=> {                                      // break out of pinning section 
+pinCleaner = (direction=false, isBarba=0)=> {                       // break out of pinning section 
     console.log("pinCleaner")
     let targetEl = getScrollSection(direction),
         pinFiringDOM = document.querySelector(".pinFiring");
@@ -151,24 +129,23 @@ pinCleaner = (direction=false, isBarba=0)=> {                                   
     if (pinFiringDOM) {
         pinFiringDOM.classList.remove("pinFiring");
     };
-    if (direction === false) {
-        lockViewport(targetEl, time);
-    };
-    scrolltoYPoint(targetEl);
-    changeClassOnScroll(targetEl);
-    interactionController(targetEl);
-    showCounter(targetEl);
+    if (isBarba === 0) {
+        scrolltoYPoint(targetEl);
+        changeClassOnScroll(targetEl);
+        interactionController(targetEl);
+        showCounter(targetEl);
+    }
     scrollTypes.forEach(function(current){
-        window.removeEventListener(current, pinEventFunc, false);
+        window.removeEventListener(current, onPinEvent, false);
     })
-    window.removeEventListener("keydown", pinEventFunc, false);
+    window.removeEventListener("keydown", onPinEvent, false);
     setTimeout(function(){
         running = false;
     },time);
 }
 /////////////////////////////////////////
 /////////////////////////////////////////
-// Wiping ///////////////////////////////
+// Section wipes ////////////////////////
 wipeInteraction = (targetEl)=> {
     // console.log("wipeInteraction");
     const wipeAnimation = new TimelineMax();
@@ -176,7 +153,7 @@ wipeInteraction = (targetEl)=> {
 }
 /////////////////////////////////////////
 /////////////////////////////////////////
-// Slider ///////////////////////////////
+// Slider element ///////////////////////
 carouselInteraction = (targetEl)=> {
     //
 }
@@ -187,7 +164,7 @@ testimonialChange = (targetEl)=> {
     // console.log("testimonialChange"); 
 }
 testimonialInteraction = (targetEl)=> {
-    // console.log("testimonialInteraction");
+    console.log("testimonialInteraction");
     const tl = gsap.timeline();
     const currSlider = targetEl.closest(".slider"),
           currSliderItem = currSlider.querySelector(".slider-item.visible"),
@@ -196,47 +173,95 @@ testimonialInteraction = (targetEl)=> {
           currNavVisible = parseArrForClass(Array.from(currNav.children), "visible"); 
     const currTarget = new Array,
           nextTarget = new Array;
-    DOM.textTags.forEach(function(current){
-        let i;
-        const currTextItem = Array.from(currSliderItem.querySelectorAll(current));
-        for (i = 0; i < currTextItem.length; i++) {
-            currTarget.push(currTextItem[i])
-        };
-        const nextTextItem = Array.from(nextSliderItem.querySelectorAll(current));
-        for (i = 0; i < nextTextItem.length; i++) {
-            nextTarget.push(nextTextItem[i])
-        };
-    });
+    let i;
+    const currTextItem = Array.from(currSliderItem.querySelectorAll(".split-line"));
+    for (i = 0; i < currTextItem.length; i++) {
+        currTarget.push(currTextItem[i])
+    };
+    const nextTextItem = Array.from(nextSliderItem.querySelectorAll(".split-line"));
+    for (i = 0; i < nextTextItem.length; i++) {
+        nextTarget.push(nextTextItem[i])
+    };
     toggleClasses = ()=> {
-        console.log(targetEl)
+        currSliderItem.classList.remove("changing");
         toggleClassName( "visible", currNavVisible, targetEl );
         toggleClassName( "visible", currSliderItem, nextSliderItem );
     };
-    tl.from( currTarget.parentElement,{
+    console.log(currSliderItem)
+    currSliderItem.classList.add("changing")
+    tl.from( currSliderItem,{
         duration: 0,
         opacity: 1
-    }).to( currTarget.parentElement, {
+    }).to( currSliderItem, {
         delay: 1,
         duration: 1,
         opacity: 0,
         ease: "expo.out"
-    }).from( nextTarget.parentElement,{
-        duration: 0,
-        opacity: 0
-    }).to( nextTarget.parentElement, {
-        duration: 1,
-        opacity: 1,
-        ease: "expo.out"
-    }, "-=1").from( nextTarget, {
+    }).to( nextSliderItem.querySelector("img"), {
         duration: 0,
         opacity: 0,
-    }).to( nextTarget, {
+        translateY: -15
+    }, "-=1").to( currTarget, {
+        delay: 0,
+        stagger: 0.175,
+        duration: .25,
+        translateY: -15,
+        opacity: 0,
+        ease: "expo.out"
+    }, "-=-1").to(currSliderItem.querySelector("p sub"), {
+        delay: 0,
+        duration: 1,
+        opacity: 0,
+        ease: "expo.out",
+        onStart: toggleClasses,
+        onComplete: clearDOMchanges,
+        onCompleteParams: [ currSliderItem.querySelector("p sub") ]
+    }, "-=2").to(currSliderItem.querySelector("img"),{
+        delay: 0,
+        duration: 1,
+        opacity: 0,
+        translateY: 25,
+        ease: "expo.out",
+        onComplete: clearDOMchanges,
+        onCompleteParams: [ currSliderItem.querySelector("img") ]
+    }, "-=2").from( nextSliderItem.querySelector("img"), {
+        duration: 0,
+        opacity: 0
+    }, "-=2").from( nextSliderItem,{
+        duration: 0,
+        opacity: 0
+    }, "-=2").to( nextSliderItem, {
+        duration: 1,
+        opacity: 1,
+        ease: "expo.out",
+        onComplete: clearDOMchanges,
+        onCompleteParams: [ nextSliderItem ]
+    }, "-=2").to( nextTarget, {
+        duration: 0,
+        opacity: 0,
+        translateY: 25
+    }, "-=2").to( nextTarget, {
+        delay: 0.25,
         duration: 0.5,
         stagger: 0.175,
         opacity: 1,
+        translateY: 0,
         ease: "expo.out"
+    }, "-=2").to(nextSliderItem.querySelector("p sub"), {
+        delay: 0,
+        duration: 1,
+        opacity: 1,
+        ease: "expo.out",
+        onComplete: clearDOMchanges,
+        onCompleteParams: [ nextSliderItem.querySelector("p sub") ]
+    }, "-=2").to(nextSliderItem.querySelector("img"), {
+        duration: 1,
+        opacity: 1,
+        translateY: 0,
+        ease: "expo.out",
+        onComplete: clearDOMchanges,
+        onCompleteParams: [ nextSliderItem.querySelector("img") ]
     }, "-=1");
-    toggleClasses();
 }
 testimonialSlider = (targetEl)=> {
     // console.log("testimonialSlider");
@@ -248,9 +273,10 @@ testimonialSlider = (targetEl)=> {
                   sliderNavItems = Array.from(sliderNav.children);
             sliderItems.forEach(function(current, index){
                 if (current !== sliderNav) {
-                    // sliderItems.splice(index)
+                    sliderItems.splice(index)
                 };
             });
+            console.log
             sliderNavItems.forEach(function(current){
                 current.onclick = function() {
                     if (!current.classList.contains("visible")) {
@@ -266,21 +292,21 @@ testimonialSlider = (targetEl)=> {
     
 }
 sliderCleaner = (isBarba=0)=> {
-    console.log("sliderCleaner")
+    // console.log("sliderCleaner")
 }
 /////////////////////////////////////////
 /////////////////////////////////////////
-// Parallax /////////////////////////////
+// Parallax element /////////////////////
 parallaxCleaner = (isBarba=0)=> {
     console.log("parallaxCleaner")
     scrollTypes.forEach(function(current){                                          // loop through all scroll types were targeting
         window.removeEventListener(                                                        // remove our event listener
             current,                                                                        // target the current scroll type
-            fireParallax                                                                    // fire our callback
+            onParallaxEvent                                                                    // fire our callback
         )                                                                               // end listener
     });
-};
+}
 parallaxInteraction = (targetEl, intensity)=> {
     // console.log("parallaxInteraction")
     targetEl.style.transform = "translateY(" + (window.pageYOffset * -intensity + "px") + ')';
-};
+}

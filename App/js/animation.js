@@ -1,8 +1,8 @@
 /////////////////////////////////////////
 /////////////////////////////////////////
-// Animation ////////////////////////////
-function breakStringByLine(targetEl) {                              // break down each line in string and wrap in span tag
-    console.log("breakStringByLine")
+// GSAP Animation functions /////////////
+function breakStringByLine(targetEl) {                                  // break down each line in string and wrap in span tag
+    // console.log("breakStringByLine")
     /*const originalText = ()=> {
             if (targetEl.innerHTML.indexOf("<br>") !== -1) {
                 const targetArr = targetEl.innerHTML.split("<br>");
@@ -110,7 +110,7 @@ function textTransition(targetEl, nextTarget) {
         opacity: 1,
         ease: "expo.out",
         onComplete: clearDOMchanges,
-        onCompleteParams: [nextTarget, ...targetArr]
+        onCompleteParams: [nextTarget, targetArr]
     }, "-=0.9");
 }
 function textWrap(targetEl,del=0.5,dur=1.5,stag=0,trans=25,ease="expo.out",pos="-=1.35") {
@@ -130,36 +130,42 @@ function textWrap(targetEl,del=0.5,dur=1.5,stag=0,trans=25,ease="expo.out",pos="
 }
 function fadeElIn(targetEl,del=0,dur=1,stag=.15,offset=50) {            // fade in effect for DOM elements
     const tl = gsap.timeline();
-    if (isOpenScrolling()) {
-        tl.to( targetEl, { 
-            duration: 0.1, 
-            stagger: stag, 
-            translateY: offset,
-            opacity: 0,
-            ease:"expo.out"
-        }).to( targetEl, {
-            delay: del,
-            duration: 1.5,
-            stagger: stag,
-            opacity: 1,
-            translateY: 0,
-            ease:"expo.out"
-        } );
-    } else {
-        tl.to( targetEl, { 
-            duration: 0.1, 
-            stagger: stag, 
-            translateY: offset,
-            opacity: 0,
-            ease:"expo.out"
-        }).to( targetEl, {
-            delay: del,
-            duration: dur,
-            stagger: stag,
-            opacity: 1,
-            translateY: 0,
-            ease:"expo.out"
-        } );
+    if (typeof targetEl !== "undefined") {
+        if (isOpenScrolling()) {
+            tl.to( targetEl, { 
+                duration: 0.1, 
+                stagger: stag, 
+                translateY: offset,
+                opacity: 0,
+                ease:"expo.out"
+            }).to( targetEl, {
+                delay: del,
+                duration: 1.5,
+                stagger: stag,
+                opacity: 1,
+                translateY: 0,
+                ease:"expo.out",
+                onComplete: clearDOMchanges,
+                onCompleteParams: [targetEl]
+            } );
+        } else {
+            tl.to( targetEl, { 
+                duration: 0.1, 
+                stagger: stag, 
+                translateY: offset,
+                opacity: 0,
+                ease:"expo.out"
+            }).to( targetEl, {
+                delay: del,
+                duration: dur,
+                stagger: stag,
+                opacity: 1,
+                translateY: 0,
+                ease:"expo.out",
+                onComplete: clearDOMchanges,
+                onCompleteParams: [targetEl]
+            } );
+        }
     }
 }
 function fadeElOut(targetEl,del=.5,stag=0.15,dur=1,offset=0,pos=0) {    // fade out effect for DOM elements
