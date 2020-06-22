@@ -18,6 +18,7 @@ h2 {
   @extend %font-stack-light;
   font-size: calc(30px + (65 - 30) * ((99vw - 300px) / (1900 - 300)));
   font-weight: 400;
+  line-height: 1;
   letter-spacing: 1px;
   text-align: center;
 }
@@ -71,7 +72,7 @@ q {
   }
 }
 .light {
-  h1, h2, h3, h4, h5, h6, p, li, a {
+  h1, h2, h3, h4, h5, h6, p, li, a, strong, sub {
     color: $sa-blue;
   }
 }

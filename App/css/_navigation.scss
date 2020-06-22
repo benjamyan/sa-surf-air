@@ -93,6 +93,10 @@
         &__main {
             position: absolute;
             margin: 0 auto;
+            .nav__item--active {
+                opacity: 0.5;
+                pointer-events: none;
+            }
         }
         &__sub {
             .nav__sub--item {

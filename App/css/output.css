@@ -41,13 +41,13 @@
   font-weight: 400;
 }
 
-.on-demand .best .section__content--sub p, .service__banner.services-display p, .service__banner.services-display h3, .service__banner.float .service__banner--item-wrapper .service__banner--item-title h3, .service__banner--item-wrapper .service__banner--item details summary, .section__counter div p, .section__content--button-wrapper .section__content--button-lg a, .section__content--button-wrapper .section__content--button-sm a, .nav__main .nav__item, .nav__sub .nav__item, h4 {
+.memberships .individuals .service__banner--item-wrapper article h3.super, .on-demand .best .section__content--sub p, .service__banner.services-display p, .service__banner.services-display h3.super, .service__banner.services-display h3, .service__banner.float .service__banner--item-wrapper .service__banner--item-title h3, .service__banner--item-wrapper .service__banner--item details summary, .section__counter div p, .section__content--button-wrapper .section__content--button-lg a, .section__content--button-wrapper .section__content--button-sm a, .nav__main .nav__item, .nav__sub .nav__item, h4 {
   font-family: "Kievit-reg", "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.header__nav .nav__sub .button a, .nav__item--button, h5 {
+.light .section__content--button-wrapper .section__content--button-lg a.nav__item--button, .header__nav .nav__sub .button a, .nav__item--button, h5 {
   font-family: "Kievit-bold", "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: 800;
   font-style: normal;
@@ -79,6 +79,7 @@ h1 {
 h2 {
   font-size: calc(30px + (65 - 30) * ((99vw - 300px) / (1900 - 300)));
   font-weight: 400;
+  line-height: 1;
   letter-spacing: 1px;
   text-align: center;
 }
@@ -131,7 +132,7 @@ q:before, q:after {
   display: inline-block;
 }
 
-.light h1, .light h2, .light h3, .light h4, .light h5, .light h6, .light p, .light li, .light a {
+.light h1, .light h2, .light h3, .light h4, .light h5, .light h6, .light p, .light li, .light a, .light strong, .light sub {
   color: #0A253E;
 }
 
@@ -219,17 +220,17 @@ html, body {
   left: 0;
   height: 100%;
   z-index: -1;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .lock {
   overflow-y: hidden;
 }
 
-.align-center h1, .align-center h2, .align-center h3, .align-center h4, .align-center h5, .align-center p, .align-center ul, .align-center li, .align-center sub {
+.align-center h1, .align-center h2, .align-center h3, .align-center h4, .align-center h5, .align-center p, .align-center ul, .align-center li, .align-center sub, .align-center .section__content--button-wrapper {
   text-align: center;
 }
-.align-left h1, .align-left h2, .align-left h3, .align-left h4, .align-left h5, .align-left p, .align-left ul, .align-left li, .align-left sub {
+.align-left h1, .align-left h2, .align-left h3, .align-left h4, .align-left h5, .align-left p, .align-left ul, .align-left li, .align-left sub, .align-left .section__content--button-wrapper {
   text-align: left;
 }
 
@@ -247,6 +248,9 @@ html, body {
   .blur {
     background-color: transparent;
     -webkit-backdrop-filter: blur(10px);
+    -moz-backdrop-filter: blur(10px);
+    -o-backdrop-filter: blur(10px);
+    -ms-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
   }
 }
@@ -455,6 +459,10 @@ html, body {
 .header__nav .nav__main {
   position: absolute;
   margin: 0 auto;
+}
+.header__nav .nav__main .nav__item--active {
+  opacity: 0.5;
+  pointer-events: none;
 }
 .header__nav .nav__sub svg {
   margin-right: 5px;
@@ -760,6 +768,9 @@ html, body {
 .section__content--button-wrapper .section__content--button-sm a {
   padding: 0;
 }
+.section__content--sub-title {
+  margin-bottom: 15px;
+}
 .section__content--sub-title img, .section__content--sub-title h3 {
   display: inline-block;
   vertical-align: middle;
@@ -770,14 +781,8 @@ html, body {
 .section__content--sub-title img {
   margin-right: 15px;
 }
-.section__content--half-height {
-  min-height: 60vh !important;
-}
 .section__content.light .section__content--button-wrapper .section__content--button {
   border: 2px solid #0A253E;
-}
-.section__content:last-of-type {
-  min-height: calc(101vh - 100px);
 }
 
 .section__counter {
@@ -941,7 +946,7 @@ html, body {
   padding: 2.5rem 2.5rem 4rem 2.5rem;
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   border-right: 1px solid rgba(255, 255, 255, 0.5);
-  margin-top: auto;
+  /*margin-top: auto;*/
   z-index: 2;
   vertical-align: bottom;
   flex: 1;
@@ -1030,9 +1035,6 @@ html, body {
   z-index: -1;
   filter: blur(3px);
 }
-.service__banner .section__content--main h2 {
-  text-align: left;
-}
 .service__banner.float .service__banner--item-wrapper {
   padding: 100px;
   top: 0;
@@ -1079,13 +1081,12 @@ html, body {
   vertical-align: top;
   margin-top: 0;
 }
-.service__banner.services-display * {
+.service__banner.services-display .service__banner--item * {
   text-align: center;
   color: #0A253E;
 }
 .service__banner.services-display h3 {
   line-height: 1;
-  text-align: center;
   padding: 0;
 }
 .service__banner.services-display h3.super {
@@ -1106,6 +1107,49 @@ html, body {
   width: 100%;
   margin: 20px 0;
   object-fit: cover;
+}
+.service__banner.services-panel .service__banner--item {
+  margin-top: auto;
+}
+.service__banner .services-table {
+  float: left;
+  width: 100%;
+  margin: 5% 0;
+}
+.service__banner .services-table .service__banner--table-item:not(:first-of-type) {
+  margin-top: 50px;
+}
+.service__banner .services-table .service__banner--table-item h4 {
+  letter-spacing: 0.05rem;
+  padding-bottom: 20px;
+  border-bottom: 1px solid black;
+}
+.service__banner .services-table .service__banner--table-item p {
+  padding: 0;
+  letter-spacing: 0;
+}
+.service__banner .services-table .service__banner--table-item .services-table-row {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+.service__banner .services-table .service__banner--table-item .services-table-row > p {
+  width: 25%;
+}
+.service__banner .services-table .service__banner--table-item .services-table-row * {
+  display: inline-flex;
+}
+.service__banner .services-table .service__banner--table-item .services-table-row .row-item {
+  width: 74%;
+}
+.service__banner .services-table .service__banner--table-item .services-table-row .row-item p {
+  flex-basis: 25%;
+}
+.service__banner .services-table .service__banner--table-item .services-table-row .row-item p strong {
+  margin: 0 auto;
+}
+.service__banner .services-table > p {
+  text-align: right;
+  margin-top: 50px;
 }
 
 .split__banner {
@@ -1133,11 +1177,6 @@ html, body {
 .split__banner--right .split__banner--sub {
   left: 0;
   right: unset;
-}
-
-section:first-of-type h2 {
-  padding-top: 0;
-  padding-bottom: 0;
 }
 
 /**********************************
@@ -1315,6 +1354,39 @@ main[open-scroll] section:first-of-type *[data-interaction=fadeElIn] {
   line-height: 1;
 }
 
+.half-height {
+  min-height: 60vh;
+}
+
+.flex-limit-2 .flex-h article {
+  flex-basis: 50%;
+  margin-top: unset;
+}
+.flex-limit-3 .flex-h article {
+  flex-basis: 33%;
+  margin-top: unset;
+}
+.flex-limit-4 .flex-h article {
+  flex-basis: 25%;
+  margin-top: unset;
+}
+.flex-limit-5 .flex-h article {
+  flex-basis: 20%;
+  margin-top: unset;
+}
+
+section:first-of-type h2 {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+section:last-of-type {
+  min-height: calc(101vh - 100px);
+}
+section:last-of-type.half-height {
+  min-height: 60vh;
+}
+
 /**********************************
 **************ONE-OFF**************
 **********************************/
@@ -1352,6 +1424,10 @@ main[open-scroll] section:first-of-type *[data-interaction=fadeElIn] {
 }
 .home .saving {
   height: 115vh;
+  padding: 0 5%;
+}
+.home .saving .split__banner--main {
+  padding-right: 7.5%;
 }
 .home .saving .section__content--main {
   padding-bottom: 15%;
@@ -1370,11 +1446,14 @@ main[open-scroll] section:first-of-type *[data-interaction=fadeElIn] {
   padding: 0;
   line-height: inherit;
 }
+.experience .why .section__content--sub-title {
+  margin-top: 25px;
+}
 .experience .who .section__content--main {
   padding-top: 10%;
 }
 .experience .who .section__main--image {
-  width: 15vw;
+  width: 12.5vw;
 }
 .experience .vs .section__content--main h1 {
   padding-top: 20px;
@@ -1450,6 +1529,7 @@ main[open-scroll] section:first-of-type *[data-interaction=fadeElIn] {
 .memberships .individuals {
   padding-right: 4rem;
   padding-left: 4rem;
+  padding-bottom: 2.5rem;
 }
 .memberships .individuals .section__content--main {
   width: 25%;
@@ -1464,6 +1544,16 @@ main[open-scroll] section:first-of-type *[data-interaction=fadeElIn] {
 .memberships .individuals .service__banner--item-wrapper article {
   padding: 1rem;
 }
+.memberships .individuals .service__banner--item-wrapper article .service__banner--item-inner {
+  height: 100%;
+}
+.memberships .individuals .service__banner--item-wrapper article .section__content--button-wrapper {
+  /*position: absolute;
+  width: 100%;
+  height: 45px;
+  padding: 0;
+  bottom: 0;*/
+}
 .memberships .individuals .service__banner--item-wrapper article .section__content--button {
   margin: 0;
 }
@@ -1476,22 +1566,14 @@ main[open-scroll] section:first-of-type *[data-interaction=fadeElIn] {
 .memberships .companies .split__banner--sub {
   z-index: 1;
 }
-.memberships .more {
-  min-height: 120vh;
-}
 .memberships .more .section__content--main h2 {
   padding: 0;
 }
-.memberships .more .section__content--main * {
-  text-align: center;
-}
-.memberships .more .service__banner--item-wrapper {
-  display: block;
-}
 .memberships .more .service__banner--item-wrapper article {
-  width: 33.1333%;
-  display: inline-block;
-  padding: 2rem;
+  border-left: none !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 3rem;
 }
 .memberships .more .service__banner--item-wrapper article p {
   text-align: left;
@@ -1514,9 +1596,6 @@ main[open-scroll] section:first-of-type *[data-interaction=fadeElIn] {
 }
 .memberships .split__banner--main p {
   padding-bottom: 10px;
-}
-.memberships .section__content:last-of-type {
-  min-height: 101vh;
 }
 
 /**********************************

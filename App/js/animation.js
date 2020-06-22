@@ -1,45 +1,6 @@
 /////////////////////////////////////////
 /////////////////////////////////////////
 // GSAP Animation functions /////////////
-function breakStringByLine(targetEl) {                                  // break down each line in string and wrap in span tag
-    // console.log("breakStringByLine")
-    /*const originalText = ()=> {
-            if (targetEl.innerHTML.indexOf("<br>") !== -1) {
-                const targetArr = targetEl.innerHTML.split("<br>");
-                let newHTML;
-                targetArr.forEach(function(current, index, arr){
-                    console.log(current)
-                    if (current) {
-                        newHTML += `<span>${current}</span>`
-                        // targetEl.innerText.replace(current,"")
-                    }
-                });
-                targetEl.innerHTML = newHTML;
-                targetEl.innerText.replace("undefined", "");
-            } else {
-                targetEl.innerHTML
-            }
-          };*/
-    const originalText = targetEl.innerHTML,
-          innerSpan = document.createElement("span"),
-          spanHeight = targetEl.offsetHeight,
-          innerSpanStyles = "position:absolute; left:0; right:0; text-align:center;",
-          spanParentStyles = `height:${spanHeight}px; position:relative; overflow:hidden; width:100%;`;
-    clearText = ()=> {
-        targetEl.innerHTML = '';
-        targetEl.appendChild(innerSpan);
-    };
-    buildSpan = ()=> {
-        innerSpan.innerHTML += originalText;
-        innerSpan.style.cssText = innerSpanStyles;
-        innerSpan.parentElement.style.cssText = spanParentStyles;
-    };
-    clearSpanAndStyles = function() {
-        targetEl.removeAttribute("style");
-        targetEl.innerHTML = originalText;
-    };
-    clearText(), buildSpan();
-}
 function numCountUpAnimation(targetArr) {
     targetArr.forEach(function(current){
         const count = { val:0 },
@@ -113,24 +74,43 @@ function textTransition(targetEl, nextTarget) {
         onCompleteParams: [nextTarget, targetArr]
     }, "-=0.9");
 }
-function textWrap(targetEl,del=0.5,dur=1.5,stag=0,trans=25,ease="expo.out",pos="-=1.35") {
-    const tl = gsap.timeline();
-    breakStringByLine(targetEl);
-    tl.from( 
-        targetEl.children, 
-        { 
-            delay: del,
-            duration: dur,
-            stagger: stag,
-            translateY: trans,
-            opacity: 0,
-            ease: ease
-        }, pos
-    );
-}
 function fadeElIn(targetEl,del=0,dur=1,stag=.15,offset=50) {            // fade in effect for DOM elements
     const tl = gsap.timeline();
     if (typeof targetEl !== "undefined") {
+        // console.log(targetEl)
+        if (targetEl.classList.contains("service__banner--item")) {
+            const serviceItem = targetEl.querySelector(".service__banner--item-inner"),
+                  serviceBlur = targetEl.querySelector(".blur");
+            tl.to( serviceItem, { 
+                duration: 0.1, 
+                stagger: stag, 
+                translateY: offset,
+                opacity: 0,
+                ease:"expo.out"
+            }).to( serviceItem, {
+                duration: 1.5,
+                stagger: stag,
+                opacity: 1,
+                translateY: 0,
+                ease:"expo.out",
+                onComplete: clearDOMchanges,
+                onCompleteParams: [serviceItem]
+            });
+            tl.to( serviceBlur, { 
+                duration: 0,
+                stagger: stag,
+                opacity: 0,
+                ease:"expo.out"
+            }).to( serviceBlur, {
+                duration: 1.5,
+                stagger: stag,
+                opacity: 1,
+                ease:"expo.out",
+                onComplete: clearDOMchanges,
+                onCompleteParams: [serviceBlur]
+            },"-=1.5");
+            return;
+        };
         if (isOpenScrolling()) {
             tl.to( targetEl, { 
                 duration: 0.1, 
@@ -165,7 +145,7 @@ function fadeElIn(targetEl,del=0,dur=1,stag=.15,offset=50) {            // fade 
                 onComplete: clearDOMchanges,
                 onCompleteParams: [targetEl]
             } );
-        }
+        };
     }
 }
 function fadeElOut(targetEl,del=.5,stag=0.15,dur=1,offset=0,pos=0) {    // fade out effect for DOM elements
@@ -244,6 +224,8 @@ function slideItemOut(target) {
           targetChildren = Array.from(targetEl.children),
           detailsDOMul = detailsDOM.querySelector("ul"),
           tl = gsap.timeline();
+        console.log(targetEl.childNodes)
+    if (targetEl.style.zIndex) targetEl.style.zIndex = '';
     if (targetActive) {
         targetActive.classList.remove("activeItem");
     };
@@ -251,10 +233,8 @@ function slideItemOut(target) {
         detailsDOM.removeAttribute("open")
     };
     clearDOMchanges = ()=> {
-        if (detailsClose.hasAttribute("style"))
-            detailsClose.removeAttribute("style");
-        if (targetElInner && targetElInner.hasAttribute("style"))   
-            targetElInner.removeAttribute("style");
+        if (detailsClose.hasAttribute("style")) detailsClose.removeAttribute("style");
+        if (targetElInner && targetElInner.hasAttribute("style")) targetElInner.removeAttribute("style");
     };
     targetChildren.forEach(function(current, index){
         if (current.classList.contains("blur")) targetChildren.splice(index, 1)

@@ -187,7 +187,6 @@ testimonialInteraction = (targetEl)=> {
         toggleClassName( "visible", currNavVisible, targetEl );
         toggleClassName( "visible", currSliderItem, nextSliderItem );
     };
-    console.log(currSliderItem)
     currSliderItem.classList.add("changing")
     tl.from( currSliderItem,{
         duration: 0,
@@ -200,7 +199,7 @@ testimonialInteraction = (targetEl)=> {
     }).to( nextSliderItem.querySelector("img"), {
         duration: 0,
         opacity: 0,
-        translateY: -15
+        translateY: 0
     }, "-=1").to( currTarget, {
         delay: 0,
         stagger: 0.175,

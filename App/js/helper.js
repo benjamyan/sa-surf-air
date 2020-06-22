@@ -150,6 +150,7 @@ function setEqualHeight(targetEl) {                                 // set each 
             itemHeight = current.offsetHeight                                           // if it is, set the initial global variable as this height
     });                                                                         // end the loop so we can add the height to each element
     targetEl.forEach(function(current){                                         // loop through array to apply the greatest height found
+        current.setAttribute("height",itemHeight + "px")
         current.style.height = itemHeight + "px";                                   // add the height as a CSS style to DOM node
     });                                                                         // end the loop
 }
@@ -210,15 +211,17 @@ function clearDOMchanges(targetEl) {                                // remove ce
         const removeStyle = (targetEl)=> {                                     // DRY
             if (targetEl.hasAttribute("style"))                     // if the currently element has style attribute
                 targetEl.removeAttribute("style");                                  // remove that attribute on current element
+            if (targetEl.hasAttribute("height")) 
+                targetEl.style.height = targetEl.getAttribute("height");
         };
         if (targetEl) {
-            let currTarget = targetEl
+            let currTarget = targetEl;
             if (currTarget === Object(currTarget)) {
                 // currTarget = Array.from(currTarget);
             };
             if (Array.isArray(currTarget)) {                          // if targetEl is an array 
-                currTarget.forEach(function(current){                                 // forEach on the array
-                    removeStyle(current);                                                  // remove styles from element
+                currTarget.forEach(function(current){                   // forEach on the array
+                    removeStyle(current);                                   // remove styles from element
                 });
             } else {
                 removeStyle(currTarget);

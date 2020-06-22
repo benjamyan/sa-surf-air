@@ -73,7 +73,7 @@ function sliderItem(targetEl) {
                     targetArr.forEach(function(currTarget){
                         if (currTarget.children) currTarget = currTarget.children[0];
                         $(currTarget).splitLines({
-                            tag: '<div class="split-line" style="display:inline-block;">',
+                            tag: '<div class="split-line" style="display:inline-block;line-height:inherit;">',
                             keepHtml: true
                         });
                     })
@@ -158,7 +158,13 @@ function interactionController(targetEl) {                              // centr
             };
             const newFunc = eval(current.interaction);                 // Evil EVAL! Reformat this using `new Function`
             if (current.interaction === "fadeElIn") {                  // if element has fadeElIn data-interaction 
-                current.target.style.opacity = 0;                          // set the opactity to 0 for smooth transition
+                if (!current.target.classList.contains("service__banner--item"))        // hotfix for services items -- holy shit this is jenky
+                    current.target.style.opacity = 0;
+                else {
+                    Array.from(current.target.children).forEach(function(current){
+                        current.style.opacity = 0;
+                    })
+                }
             };
             if (current.interaction === "parallaxItem") {
                 return;
@@ -223,6 +229,8 @@ function scrollController(dir) {                                        // centr
                         return;                                                                     // end the function
                     }, time / 8);                                                               // end timeout
                 } else if (targetEl) {                                                  // if isnt beginning or end of the document
+                    if (document.querySelector(".service__banner--item.activeItem"))
+                        slideItemOut(document.querySelector(".service__banner--item.activeItem"));
                     lockViewport( targetEl, time );                                             // lock the viewport
                     scrolltoYPoint(targetEl);                                                   // scroll to the next section
                     showCounter(targetEl);                                                      // change coutner to reflect section change
@@ -295,9 +303,12 @@ function setupDOM(target) {                                             // initi
                 fadeElOut(current.querySelector("p"), 1.25, false, 1.5, false);                     // fire slightly slower animation
         });
     };
-    if (DOM.serviceBannerItem) {                                                // if we have service banner items (block-list items)
-        setEqualHeight(Array.from(DOM.serviceBannerItem));                          // set there height equal to eachother
-    };
+    if (DOM.serviceBannerItem) {
+        const serviceBanners = Array.from(document.querySelectorAll(DOM.serviceBanner));
+        serviceBanners.forEach(function(current){
+            setEqualHeight(Array.from(current.querySelectorAll(".service__banner--item")));
+        });
+    }
 }
 function init(target=0){                                                // initializer for the setup of page
     // console.log("App Initialized");

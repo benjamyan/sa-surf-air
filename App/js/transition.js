@@ -90,8 +90,9 @@ frostedGlassIntro = (target)=> {
           },
           textInteraction = (target, dur, trans, ease, pos)=> {
             $(target).splitLines({
-                tag: `<div class="split-line" style="display:block;">`,
-                keepHtml: true
+                tag: `<div class="split-line" style="display:block;line-height:inherit;">`,
+                keepHtml: true,
+                width: "100%"
             });
             target.style.cssText = `height:${target.offsetHeight}px; position:relative; overflow:hidden; width:100%;`;
             Array.from(target.children).forEach(function(current){
@@ -157,7 +158,7 @@ frostedGlassOutro = (target)=> {
     // console.log("frostedGlassOutro")
     const tl = gsap.timeline(),
           targetEl = target.container.querySelector("section.isActive"),
-          intTargets = ["h1","h2","h3","h4","h5","p",".section__content--button",".service__banner--item",".slider",".pinned",".section__bg"],
+          intTargets = ["*[data-interaction='fadeElIn']",".section__content--button",".service__banner--item",".slider",".pinned",".section__bg"],
           finalArr = [];
     intTargets.forEach(function(current){
         const currentTarget = Array.from(targetEl.querySelectorAll(current));
@@ -287,7 +288,7 @@ barba.init({
             frostedGlassOutro(data.current);
             headerNavigationOutro();
             counterNavigationOutro();
-            await delay(2000);
+            await delay(2500);
             done();
         }
     }] 
