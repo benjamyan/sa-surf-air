@@ -14,7 +14,7 @@
                 }
             }
         }],
-        "bgImageSrc": "assets/image/index/group-walking-to-plane.jpg",
+        "bgImageSrc": "assets/image/memberships/pilots-in-lounge.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],
     "individuals": [{
@@ -99,7 +99,7 @@
                 }
             }
         }],
-        "bgImageSrc": "assets/image/index/group-walking-to-plane.jpg",
+        "bgImageSrc": "assets/image/memberships/old-man-walking-into-plane.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],
     "more": [{
@@ -158,7 +158,7 @@
                 }
             }
         ],
-        "bgImageSrc": "assets/image/index/group-walking-to-plane.jpg",
+        "bgImageSrc": "assets/image/memberships/woman-on-phone-chair.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],
     "questions": [{
@@ -176,7 +176,7 @@
                 }
             }
         }],
-        "bgImageSrc": "assets/image/index/group-walking-to-plane.jpg",
+        "bgImageSrc": "assets/image/memberships/plane-front-pilot-walking.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],
     "smartest": [{
@@ -201,7 +201,7 @@
                 }
             }
         }],
-        "bgImageSrc": "assets/image/index/group-walking-to-plane.jpg",
+        "bgImageSrc": "assets/image/memberships/plane-side-sky-behind.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }]    
 }

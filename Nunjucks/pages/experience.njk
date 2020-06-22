@@ -18,17 +18,17 @@
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
+  {% include "partials/ctaBanner_centerAlign.njk" %}
 
   {% set section = {
     ref: welcome,
-    class: 'welcome services-panel',
+    class: 'welcome services-panel align-left',
     onload: false,
     onenter: 'fadeElIn',
     onclick: 'slideItemIn(event); return false;',
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/serviceBanner_bottomAlign_fullHeight.njk" %}
+  {% include "partials/serviceBanner_bottomAlign.njk" %}
 
   {% set section = {
     ref: why,
@@ -38,7 +38,7 @@
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/textBanner_rightAlign_fullHeight.njk" %}
+  {% include "partials/textBanner_rightAlign.njk" %}
 
   {% set section = {
     ref: who,
@@ -48,7 +48,7 @@
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/textBanner_leftAlign_fullHeight.njk" %}
+  {% include "partials/textBanner_leftAlign.njk" %}
 
   {% set section = {
     ref: vs,
@@ -58,7 +58,7 @@
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/splitBanner_leftAlign_fullHeight.njk" %}
+  {% include "partials/splitBanner_leftAlign.njk" %}
 
   {% set section = {
     ref: change,
@@ -68,7 +68,7 @@
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
+  {% include "partials/ctaBanner_centerAlign.njk" %}
 
 {% endblock %}
 

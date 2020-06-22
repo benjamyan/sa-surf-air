@@ -18,47 +18,47 @@
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
+  {% include "partials/ctaBanner_centerAlign.njk" %}
 
   {% set section = {
     ref: individuals,
-    class: 'individuals light services-display align-center',
+    class: 'individuals light services-display align-left',
     onload: false,
     onenter: 'fadeElIn',
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/serviceBanner_topAlign_fullHeight.njk" %}
+  {% include "partials/serviceBanner_topAlign.njk" %}
 
   {% set section = {
     ref: companies,
-    class: 'companies',
+    class: 'companies half-height',
     onload: false,
     onenter: 'fadeElIn',
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/splitBanner_leftAlign_halfHeight.njk" %}
+  {% include "partials/splitBanner_leftAlign.njk" %}
 
   {% set section = {
     ref: more,
-    class: 'more services-block align-center',
+    class: 'more services-block align-center flex-limit-3',
     onload: false,
     onenter: 'fadeElIn',
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/serviceBanner_bottomAlign_fullHeight.njk" %}
+  {% include "partials/serviceBanner_bottomAlign.njk" %}
 
   {% set section = {
     ref: questions,
-    class: 'questions',
+    class: 'questions half-height',
     onload: false,
     onenter: 'fadeElIn',
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/splitBanner_rightAlign_halfHeight.njk" %}
+  {% include "partials/splitBanner_rightAlign.njk" %}
 
   {% set section = {
     ref: smartest,
@@ -68,7 +68,7 @@
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
+  {% include "partials/ctaBanner_centerAlign.njk" %}
 
 {% endblock %}
 

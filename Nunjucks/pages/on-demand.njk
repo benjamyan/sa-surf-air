@@ -12,13 +12,13 @@
 
   {% set section = {
     ref: hero,
-    class: 'hero',
+    class: 'hero half-height',
     onload: false,
     onenter: 'fadeElIn',
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
+  {% include "partials/ctaBanner_centerAlign.njk" %}
 
   {% set section = {
     ref: perfect,
@@ -28,7 +28,7 @@
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/serviceBanner_topAlign_fullHeight.njk" %}
+  {% include "partials/serviceBanner_topAlign.njk" %}
 
   {% set section = {
     ref: thousands,
@@ -38,7 +38,7 @@
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
+  {% include "partials/ctaBanner_centerAlign.njk" %}
 
   {% set section = {
     ref: gang,
@@ -48,17 +48,17 @@
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/textBanner_leftAlign_fullHeight.njk" %}
+  {% include "partials/textBanner_leftAlign.njk" %}
 
   {% set section = {
     ref: best,
-    class: 'best light',
+    class: 'best light half-height',
     onload: false,
     onenter: 'fadeElIn',
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/ctaBanner_centerAlign_halfHeight.njk" %}
+  {% include "partials/ctaBanner_centerAlign.njk" %}
 
   {% set section = {
     ref: final,
@@ -68,7 +68,7 @@
     onclick: false,
     onexit: 'fadeElOut'
   } %}
-  {% include "partials/ctaBanner_centerAlign_fullHeight.njk" %}
+  {% include "partials/ctaBanner_centerAlign.njk" %}
 
 {% endblock %}
 
