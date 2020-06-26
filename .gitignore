@@ -1,2 +1,5 @@
+*.xd
+*.psd
+*.sketch
 node_modules
 z-Old
