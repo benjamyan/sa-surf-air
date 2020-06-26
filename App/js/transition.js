@@ -85,28 +85,41 @@ frostedGlassIntro = (target)=> {
               h5: targetEl.querySelector("h5"),
               p: targetEl.querySelector("p"),
               button: targetEl.querySelector(".section__content--button-wrapper"),
-              blur: targetEl.querySelector(".blur"),
+              blur: targetEl.querySelector(".blur:not(.mobile-only)"),
               bg: targetEl.querySelector(".section__bg")
           },
           textInteraction = (target, dur, trans, ease, pos)=> {
-            $(target).splitLines({
-                tag: `<div class="split-line" style="display:block;line-height:inherit;">`,
-                keepHtml: true,
-                width: "100%"
-            });
-            target.style.cssText = `height:${target.offsetHeight}px; position:relative; overflow:hidden; width:100%;`;
-            Array.from(target.children).forEach(function(current){
-                tl.from( current, {
+            if (viewportWidth > 1024) { 
+                $(target).splitLines({
+                    tag: `<div class="split-line" style="display:block;line-height:inherit;">`,
+                    keepHtml: true,
+                    width: "100%"
+                });
+                target.style.cssText = `height:${target.offsetHeight}px; position:relative; overflow:hidden; width:100%;`;
+                Array.from(target.children).forEach(function(current){
+                    tl.from( current, {
+                        opacity: 0,
+                        translateY: trans
+                    }, pos)
+                    .to( current, {
+                        duration: dur,
+                        translateY: 0,
+                        opacity: 1,
+                        ease: ease
+                    });
+                });
+            } else {
+                tl.from( target, {
                     opacity: 0,
                     translateY: trans
                 }, pos)
-                .to( current, {
+                .to( target, {
                     duration: dur,
                     translateY: 0,
                     opacity: 1,
                     ease: ease
                 });
-            });
+            }
           },
           frostedGlassIntroCleaner = ()=> {
             Array.from(targetDOM).forEach(function(current){

@@ -1,7 +1,7 @@
 /////////////////////////////////////////
 /////////////////////////////////////////
 // Global events ////////////////////////
-onPinEvent = (event)=> {                                                // declare our listener function early
+onPinEvent = (event)=> {                                                // pinning interaction listener function
     let targetEl = document.querySelector(".isActive");
     if (event.deltaY >= 0 || event.deltaY <= 0) {                           // if is a mouse event
         pinScroller(targetEl, event)                                            // fire controller
@@ -13,7 +13,7 @@ onPinEvent = (event)=> {                                                // decla
         pinScroller(targetEl, event)                                            // fire controller
     };                                                                      // end if
 };
-onParallaxEvent = (event)=> {                                           // our callback function for the listener
+onParallaxEvent = (event)=> {                                           // parallax interaction listener function
     // console.log("onParallaxEvent")
     const targetArr = Array.from(document.querySelectorAll("[data-interaction]"));
     targetArr.forEach(function(currTarget){ 
@@ -21,7 +21,8 @@ onParallaxEvent = (event)=> {                                           // our c
         let targetIntesity = currTarget.getAttribute("parallax")
         if (!targetEl.hasAttribute("parallax")) {
             if (currTarget.dataset.interaction.includes("parallaxItem")) {
-                const intensity = (Math.random() * (50 - 25) + 25) / 350;                       // get our desired intensity based on random # between two values
+                // const intensity = (Math.random() * (50 - 25) + 25) / 350;                       // get our desired intensity based on random # between two values
+                const intensity = (window.innerHeight / 2000 * (50 - 25) + 25) / 350;
                 let currTarget = targetEl;
                 currTarget.setAttribute("parallax", intensity);                                           // add `listening` attribute to DOM node with our intensity to be called later
                 /*sections.forEach(function(current){ // parallax function for BG images
@@ -40,7 +41,7 @@ onParallaxEvent = (event)=> {                                           // our c
         parallaxInteraction(currTarget, targetIntesity);
     });
 };
-onKeyEvent = (event)=> {
+onKeyEvent = (event)=> {                                                // 
     if (event.keyCode === 40 || event.key === "ArrowDown") {
         scrollDirection = 0;
         scrollController(scrollDirection);
@@ -50,7 +51,7 @@ onKeyEvent = (event)=> {
         scrollController(scrollDirection);
     };
 };
-onScrollEvent = (event)=> {
+onScrollEvent = (event)=> {                                             // 
     if (event.deltaY > 0) scrollDirection = 0;
     else scrollDirection = 1;
     scrollController(scrollDirection);
@@ -73,7 +74,7 @@ function sliderItem(targetEl) {
                     targetArr.forEach(function(currTarget){
                         if (currTarget.children) currTarget = currTarget.children[0];
                         $(currTarget).splitLines({
-                            tag: '<div class="split-line" style="display:inline-block;line-height:inherit;">',
+                            tag: '<div class="split-line" style="display:inline-block;line-height:1;">',
                             keepHtml: true
                         });
                     })
@@ -105,9 +106,9 @@ function sectionWipe(targetEl) {                                        // setup
     } else return                                                             // else end the function
 }
 function sectionPin(targetEl) {                                         // setup function for section pinning interaction
-    // console.log("secitonPin")
+    console.log("secitonPin")
     return (function() {                                                                // base it off a closure so it doesnt fire inacturately
-        if (!intRunning) {                                                              // if not alreayd running
+        if (!intRunning && viewportWidth > 1024) {                                                              // if not alreayd running
             // pinRunning = true;
             intRunning = true;                                                          // turn running to true so last line with return falsy
             const pinned = targetEl.querySelector(".pinned"),                           // get pin container DOM node
@@ -120,10 +121,14 @@ function sectionPin(targetEl) {                                         // setup
                         window.addEventListener(current, onPinEvent, false)                      // add event listenere for current scroll event type
                     }, time)                                                                    // end timeout
                 });                                                                         // end loop
-            };                                                                           // end if
-            if (!pinnedInner[pinnedInner.length-1].classList.contains("visible")) {     // if scrolling back into section from bottom (last item is visible)
+            };
+            if (pinned.querySelector(".visible")) {
+                pinned.querySelector(".visible").classList.remove("visible");
+            };                       
+            pinned.children[0].classList.add("visible");
+            /* if (!pinnedInner[pinnedInner.length-1].classList.contains("visible")) {     // if scrolling back into section from bottom (last item is visible)
                 pinned.children[0].classList.add("visible");                                // if truthy add visible class to first element            
-            };                                                                          // end if
+            }; */                                                                         // end if
             numCountUpAnimation(Array.from(targetEl.querySelectorAll(".visible h1")))   // call our number counting animation
             setTimeout(function(){                                                      // set timeouet for throttle to end
                 intRunning = false;                                                         // intRuning to false so the function can be fired again
@@ -148,30 +153,55 @@ function interactionController(targetEl) {                              // centr
         };
     });
     sectionInterations.forEach(function(current, index) {                            // fire all interactions inside of array previously build (44)
-        if (typeof current.interaction !== "undefined") {                               // if current has an interaction
+        if (typeof current.interaction !== "undefined") {                               // if current has an interaction'
+            // let test = false;
+            /*fireInteraction = ()=> {
+                const newFunc = eval(current.interaction);                  // Evil EVAL! Reformat this using `new Function`
+                setTimeout(function(){                                      // timeout fire the function on a stagger
+                    newFunc(current.target);                                // call the new function
+                }, (index * 200) );                                         // this will stagger the interactions if need-be
+            };*/
             if (isOpenScrolling()) {                                                        // if scroll-lock is disabled
-                if (!current.target.hasAttribute("fired")) {                                    // if current does not have `fired` attribute (this is how we dont fire multiple instances of one interaction)
+                if (!current.target.hasAttribute("fired")) {                                    // if current does not have `fired` attribute
                     current.target.setAttribute("fired",'')                                         // add `fixed` attribute to current element
                 } else {                                                                         
                     return;                                                                     // else end and exit function
                 }
-            };
-            const newFunc = eval(current.interaction);                 // Evil EVAL! Reformat this using `new Function`
+            } else if (!isOpenScrolling() && viewportWidth < 1024 ) {
+                if (!current.target.hasAttribute("fired")) {                                    // if current does not have `fired` attribute
+                    current.target.setAttribute("fired",'')                                         // add `fixed` attribute to current element
+                } else {                                                                         
+                    return;                                                                     // else end and exit function
+                }
+            }
+            const newFunc = eval(current.interaction);
             if (current.interaction === "fadeElIn") {                  // if element has fadeElIn data-interaction 
-                if (!current.target.classList.contains("service__banner--item"))        // hotfix for services items -- holy shit this is jenky
+                if (!current.target.classList.contains("service__banner--item")) {
                     current.target.style.opacity = 0;
-                else {
+                } else {
                     Array.from(current.target.children).forEach(function(current){
                         current.style.opacity = 0;
-                    })
-                }
+                    });
+                };
+                /*if (current.target.closest(".visible")) {
+                    const currClass = current.target.parentElement.classList[0],
+                          currTarget = current.target.parentElement.parentElement.querySelectorAll('.' + currClass);
+                    Array.from(currTarget).forEach(function(current){
+                        if (!current.classList.contains("visible")){
+                            test = true;
+                            return;
+                        } 
+                    });
+                };*/
             };
             if (current.interaction === "parallaxItem") {
                 return;
-            }
-            setTimeout(function(){                                     // timeout fire the function on a stagger
-                newFunc(current.target);                               // call the new function
-            }, (index * 200) );                                          // this will stagger the interactions if need-be
+            };
+            /*if (test === false) fireInteraction();*/
+            // const newFunc = eval(current.interaction);                  // Evil EVAL! Reformat this using `new Function`
+            setTimeout(function(){                                      // timeout fire the function on a stagger
+                newFunc(current.target);                                // call the new function
+            }, (index * 200) );                                         // this will stagger the interactions if need-be
         }
     });
 }
@@ -211,7 +241,7 @@ function scrollController(dir) {                                        // centr
             if (!running) {                                                         // if throttle is not running
                 running = true;                                                         // start our throttle - stops it from running again
                 targetEl = getScrollSection(dir);                                       // declare our target elemnet as next section
-                if ( isOpenScrolling()) {                                               // if open-scrolling is enabled    
+                if ( isOpenScrolling() ) {                                               // if open-scrolling is enabled    
                     sections.forEach(function(current){                                         // loop through our page sections
                         if (isInViewport(current)) targetEl = current;                              // if is in the viewport declare it as target
                     });                                                                         // end loop
@@ -229,11 +259,13 @@ function scrollController(dir) {                                        // centr
                         return;                                                                     // end the function
                     }, time / 8);                                                               // end timeout
                 } else if (targetEl) {                                                  // if isnt beginning or end of the document
-                    if (document.querySelector(".service__banner--item.activeItem"))
-                        slideItemOut(document.querySelector(".service__banner--item.activeItem"));
-                    lockViewport( targetEl, time );                                             // lock the viewport
-                    scrolltoYPoint(targetEl);                                                   // scroll to the next section
-                    showCounter(targetEl);                                                      // change coutner to reflect section change
+                    if (viewportWidth > 1024) { 
+                        if (document.querySelector(".service__banner--item.activeItem"))
+                            slideItemOut(document.querySelector(".service__banner--item.activeItem"));
+                        lockViewport( targetEl, time );                                             // lock the viewport
+                        scrolltoYPoint(targetEl);                                                   // scroll to the next section
+                        showCounter(targetEl);                                                      // change coutner to reflect section change
+                    }
                     changeClassOnScroll(targetEl);                                              // change class of active section
                     interactionController(targetEl);                                            // fire interactions of next section
                     setTimeout(function(){                                                      // timeout for our nav
@@ -273,17 +305,16 @@ function setupListeners() {                                             // initi
         };
     }
 }
-function setupDOM(target) {                                             // initial setup of the DOM when page loads
-    // console.log("setupDOM")
+function setupDOM() {                                                   // initial setup of the DOM when page loads
     let activeSection = sections[0],
         activeCounter = 1;
     activeSection.classList.add("isActive");                                    // add `isActive` class to DOM inside viewport
-    (function setActiveSection() {                                              // start iife to set those variables ^^
+    (function setupActiveSection() {                                              // start iife to set those variables ^^
         sections.forEach(function(current, index, arr){                             // loop through all sections on DOM
             current.id = `section${index + 1}`;                                     // set the id of each 
         });                                                                     // end loop
     })();
-    (function setInteraction() {                                                // start iife to set up interactions on content load
+    (function setupInteraction() {                                                // start iife to set up interactions on content load
         const parallaxEl = Array.from(document.querySelectorAll("[data-interaction]"))              // build an array from all data-interactions in DOM
         parallaxEl.forEach(function(current){                                                       // run through array ^^^
             const currInt = current.dataset.interaction.toString();                                     // declare our interaction as a string to be parsed
@@ -306,12 +337,27 @@ function setupDOM(target) {                                             // initi
     if (DOM.serviceBannerItem) {
         const serviceBanners = Array.from(document.querySelectorAll(DOM.serviceBanner));
         serviceBanners.forEach(function(current){
-            setEqualHeight(Array.from(current.querySelectorAll(".service__banner--item")));
+            const currentChildren = Array.from(current.querySelectorAll(".service__banner--item")),
+                  currentHeight = getMaxHeight(currentChildren);
+            currentChildren.forEach(function(current){                                         // loop through array to apply the greatest height found
+                current.setAttribute("height", currentHeight + "px")
+                current.style.height = currentHeight + "px";                                   // add the height as a CSS style to DOM node
+            });
         });
-    }
+    };
+    if (document.querySelector(".pinned")) {
+        const pinTargets = Array.from(document.querySelectorAll(".pinned"));
+        pinTargets.forEach(function(current){
+            const currentArr = [current.firstElementChild],
+                  currentHeight = getMaxHeight(currentArr);
+            current.style.height = `${currentHeight}px`;
+            current.closest("section").classList.add("sectionPin");
+            current.firstElementChild.classList.add("visible");
+        });
+    };
 }
 function init(target=0){                                                // initializer for the setup of page
-    // console.log("App Initialized");
+    console.log("App Initialized");
     setupDOM(target);
     setupListeners();
 }

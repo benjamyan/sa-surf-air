@@ -18,7 +18,6 @@ headerMobileToggle = (event)=> {                                    // mobile na
           tl = gsap.timeline();
     if (!navDOM.nav.classList.contains("open")) {
         navDOM.nav.classList.add("open");
-        console.log(fadeBlurEffect)
         fadeTargets.forEach(function(current){
             current.style.opacity = 0;
             current.style.transform = "translateY(50px)"
@@ -89,8 +88,8 @@ pinScroller = (targetEl, event)=> {                                 // scrolling
                     if (!pinned.classList.contains("viewed"))
                         toggleClassName("visible", pinnedCurrent, prev)
                 } else {
-                    document.querySelector(".visible").classList.remove("visible")
-                    pinned.classList.remove("viewed")
+                    document.querySelector(".visible").classList.remove("visible");
+                    pinned.classList.remove("viewed");
                     pinCleaner(direction);
                 }
             };
@@ -113,8 +112,13 @@ pinScroller = (targetEl, event)=> {                                 // scrolling
 pinInteraction = (targetEl, nextTarget)=> {                         // function responsive for DOM based interactions
     const targetElTags = Array.from(targetEl.children);
     targetElTags.forEach(function(current){
-        if (current.tagName === 'H1') numberTransition(current, nextTarget);
-        if (current.tagName !== 'H1') textTransition(current, nextTarget);
+        if (current === current.parentElement.children[0]
+            || current.tagName === 'H1') {
+                console.log(current)
+                numberTransition(current, nextTarget);
+            } else {
+                textTransition(current, nextTarget);
+            };
     });
 }
 pinCleaner = (direction=false, isBarba=0)=> {                       // break out of pinning section 
@@ -164,7 +168,7 @@ testimonialChange = (targetEl)=> {
     // console.log("testimonialChange"); 
 }
 testimonialInteraction = (targetEl)=> {
-    console.log("testimonialInteraction");
+    // console.log("testimonialInteraction");
     const tl = gsap.timeline();
     const currSlider = targetEl.closest(".slider"),
           currSliderItem = currSlider.querySelector(".slider-item.visible"),

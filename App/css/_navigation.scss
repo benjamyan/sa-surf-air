@@ -298,6 +298,19 @@
         position: relative;
         padding: 5% 0;
         height: auto;
+        .footer__main {
+            height: auto;
+            vertical-align: top;
+            padding: 0;
+            padding-bottom: 25px;
+        }
+        .footer__sub {
+            padding: 0 5%;
+            margin: 0;
+            br {
+                display: none;
+            }
+        }
         &--copyright, 
         &--main, 
         &--social {
@@ -309,7 +322,7 @@
         }
         &--social {
             order: 2;
-            padding: 2.5% 0 5%;
+            padding: 2.5% 0 2.5%;
             margin: 0;
             .footer__social--icon {
                 margin: 0 15px;
@@ -344,10 +357,13 @@
 }
 @media screen and (max-width: 600px) {
     .footer__nav {
+        .footer__main {
+            padding-top: 5%;
+        }
         nav {
             .nav__item {
                 display: block;
-                padding-bottom: 2.5%;
+                padding-bottom: 5%;
             }
         }
         &--social {

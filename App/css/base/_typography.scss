@@ -16,11 +16,16 @@ h1 {
 }
 h2 {
   @extend %font-stack-light;
-  font-size: calc(30px + (65 - 30) * ((99vw - 300px) / (1900 - 300)));
+  font-size: calc(40px + (65 - 40) * ((99vw - 300px) / (1900 - 300)));
   font-weight: 400;
   line-height: 1;
   letter-spacing: 1px;
   text-align: center;
+  sub {
+    @extend %font-stack-reg;
+    bottom: 0;
+    margin-right: -1%;
+  }
 }
 h3 {
   @extend %font-stack-light;
@@ -77,6 +82,9 @@ q {
   }
 }
 @media screen and (max-width: 600px) {
+  h4 {
+    letter-spacing: 1px;
+  }
   h5 {
     letter-spacing: 2.22px;
   }
