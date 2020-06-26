@@ -32,8 +32,8 @@
 
   {% set section = {
     ref: why,
-    class: 'why',
-    onload: false,
+    class: 'why align-left',
+    onload: 'sectionPin',
     onenter: 'fadeElIn',
     onclick: false,
     onexit: 'fadeElOut'
@@ -42,7 +42,7 @@
 
   {% set section = {
     ref: who,
-    class: 'who',
+    class: 'who align-left',
     onload: 'panelSlideIn',
     onenter: 'fadeElIn',
     onclick: false,
@@ -52,7 +52,7 @@
 
   {% set section = {
     ref: vs,
-    class: 'vs light',
+    class: 'vs light align-left',
     onload: 'sectionPin',
     onenter: 'fadeElIn',
     onclick: false,
@@ -81,7 +81,7 @@
     'Surf Air vs. commercial',
     'Change the way you fly'
   ] %}
-  {% include "components/_counter.njk" %}
+  {% include "components/section_counter.njk" %}
 {% endblock %}
 
 {% block footer %}
