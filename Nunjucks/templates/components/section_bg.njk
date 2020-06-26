@@ -17,6 +17,8 @@
         </video>
     {% endif %}
     {% if content.bgImageSrc %}
-        <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="{{content.bgImageSrc}}" alt="{{content.bgImageAlt}}" />
+        <picture>
+            <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="{{ content.bgImageSrc }}" alt="{{ content.bgImageAlt }}" />
+        </picture>
     {% endif %}
 </div>

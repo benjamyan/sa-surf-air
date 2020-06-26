@@ -3,18 +3,22 @@
     {% if main.miniTitle -%}
         <h5{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>{{main.miniTitle | safe}}</h5>
     {%- endif %}
-    {% if main.superTitle %}
+    {% if main.superTitle -%}
         <h1{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>{{main.superTitle | safe}}</h1>
-    {% endif %}
-    {% if main.mainTitle %}
+    {%- endif %}
+    {% if main.mainTitle -%}
         <h2{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>{{main.mainTitle | safe}}</h2>
-    {% endif %}
-    {% if main.subTitle %}
+    {%- endif %}
+    {% if main.subTitle -%}
         <h4{% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %}>{{main.subTitle | safe}}</h4>
+    {%- endif %}
+    {% if main.pin %}
+        {% set pinRef = main %}
+        {% include "components/_pinning_item.njk" %}
     {% endif %}
-    {% if main.btn %}
+    {% if main.btn -%}
         {% set btnRef = main %}
         {% include "components/_text_button.njk" %}
-    {% endif %}
+    {%- endif %}
 {% endfor %}
 </div>

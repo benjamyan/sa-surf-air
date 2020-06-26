@@ -20,7 +20,7 @@
         {% endif %}
         {% if text.media %}
             {% for item in text.media %}
-                <img src="{{ item.mainImageSrc }}" alt="{{ item.mainImageAlt }}" />
+                <img src="{{ item.mainImageSrc }}" alt="{{ item.mainImageAlt }}" {% if section['onenter'] != false %} data-interaction="{{section['onenter']}}"{% endif %} />
             {% endfor %}
         {% endif %}
     </div>

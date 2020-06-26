@@ -10,10 +10,3 @@
 {% if content.media -%}
     {% include "components/_text_media.njk" %}
 {%- endif %}
-{% if section['onload'] == 'sectionPin' -%}
-    <div class="pinned">
-        {% for value, item in content.pin %}
-            {% include "components/section_pin.njk" %}
-        {% endfor %}
-    </div>
-{%- endif %}

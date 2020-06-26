@@ -1,0 +1,14 @@
+<div class="pinned">
+    {% for value, item in pinRef.pin %}
+        {% set content = item %}
+        {% if content.main %}
+            {% include "components/_text_main.njk" %}
+        {% endif %}
+        {% if content.sub %}
+            {% include "components/_text_sub.njk" %}
+        {% endif %}
+        {% if content.media %}
+            {% include "components/_text_media.njk" %}
+        {% endif %}
+    {% endfor %}
+</div>
