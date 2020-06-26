@@ -1,3 +1,121 @@
 {
-    
+    "hero": [{
+        "main": [{
+            "mainTitle": "Your Private Schedule"
+        }],
+        "sub": [{
+            "superCopy": "The unparalleled experience of private air <br>travel with the frequency of commercial",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "FLY SCHEDULED"
+                }
+            }
+        }],
+        "bgImageSrc": "assets/image/scheduled/friends-on-plane-talking.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "network": [{
+        "main": [{
+            "mainTitle": "The Surf Air Network"
+        }],
+        "sub": [{
+            "superCopy": "Surf Air’s flight schedule works around you, <br>putting flexibility back into your daily life.",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "BOOK A FLIGHT"
+                }
+            }
+        }],
+        "media": [{
+            "mainImageSrc": "assets/image/scheduled/west-coast-map.jpg",
+            "mainImageAlt": "#"
+        }]
+    }],
+    "works": [{
+        "main": [{
+            "mainTitle": "How it works"
+        }],
+        "itemList": [
+            {
+                "mainTitleIcon": "assets/image/memberships/plane.svg",
+                "mainTitle": "Hourly Departures",
+                "mainCopy": {
+                    "1": "Choose the time that works around your busy life."
+                }
+            },
+            {
+                "mainTitleIcon": "assets/image/memberships/ticket.svg",
+                "mainTitle": "Seamless Check-In",
+                "mainCopy": {
+                    "1": "Arrive just 15 minutes before departure."
+                }
+            },
+            {
+                "mainTitleIcon": "assets/image/memberships/invite.svg",
+                "mainTitle": "Quick arrivals",
+                "mainCopy": {
+                    "1": "Be on your way moments after touchdown."
+                }
+            },
+            {
+                "mainTitleIcon": "assets/image/memberships/seat.svg",
+                "mainTitle": "Easy Flight Changes",
+                "mainCopy": {
+                    "1": "We help you keep your options open and stay flexible."
+                }
+            }
+        ],
+        "bgImageSrc": "assets/image/memberships/pilots-in-lounge.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "more": [{
+        "fgWidth": "5",
+        "main": [{
+            "mainTitle": "More flights, <br>to more places"
+        }],
+        "sub": [{
+            "mainCopy": "The unparalleled experience of private air travel with the frequency of commercial.",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "EXPLORE MEMBERSHIPS"
+                }
+            }
+        }],
+        "bgImageSrc": "assets/image/index/woman-walking-into-plane.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "missing": [{
+        "fgWidth": "6",
+        "main": [{
+            "mainTitle": "You’re missing out.",
+            "subTitle": "<q>I would just say to people who travel quite a bit, if they haven’t tried Surf Air they are missing out big time. When you stop and think about what your time’s worth... in 3 months I’ve saved over 60 hours in travel time.</q>"
+        }],
+        "sub": [{
+            "mainCopy": "<sub>Tyler P <br>Member since 2016</sub>"
+        }],
+        "bgImageSrc": "assets/image/memberships/woman-on-phone-chair.jpg",
+        "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
+    }],
+    "avoid": [{
+        "main": [{
+            "mainTitle": "Avoid the crowds and chaos of <br>commercial airports",
+            "btn": {
+                "1": {
+                    "btnSize": "lg",
+                    "btnType": "transparent",
+                    "btnHref": "#",
+                    "btnText": "EXPLORE MEMBERSHIPS"
+                }
+            }
+        }]
+    }]
 }

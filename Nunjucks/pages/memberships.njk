@@ -25,7 +25,7 @@
     class: 'individuals light services-display align-left',
     onload: false,
     onenter: 'fadeElIn',
-    onclick: false,
+    onclick: 'slideItemIn(event); return false;',
     onexit: 'fadeElOut'
   } %}
   {% include "partials/serviceBanner_topAlign.njk" %}

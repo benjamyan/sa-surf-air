@@ -1573,6 +1573,35 @@ section:last-of-type.half-height {
   padding: 0 4%;
 }
 
+.scheduled .hero .section__bg--overlay {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.scheduled .network .section__content--main {
+  padding: 0;
+}
+.scheduled .network .section__content--media {
+  margin-top: 50px;
+}
+.scheduled .network .section__content--media img {
+  border-radius: 30px;
+}
+.scheduled .works .service__banner--item-wrapper article {
+  padding: 2rem;
+  border: none;
+}
+.scheduled .works .service__banner--item-wrapper article p {
+  padding-left: 60px;
+}
+.scheduled .works .service__banner--item-wrapper article:nth-child(1), .scheduled .works .service__banner--item-wrapper article:nth-child(3) {
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+.scheduled .works .service__banner--item-wrapper article:nth-child(1), .scheduled .works .service__banner--item-wrapper article:nth-child(2) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+.scheduled .more .section__content--sub .section__content--button-wrapper {
+  padding-top: 20px;
+}
+
 .memberships .hero {
   min-height: 70vh;
 }
@@ -1596,6 +1625,8 @@ section:last-of-type.half-height {
 }
 .memberships .individuals .service__banner--item-wrapper article {
   padding: 1rem;
+  cursor: pointer;
+  pointer-events: none;
 }
 .memberships .individuals .service__banner--item-wrapper article .service__banner--item-inner {
   height: 100%;
@@ -1953,6 +1984,80 @@ section:last-of-type.half-height {
   .on-demand .gang .section__bg--media {
     margin-top: 0;
   }
+
+  .memberships {
+    background-color: #EFEFEF;
+  }
+  .memberships .individuals .section__content--main {
+    width: 100%;
+    float: unset;
+    padding: 0;
+  }
+  .memberships .individuals .section__content--main h2 {
+    text-align: center;
+  }
+  .memberships .individuals .section__content--main br {
+    display: none;
+  }
+  .memberships .individuals .service__banner--item-wrapper {
+    width: 100%;
+    float: unset;
+  }
+  .memberships .individuals .service__banner--item-wrapper article.service__banner--item {
+    padding: 2.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    pointer-events: all;
+    background: white;
+    margin-bottom: 25px;
+  }
+  .memberships .individuals .service__banner--item-wrapper article.service__banner--item .service__banner--item-close {
+    display: none;
+  }
+  .memberships .individuals .service__banner--item-wrapper article.service__banner--item .service__banner--item-title h3 {
+    font-size: 300%;
+  }
+  .memberships .individuals .service__banner--item-wrapper article.service__banner--item .service__banner--item-title h3 sub:last-of-type {
+    bottom: 25px;
+  }
+  .memberships .individuals .service__banner--item-wrapper article.service__banner--item details {
+    width: 75%;
+    padding: 25px 0 0 0;
+    margin: 0 auto;
+    order: 10;
+  }
+  .memberships .individuals .service__banner--item-wrapper article.service__banner--item details summary {
+    display: none;
+  }
+  .memberships .individuals .service__banner--item-wrapper article.service__banner--item details ul {
+    margin: 0;
+    list-style-type: none;
+  }
+  .memberships .individuals .service__banner--item-wrapper article.service__banner--item details ul li {
+    opacity: 0;
+    padding: 0 0 10px 0;
+    list-style-type: none;
+    text-align: left;
+  }
+  .memberships .individuals .service__banner--item-wrapper article.service__banner--item details ul li > * {
+    float: left;
+  }
+  .memberships .individuals .service__banner--item-wrapper article.service__banner--item details ul li strong, .memberships .individuals .service__banner--item-wrapper article.service__banner--item details ul li span {
+    font-weight: 800;
+  }
+  .memberships .individuals .service__banner--item-wrapper article.service__banner--item details ul li strong {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+    padding: 25px 0 10px 0;
+    border-bottom: 1px solid black;
+  }
+  .memberships .individuals .service__banner--item-wrapper article.service__banner--item details ul li span {
+    float: right;
+  }
+  .memberships .individuals .services-table {
+    display: none;
+  }
 }
 @media screen and (max-width: 700px) {
   br {
@@ -1992,6 +2097,22 @@ section:last-of-type.half-height {
   .who h4 {
     font-family: "Kievit-light", "Open Sans", Helvetica, Arial, sans-serif;
     font-size: 15px;
+  }
+
+  .memberships .individuals .service__banner--item-wrapper article.service__banner--item {
+    width: 90%;
+    margin: 0 auto 25px auto;
+    padding: 25px;
+  }
+  .memberships .individuals .service__banner--item-wrapper article.service__banner--item .service__banner--item-list * {
+    display: block !important;
+  }
+  .memberships .individuals .service__banner--item-wrapper article.service__banner--item .service__banner--item-list ul {
+    padding: 0;
+  }
+
+  .scheduled .missing br {
+    display: block;
   }
 }
 @media screen and (max-width: 600px) {
@@ -2066,6 +2187,10 @@ section:last-of-type.half-height {
     width: 100%;
     max-width: 100% !important;
     margin: 25px 0 !important;
+  }
+
+  .half-height {
+    min-height: 101vh;
   }
 
   .home .hero .section__content--main h5 {
@@ -2254,8 +2379,77 @@ section:last-of-type.half-height {
     line-height: 26px;
   }
 
+  .scheduled .hero {
+    padding: 25vh 25px 10rem 25px;
+  }
+  .scheduled .hero .section__content--main {
+    padding-bottom: 15px;
+  }
+  .scheduled .network {
+    padding: 10vh 30px 2.5rem 30px;
+    min-height: unset;
+  }
+  .scheduled .network .section__content--sub .section__content--button-wrapper {
+    position: relative;
+    bottom: 0;
+  }
+  .scheduled .network .section__content--sub .section__content--button-wrapper .section__content--button {
+    margin: 0;
+  }
+  .scheduled .works {
+    padding: 10vh 50px 5rem 50px;
+  }
+  .scheduled .works article {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
+  }
+  .scheduled .more .section__bg--overlay {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  .scheduled .avoid .section__content--main .section__content--button-wrapper {
+    position: relative;
+    bottom: 0;
+  }
+  .scheduled .avoid .section__content--main .section__content--button-wrapper .section__content--button {
+    margin: 0;
+  }
+
   .memberships .hero {
     min-height: 100vh;
+  }
+  .memberships .individuals {
+    padding: 10vh 25px 5rem 25px;
+  }
+  .memberships .individuals h2 {
+    padding-bottom: 50px;
+  }
+  .memberships .individuals h2 br {
+    display: block !important;
+  }
+  .memberships .individuals article {
+    width: 100%;
+    padding: 35px;
+  }
+  .memberships .individuals article .section__content--button {
+    width: 100%;
+  }
+  .memberships .individuals article h3.super {
+    margin: 0;
+    padding: 0 0 5px 0;
+  }
+  .memberships .individuals article p {
+    margin-top: -17.5px !important;
+  }
+  .memberships .individuals article details {
+    width: 100% !important;
+  }
+  .memberships .individuals article details ul li {
+    letter-spacing: 0;
+  }
+  .memberships .individuals article details ul li strong, .memberships .individuals article details ul li span {
+    font-weight: 900;
+  }
+  .memberships .companies {
+    min-height: unset;
   }
   .memberships .companies .split__banner--main {
     padding: 20vh 50px;

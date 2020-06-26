@@ -28,6 +28,16 @@
                 "mainCopy": {
                     "1": "Join the world of private aviation for cheaper than ever before."
                 },
+                "listItems": {
+                    "1": "<strong>Scheduled</strong>",
+                    "2": "Off-peak seats <span>Free</span>",
+                    "3": "Peak seats <span>Free</span>",
+                    "4": "<strong>On Demand</strong>",
+                    "5": "Hourly rates <span>$499+</span>",
+                    "6": "Bonus credit (yearly) <span>$2000</span>",
+                    "7": "<strong>Add ons</strong>",
+                    "8": "Family members (monthly) <span>$699</span>"
+                },
                 "btn": {
                     "1": {
                         "btnSize": "sm",
@@ -42,6 +52,16 @@
                 "mainTitle": "<sub>$</sub>599<br><sub>per month</sub>",
                 "mainCopy": {
                     "1": "Fly off-peak for free and get discounts on everything else."
+                },
+                "listItems": {
+                    "1": "<strong>Scheduled</strong>",
+                    "2": "Off-peak seats <span>Free</span>",
+                    "3": "Peak seats <span>Free</span>",
+                    "4": "<strong>On Demand</strong>",
+                    "5": "Hourly rates <span>$499+</span>",
+                    "6": "Bonus credit (yearly) <span>$2000</span>",
+                    "7": "<strong>Add ons</strong>",
+                    "8": "Family members (monthly) <span>$699</span>"
                 },
                 "btn": {
                     "1": {
@@ -58,6 +78,16 @@
                 "mainCopy": {
                     "1": "Book in advance and fly for free, even on popular flights."
                 },
+                "listItems": {
+                    "1": "<strong>Scheduled</strong>",
+                    "2": "Off-peak seats <span>Free</span>",
+                    "3": "Peak seats <span>Free</span>",
+                    "4": "<strong>On Demand</strong>",
+                    "5": "Hourly rates <span>$499+</span>",
+                    "6": "Bonus credit (yearly) <span>$2000</span>",
+                    "7": "<strong>Add ons</strong>",
+                    "8": "Family members (monthly) <span>$699</span>"
+                },
                 "btn": {
                     "1": {
                         "btnSize": "sm",
@@ -72,6 +102,16 @@
                 "mainTitle": "<sub>$</sub>2099<br><sub>per month</sub>",
                 "mainCopy": {
                     "1": "Fly how you want, wherever you want, whenever you want."
+                },
+                "listItems": {
+                    "1": "<strong>Scheduled</strong>",
+                    "2": "Off-peak seats <span>Free</span>",
+                    "3": "Peak seats <span>Free</span>",
+                    "4": "<strong>On Demand</strong>",
+                    "5": "Hourly rates <span>$499+</span>",
+                    "6": "Bonus credit (yearly) <span>$2000</span>",
+                    "7": "<strong>Add ons</strong>",
+                    "8": "Family members (monthly) <span>$699</span>"
                 },
                 "btn": {
                     "1": {
