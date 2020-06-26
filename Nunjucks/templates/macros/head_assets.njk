@@ -1,0 +1,14 @@
+{% macro active(activePage='') -%}
+    {% if activePage == 'home' -%}
+        {% include "meta/homepage_meta.njk" %}
+    {%- endif %}
+    {% if activePage == 'experience' -%}
+        {% include "meta/experience_meta.njk" %}
+    {%- endif %}
+    {% if activePage == 'on-demand' -%}
+        {% include "meta/on-demand_meta.njk" %}
+    {%- endif %}
+    {% if activePage == 'memberships' -%}
+        {% include "meta/memberships_meta.njk" %}
+    {%- endif %}
+{%- endmacro %}

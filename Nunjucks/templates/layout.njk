@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% include '_head_files.njk' %}
     {% block data %}
-        {% import 'macros/head_meta.njk' as meta %}
-            {{ meta.active(pageTitle) }}
+        {% import 'macros/head_assets.njk' as assets %}
+            {{ assets.active(pageTitle) }}
     {% endblock %}
 </head>
 <body class="{{ pageTitle }}" data-barba="wrapper">

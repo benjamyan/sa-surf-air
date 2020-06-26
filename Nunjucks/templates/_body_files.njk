@@ -12,8 +12,12 @@
 <script src="js/polyfill.js"></script>
 <script type="text/javascript">
     console.log("Preload");
+    {% if openScrolling == false -%}
+        if (window.innerWidth > 1024 || document.documentElement.clientWidth > 1024)
+            document.querySelector("main").addEventListener("wheel", function(e){e.preventDefault();}, {passive: false} );
+    {%- endif %}
     const mediaTypes = [ "jpg", "png", "gif", "mp4", "flv", "mov", "webm", "ogg" ],
-        loadMedia = new Array;
+          loadMedia = new Array;
     running = true;
     document.querySelector("body").style.opacity = '0';
     mediaTypes.forEach(function(current){
@@ -24,7 +28,7 @@
             currMedia.forEach(function(current){
                 if ( current.width >= ((window.innerWidth / 4)*3) ) {
                     loadMedia.push(current)
-                } 
+                }
             })
         }
     });
@@ -41,5 +45,6 @@
     document.querySelector("body").style.opacity = '1';
     running = false;
     document.addEventListener("DOMContentLoaded", function() {
-        init(document.querySelector("section"))});
+        init(document.querySelector("section"))
+    });
 </script>
