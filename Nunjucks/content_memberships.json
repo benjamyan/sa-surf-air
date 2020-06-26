@@ -1,7 +1,7 @@
 {
     "hero": [{
         "main": [{
-            "mainTitle": "Memberships from just $199"
+            "mainTitle": "Memberships from just <sub>$</sub>199"
         }],
         "sub": [{
             "superCopy": "There has never been a way to fly private <br>like this before",

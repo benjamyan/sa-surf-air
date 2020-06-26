@@ -1,6 +1,7 @@
 {
     "hero": [{
         "main": [{
+            "miniTitle": "PERSONALIZED AVIATION SETS YOU FREE",
             "mainTitle": "Better travel <br>for the modern world"
         }],
         "sub": [{
@@ -16,7 +17,8 @@
                     "btnSize": "lg",
                     "btnType": "transparent",
                     "btnHref": "#",
-                    "btnText": "SCHEDULED"
+                    "btnText": "SCHEDULED",
+                    "btnSubCopy": "Travel on your terms, starting at just $199 per month."
                 }
             }
         }],

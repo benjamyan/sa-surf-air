@@ -72,9 +72,29 @@
             "subTitle": "That thing we never seem to have enough of. Time flies. But luckily, we fly faster."
         }],
         "sub": [{
-            "superCopyIcon": "assets/image/experience/clock.svg",
-            "superCopy": "Be there more",
-            "mainCopy": "If it’s home in time for dinner or more facetime with clients, being where you’re needed most means not standing in lines at the airport.",
+            "pin": {
+                "1": {
+                    "sub": [{
+                        "superCopyIcon": "assets/image/experience/clock.svg",
+                        "superCopy": "Be there more",
+                        "mainCopy": "If it’s home in time for dinner or more facetime with clients, being where you’re needed most means not standing in lines at the airport."
+                    }]
+                },
+                "2": {
+                    "sub": [{
+                        "superCopyIcon": "assets/image/experience/clock.svg",
+                        "superCopy": "Lorem ipsum dolor sit",
+                        "mainCopy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consectetur elementum finibus. Mauris ultrices urna nec accumsan tincidunt."
+                    }]
+                },
+                "3": {
+                    "sub": [{
+                        "superCopyIcon": "assets/image/experience/clock.svg",
+                        "superCopy": "Domas consectetor lamprey",
+                        "mainCopy": "Sed ligula purus, tincidunt at sem sed, ullamcorper sodales augue. Vivamus a tellus cursus, convallis ipsum ac, viverra urna."
+                    }]
+                }
+            },
             "btn": {
                 "1": {
                     "btnSize": "lg",
@@ -106,40 +126,34 @@
     }],
     "vs": [{
         "main": [{
-            "miniTitle": "SURF AIR VS. COMMERCIAL"
-        }],
-        "pin": {
-            "1": {
-                "main": [{
-                    "superTitle": "5000",
-                    "mainTitle": "Fewer steps from <br>your car to plane"
-                }]
-            },
-            "2": {
-                "main": [{
-                    "superTitle": "123",
-                    "mainTitle": "Domas lamprey bryeal <br>krampel dorma"
-                }]
-            },
-            "3": {
-                "main": [{
-                    "superTitle": "38525",
-                    "mainTitle": "Lorem ipsum dolor sit <br>amet consectetor"
-                }]
-            },
-            "4": {
-                "main": [{
-                    "superTitle": "9283",
-                    "mainTitle": "Kripmas premant lorem <br> misca brenta"
-                }]
+            "miniTitle": "SURF AIR VS. COMMERCIAL",
+            "pin": {
+                "1": {
+                    "main": [{
+                        "superTitle": "5000",
+                        "mainTitle": "Fewer steps from your car to plane"
+                    }]
+                },
+                "2": {
+                    "main": [{
+                        "superTitle": "123",
+                        "mainTitle": "Domas lamprey bryeal krampel dorma"
+                    }]
+                },
+                "3": {
+                    "main": [{
+                        "superTitle": "38525",
+                        "mainTitle": "Lorem ipsum dolor sit amet consectetor"
+                    }]
+                }
             }
-        },
+        }],
         "bgImageSrc": "assets/image/experience/woman-front-of-airplane.jpg",
         "bgImageAlt": "Surf Air description goes here for SEO and screen readers"
     }],
     "change": [{
         "main": [{
-            "mainTitle": "The old way to fly is over.<br>Personalized aviation has arrived.",
+            "mainTitle": "The old way to fly is over. <br>Personalized aviation has arrived.",
             "btn": {
                 "1": {
                     "btnSize": "lg",
