@@ -16,15 +16,16 @@ onPinEvent = (event)=> {                                                // pinni
 onParallaxEvent = (event)=> {                                           // parallax interaction listener function
     // console.log("onParallaxEvent")
     const targetArr = Array.from(document.querySelectorAll("[data-interaction]"));
-    targetArr.forEach(function(currTarget){ 
-        let targetEl = currTarget;
-        let targetIntesity = currTarget.getAttribute("parallax")
+    targetArr.forEach(function(current){
+        let targetEl, targetIntesity;
+        targetEl = current;
+        targetIntesity = targetEl.getAttribute("parallax");
         if (!targetEl.hasAttribute("parallax")) {
-            if (currTarget.dataset.interaction.includes("parallaxItem")) {
+            if (targetEl.dataset.interaction.includes("parallaxItem")) {
                 // const intensity = (Math.random() * (50 - 25) + 25) / 350;                       // get our desired intensity based on random # between two values
-                const intensity = (window.innerHeight / 2000 * (50 - 25) + 25) / 350;
-                let currTarget = targetEl;
-                currTarget.setAttribute("parallax", intensity);                                           // add `listening` attribute to DOM node with our intensity to be called later
+                const intensity = (window.innerHeight / (window.innerWidth / 2) * 0.15);
+                // const intensity = (window.innerHeight / 2000 * (50 - 25) + 25) / 350;
+                targetEl.setAttribute("parallax", intensity);                                           // add `listening` attribute to DOM node with our intensity to be called later
                 /*sections.forEach(function(current){ // parallax function for BG images
                     if (targetEl === current) {
                         const currBgDOM = current.querySelector(".section__bg--media");
@@ -38,7 +39,7 @@ onParallaxEvent = (event)=> {                                           // paral
                 });*/
             }
         }
-        parallaxInteraction(currTarget, targetIntesity);
+        parallaxInteraction(targetEl, targetIntesity);
     });
 };
 onKeyEvent = (event)=> {                                                // 
@@ -106,10 +107,10 @@ function sectionWipe(targetEl) {                                        // setup
     } else return                                                             // else end the function
 }
 function sectionPin(targetEl) {                                         // setup function for section pinning interaction
-    console.log("secitonPin")
+    // console.log("secitonPin")
     return (function() {                                                                // base it off a closure so it doesnt fire inacturately
-        if (!intRunning && viewportWidth > 1024) {                                                              // if not alreayd running
-            // pinRunning = true;
+        if (!pinRunning && viewportWidth > 1024) {                                                              // if not alreayd running
+            pinRunning = true;
             intRunning = true;                                                          // turn running to true so last line with return falsy
             const pinned = targetEl.querySelector(".pinned"),                           // get pin container DOM node
                   pinnedInner = Array.from(pinned.children);                            // build an array of interal pin items
@@ -131,7 +132,7 @@ function sectionPin(targetEl) {                                         // setup
             }; */                                                                         // end if
             numCountUpAnimation(Array.from(targetEl.querySelectorAll(".visible h1")))   // call our number counting animation
             setTimeout(function(){                                                      // set timeouet for throttle to end
-                intRunning = false;                                                         // intRuning to false so the function can be fired again
+                pinRunning = false;                                                         // intRuning to false so the function can be fired again
             },time );                                                                   // end timeout
         }
     })()
@@ -194,6 +195,10 @@ function interactionController(targetEl) {                              // centr
                     });
                 };*/
             };
+            if (current.interaction === "sectionPin") {
+                sectionPin(targetEl);
+                return;
+            }
             if (current.interaction === "parallaxItem") {
                 return;
             };
@@ -223,7 +228,11 @@ function counterController(targetEl) {                                  // centr
                     headerMenuActive();                                                     // test for navigation changes
                 }, time / 3 );                                                          // end timeout
                 setTimeout(function() {                                                 // timeout to function finish
-                    running = false;                                                        // set running = `false` so function can fired again
+                    if (targetEl.classList.contains("sectionPin")) {                                     // if interaction includes sectionPin
+                        running = true;                                                             // keep running true to stop function firing
+                    } else {                                                                    // if none of thse interactions
+                        running = false;                                                            // close the throttle
+                    };
                 }, time );                                                              // end timeout
             } else running = false;                                                 // if isActive does not exist end throttle
         }                                                                       // end if
@@ -231,58 +240,50 @@ function counterController(targetEl) {                                  // centr
 }
 function scrollController(dir) {                                        // central controller for all scroll events
     let targetEl;                                                           // declare our target element for the function
-    /*if (viewportWidth < 1024) {                                             // if viewport width is below ipad landscape
-        targetEl = getScrollSection(dir)                                        // declare our target as usual
-        if (viewportWidth > 768) {                                              // if viewport width is greater than ipad vertical
-            changeClassOnScroll(targetEl);                                          // change the current class of active section
-        } else return                                                           // else stop firing
-    } else {*/                                                                // if viewport width is above ipad landscape
-        return (function() {                                                    // start our throttle
-            if (!running) {                                                         // if throttle is not running
-                running = true;                                                         // start our throttle - stops it from running again
-                targetEl = getScrollSection(dir);                                       // declare our target elemnet as next section
-                if ( isOpenScrolling() ) {                                               // if open-scrolling is enabled    
-                    sections.forEach(function(current){                                         // loop through our page sections
-                        if (isInViewport(current)) targetEl = current;                              // if is in the viewport declare it as target
+    return (function() {                                                    // start our throttle
+        if (!running) {                                                         // if throttle is not running
+            running = true;                                                         // start our throttle - stops it from running again
+            targetEl = getScrollSection(dir);                                       // declare our target elemnet as next section
+            if ( isOpenScrolling() ) {                                               // if open-scrolling is enabled    
+                sections.forEach(function(current){                                         // loop through our page sections
+                    if (isInViewport(current)) targetEl = current;                              // if is in the viewport declare it as target
+                });                                                                         // end loop
+                if (targetEl && !targetEl.classList.contains("isActive")) {                 // if target exists and it doesnt have class `isActive`
+                    sections.forEach(function(current){                                         // loop through our sections again
+                        if (isInViewport(current)) {                                                // if current section is still in viewport
+                            changeClassOnScroll(current);                                               // change the class
+                            interactionController(current);                                             // fire section interactions
+                        }                                                                           // end if
                     });                                                                         // end loop
-                    if (targetEl && !targetEl.classList.contains("isActive")) {                 // if target exists and it doesnt have class `isActive`
-                        sections.forEach(function(current){                                         // loop through our sections again
-                            if (isInViewport(current)) {                                                // if current section is still in viewport
-                                changeClassOnScroll(current);                                               // change the class
-                                interactionController(current);                                             // fire section interactions
-                            }                                                                           // end if
-                        });                                                                         // end loop
+                };                                                                          // end if
+                setTimeout(function() {                                                     // timeout to throttle
+                    headerMenuActive();                                                            // check is nav should be active
+                    running = false;                                                            // end the throttle
+                    return;                                                                     // end the function
+                }, time / 8);                                                               // end timeout
+            } else if (targetEl) {                                                  // if isnt beginning or end of the document
+                if (viewportWidth > 1024) { 
+                    const activeServiceItem = document.querySelector(".service__banner--item.activeItem");
+                    if (activeServiceItem) slideItemOut(activeServiceItem);
+                    lockViewport( targetEl, time );                                             // lock the viewport
+                    scrolltoYPoint(targetEl);                                                   // scroll to the next section
+                    showCounter(targetEl);                                                      // change coutner to reflect section change
+                }
+                changeClassOnScroll(targetEl);                                              // change class of active section
+                interactionController(targetEl);                                            // fire interactions of next section
+                setTimeout(function(){                                                      // timeout for our nav
+                    headerMenuActive();                                                            // check if nav needs to change
+                }, time / 4);                                                               // end timeout
+                setTimeout(function() {                                                     // timeout for throttle
+                    if (targetEl.classList.contains("sectionPin")) {                                     // if interaction includes sectionPin
+                        running = true;                                                             // keep running true to stop function firing
+                    } else {                                                                    // if none of thse interactions
+                        running = false;                                                            // close the throttle
                     };                                                                          // end if
-                    setTimeout(function() {                                                     // timeout to throttle
-                        headerMenuActive();                                                            // check is nav should be active
-                        running = false;                                                            // end the throttle
-                        return;                                                                     // end the function
-                    }, time / 8);                                                               // end timeout
-                } else if (targetEl) {                                                  // if isnt beginning or end of the document
-                    if (viewportWidth > 1024) { 
-                        if (document.querySelector(".service__banner--item.activeItem"))
-                            slideItemOut(document.querySelector(".service__banner--item.activeItem"));
-                        lockViewport( targetEl, time );                                             // lock the viewport
-                        scrolltoYPoint(targetEl);                                                   // scroll to the next section
-                        showCounter(targetEl);                                                      // change coutner to reflect section change
-                    }
-                    changeClassOnScroll(targetEl);                                              // change class of active section
-                    interactionController(targetEl);                                            // fire interactions of next section
-                    setTimeout(function(){                                                      // timeout for our nav
-                        headerMenuActive();                                                            // check if nav needs to change
-                    }, time / 4);                                                               // end timeout
-                    setTimeout(function() {                                                     // timeout for throttle
-                        // const targetInt = targetEl.dataset.interaction;                             // declare our dataset interaction to test later
-                        if (targetEl.classList.contains("sectionPin")) {                                     // if interaction includes sectionPin
-                            running = true;                                                             // keep running true to stop function firing
-                        } else {                                                                    // if none of thse interactions
-                            running = false;                                                            // close the throttle
-                        };                                                                          // end if
-                    }, time );                                                                  // end timeout
-                } else running = false;                                                 // else end the entire thing so it can run again
-            }
-        })()
-    // }
+                }, time );                                                                  // end timeout
+            } else running = false;                                                 // else end the entire thing so it can run again
+        }
+    })()
 }
 /////////////////////////////////////////
 /////////////////////////////////////////

@@ -101,7 +101,7 @@ $content-padding: 200px;
     position: fixed;
     left: 20px;
     top: 40%;
-    z-index: 999;
+    z-index: 1;
     div {
         cursor: pointer;
         margin: 6px 3px;
@@ -842,12 +842,15 @@ section {
         }
     }
     .vs {
-        .section__content--main {
-            h1 {
-                padding-top: 20px;
-            }
-            h2 {
-                padding-top: 0;
+        .split__banner--main {
+            margin-top: 10%;
+            .section__content--main {
+                h1 {
+                    padding-top: 20px;
+                }
+                h2 {
+                    padding-top: 0;
+                }
             }
         }
     }

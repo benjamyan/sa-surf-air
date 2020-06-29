@@ -114,15 +114,14 @@ pinInteraction = (targetEl, nextTarget)=> {                         // function 
     targetElTags.forEach(function(current){
         if (current === current.parentElement.children[0]
             || current.tagName === 'H1') {
-                console.log(current)
                 numberTransition(current, nextTarget);
             } else {
                 textTransition(current, nextTarget);
             };
     });
 }
-pinCleaner = (direction=false, isBarba=0)=> {                       // break out of pinning section 
-    console.log("pinCleaner")
+pinCleaner = (direction=false, isBarba=0)=> {                       // break out of pinning section
+    console.log("pinCleaner") 
     let targetEl = getScrollSection(direction),
         pinFiringDOM = document.querySelector(".pinFiring");
     if (direction === 1) {
@@ -145,6 +144,7 @@ pinCleaner = (direction=false, isBarba=0)=> {                       // break out
     window.removeEventListener("keydown", onPinEvent, false);
     setTimeout(function(){
         running = false;
+        intRunning = false;
     },time);
 }
 /////////////////////////////////////////
@@ -300,16 +300,16 @@ sliderCleaner = (isBarba=0)=> {
 /////////////////////////////////////////
 /////////////////////////////////////////
 // Parallax element /////////////////////
+parallaxInteraction = (targetEl, intensity)=> {
+    // console.log("parallaxInteraction")
+    targetEl.style.transform = "translateY(" + (window.pageYOffset * -intensity + "px") + ')';
+}
 parallaxCleaner = (isBarba=0)=> {
-    console.log("parallaxCleaner")
+    // console.log("parallaxCleaner")
     scrollTypes.forEach(function(current){                                          // loop through all scroll types were targeting
         window.removeEventListener(                                                        // remove our event listener
             current,                                                                        // target the current scroll type
             onParallaxEvent                                                                    // fire our callback
         )                                                                               // end listener
     });
-}
-parallaxInteraction = (targetEl, intensity)=> {
-    // console.log("parallaxInteraction")
-    targetEl.style.transform = "translateY(" + (window.pageYOffset * -intensity + "px") + ')';
 }

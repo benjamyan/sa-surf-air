@@ -37,52 +37,11 @@ var arrow_keys_handler = function (e) {
             break;
     }
 };
-var mouseHandle = function (evt) {
-    var scrolling = false;
-    var oldTime = 0;
-    var newTime = 0;
-    var isTouchPad;
-    var eventCount = 0;
-    var eventCountStart;
-    var isTouchPadDefined = isTouchPad || typeof isTouchPad !== "undefined";
-    if (!isTouchPadDefined) {
-        if (eventCount === 0) {
-            eventCountStart = new Date().getTime();
-        }
-        eventCount++;
-        if (new Date().getTime() - eventCountStart > 100) {
-            if (eventCount > 10) {
-                isTouchPad = true;
-            } else {
-                isTouchPad = false;
-            }
-            isTouchPadDefined = true;
-        }
-    }
-    if (isTouchPadDefined) {
-        if (!evt) evt = event;
-        // var direction = (evt.detail<0 || evt.wheelDelta>0) ? 1 : -1;
-        if (isTouchPad) {
-            newTime = new Date().getTime();
-            if (!scrolling && newTime-oldTime > 550 ) {
-                scrolling = true;
-                evt.preventDefault()
-                setTimeout(function() {oldTime = new Date().getTime();scrolling = false}, 500);
-            }
-        } else {
-            evt.preventDefault()
-        }
-    }
-}
 function disableScroll() {
     scrollTypes.forEach(function (current) {
         window.removeEventListener(current, onScrollEvent, false);
         window.removeEventListener(current, onScrollEvent, wheelOpt);
     });
-    window.addEventListener("wheel", mouseHandle, false);
-    window.addEventListener("onwheel", mouseHandle, false);
-    window.addEventListener("mousewheel", mouseHandle, false);
-    window.addEventListener("DOMMouseScroll", mouseHandle, false);
     window.removeEventListener("keydown", onKeyEvent, false);
     window.addEventListener("keydown", arrow_keys_handler, false);
     window.addEventListener("onwheel", preventDefault, false);
@@ -97,10 +56,6 @@ function disableScroll() {
     window.addEventListener("keydown", preventDefaultForScrollKeys, false);
 }
 function enableScroll() {
-    window.removeEventListener("wheel", mouseHandle, false);
-    window.removeEventListener("onwheel", mouseHandle, false);
-    window.removeEventListener("mousewheel", mouseHandle, false);
-    window.removeEventListener("DOMMouseScroll", mouseHandle, false);
     window.removeEventListener("onwheel", preventDefault, false);
     window.removeEventListener("onmousewheel", preventDefault, false);
     window.removeEventListener("mousewheel", preventDefault, false);

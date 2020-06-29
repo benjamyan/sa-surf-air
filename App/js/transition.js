@@ -95,7 +95,8 @@ frostedGlassIntro = (target)=> {
                     keepHtml: true,
                     width: "100%"
                 });
-                target.style.cssText = `height:${target.offsetHeight}px; position:relative; overflow:hidden; width:100%;`;
+                target.style.cssText = `position:relative; overflow:hidden; width:100%;`;
+                // target.style.cssText = `height:${target.offsetHeight}px; position:relative; overflow:hidden; width:100%;`;
                 Array.from(target.children).forEach(function(current){
                     tl.from( current, {
                         opacity: 0,
@@ -119,7 +120,7 @@ frostedGlassIntro = (target)=> {
                     opacity: 1,
                     ease: ease
                 });
-            }
+            };
           },
           frostedGlassIntroCleaner = ()=> {
             Array.from(targetDOM).forEach(function(current){
@@ -143,26 +144,25 @@ frostedGlassIntro = (target)=> {
         duration: .5, 
         opacity: 0
     }, "-=1").from(targetDOM.button.children, {
-        // duration: 0,
         translateY: 50,
         stagger: .25,
         opacity: 0,
     }, "-=1").to(targetDOM.button.children, {
-        // delay: .25, 
-        duration: 0.5, 
-        stagger: .25,
+        delay: 0.1,
+        duration: 0.4, 
+        stagger: 0.2,
         translateY: 0,
         opacity: 1,
         ease: "expo.out"/*,
         onComplete: clearDOMchanges,
         onCompleteParams: [Array.from(targetDOM.button.children)]*/
     }, "-=0.75");
-    if (targetDOM.h1) textInteraction(targetDOM.h1, 0.25, 25, "expo.out", "-=0.25");
-    if (targetDOM.h2) textInteraction(targetDOM.h2, 0.25, 25, "expo.out", "-=0.25");
-    if (targetDOM.h3) textInteraction(targetDOM.h3, 0.25, 25, "expo.out", "-=1");
-    if (targetDOM.h4) textInteraction(targetDOM.h4, 0.25, 25, "expo.out", "-=0.25");
-    if (targetDOM.h5) textInteraction(targetDOM.h5, 0.5, 25, "expo.out", "-=0.5");
-    if (targetDOM.p)  textInteraction(targetDOM.p, 0.5, 25, "expo.out", "-=0.25");
+    if (targetDOM.h1) textInteraction(targetDOM.h1, 0.175, 25, "expo.out", "-=0.75");
+    if (targetDOM.h2) textInteraction(targetDOM.h2, 0.175, 25, "expo.out", "-=0.75");
+    if (targetDOM.h3) textInteraction(targetDOM.h3, 0.25, 25, "expo.out", "-=0.75");
+    if (targetDOM.h4) textInteraction(targetDOM.h4, 0.25, 25, "expo.out", "-=0.75");
+    if (targetDOM.h5) textInteraction(targetDOM.h5, 0.25, 25, "expo.out", "-=0.5");
+    if (targetDOM.p)  textInteraction(targetDOM.p, 0.25, 25, "expo.out", "-=0.25");
     setTimeout(function(){
         frostedGlassIntroCleaner();
     },time)
@@ -271,7 +271,12 @@ barba.hooks.afterEnter((data) => {
     } else if (!currentBody.hasAttribute("open-scroll")) {
         if (DOM.main.hasAttribute("open-scroll")) {
             DOM.main.removeAttribute("open-scroll");
-        }
+        };
+        if (window.innerWidth > 1024 || document.documentElement.clientWidth > 1024) {
+            DOM.main.addEventListener("wheel", function(e){
+                e.preventDefault();
+            }, {passive: false} );
+        };
     };
     init(data.next)
 });

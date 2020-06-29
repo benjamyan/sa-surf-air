@@ -834,7 +834,7 @@ html, body {
   position: fixed;
   left: 20px;
   top: 40%;
-  z-index: 999;
+  z-index: 1;
 }
 .section__counter div {
   cursor: pointer;
@@ -1507,10 +1507,13 @@ section:last-of-type.half-height {
 .experience .who .section__main--image {
   width: 12.5vw;
 }
-.experience .vs .section__content--main h1 {
+.experience .vs .split__banner--main {
+  margin-top: 10%;
+}
+.experience .vs .split__banner--main .section__content--main h1 {
   padding-top: 20px;
 }
-.experience .vs .section__content--main h2 {
+.experience .vs .split__banner--main .section__content--main h2 {
   padding-top: 0;
 }
 

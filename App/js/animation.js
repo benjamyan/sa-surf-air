@@ -91,9 +91,7 @@ function fadeElIn(targetEl,del=0,dur=1,stag=.15,offset=50) {            // fade 
                 stagger: stag,
                 opacity: 1,
                 translateY: 0,
-                ease:"expo.out",
-                onComplete: clearDOMchanges,
-                onCompleteParams: [serviceItem]
+                ease:"expo.out"
             });
             tl.to( serviceBlur, { 
                 duration: 0,
@@ -106,7 +104,7 @@ function fadeElIn(targetEl,del=0,dur=1,stag=.15,offset=50) {            // fade 
                 opacity: 1,
                 ease:"expo.out",
                 onComplete: clearDOMchanges,
-                onCompleteParams: [serviceBlur]
+                onCompleteParams: [serviceBlur, serviceItem]
             },"-=1.5");
             return;
         };
@@ -159,16 +157,16 @@ function fadeElOut(targetEl,del=.5,stag=0.15,dur=1,offset=0,pos=0) {    // fade 
     }, pos );
 }
 function slideItemIn(event) {
+    // console.log("slideItemIn")
     return (function() {                                                    // start our throttle
         if (!intRunning) {                                                         // if throttle is not running
             intRunning = true;
             const targetEl = event.target.closest("[onclick]"),
-                targetElHeight = targetEl.offsetHeight,
-                detailsClose = targetEl.querySelector(".service__banner--item-close"),
-                detailsDOM = targetEl.querySelector("details"),
-                detailsDOMul = detailsDOM.querySelector("ul"),
-                targetChildren = Array.from(targetEl.children),
-                tl = gsap.timeline()
+                  detailsClose = targetEl.querySelector(".service__banner--item-close"),
+                  detailsDOM = targetEl.querySelector("details"),
+                  detailsDOMul = detailsDOM.querySelector("ul"),
+                  targetChildren = Array.from(targetEl.children),
+                  tl = gsap.timeline();
             if (targetEl.classList.contains("activeItem")) {
                 slideItemOut(targetEl);
                 setTimeout(function() {
@@ -226,6 +224,7 @@ function slideItemIn(event) {
     })()
 }
 function slideItemOut(target) {
+    // console.log("slideItemOut")
     const targetEl = target,
           targetActive = document.querySelector(".activeItem"),
           targetElInner = targetEl.querySelector(".service__banner--item-inner"),
@@ -239,11 +238,10 @@ function slideItemOut(target) {
         targetActive.classList.remove("activeItem");
     };
     closeDetails = ()=> {
-        detailsDOM.removeAttribute("open")
+        detailsDOM.removeAttribute("open");
     };
     clearDOMchanges = ()=> {
         if (detailsClose.hasAttribute("style")) detailsClose.removeAttribute("style");
-        if (targetElInner && targetElInner.hasAttribute("style")) targetElInner.removeAttribute("style");
     };
     targetChildren.forEach(function(current, index){
         if (current.classList.contains("blur")) targetChildren.splice(index, 1)
@@ -275,11 +273,14 @@ function slideItemOut(target) {
         opacity: 1,
         ease: "expo.out",
         onComplete: clearDOMchanges
-    }, "-=.5" )
+    }, "-=.5" );
+    setTimeout(function(){
+        intRunning = false;
+    }, time);
 }
-function panelSlideIn(targetEl) {                                       // slide panel of DOM element into viewport
+function panelSlideIn() {
     //
 }
-function panelSlideOut(targetEl) {
+function panelSlideOut() {
     //
 }

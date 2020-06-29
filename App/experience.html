@@ -606,7 +606,17 @@
             <i></i><p>Change the way you fly</p>
         </div>
 </aside>
-
+<script type="text/javascript">
+// function to lock scrolling
+// works with touchpad devices
+// this is for direct page load
+// if page is navigated to barba transition will handle this with same function
+if (window.innerWidth > 1024 || document.documentElement.clientWidth > 1024) {
+    document.querySelector("main").addEventListener("wheel", function(e){
+        e.preventDefault();
+    }, {passive: false} );
+};
+</script>
         
         
   
@@ -664,9 +674,7 @@
 <script src="js/app.js"></script>
 <script src="js/polyfill.js"></script>
 <script type="text/javascript">
-    console.log("Preload");
-    if (window.innerWidth > 1024 || document.documentElement.clientWidth > 1024)
-            document.querySelector("main").addEventListener("wheel", function(e){e.preventDefault();}, {passive: false} );
+    // console.log("Preload");
     const mediaTypes = [ "jpg", "png", "gif", "mp4", "flv", "mov", "webm", "ogg" ],
           loadMedia = new Array;
     running = true;
