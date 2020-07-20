@@ -1,11 +1,11 @@
 <script type="text/javascript">
-// function to lock scrolling
-// works with touchpad devices
-// this is for direct page load
-// if page is navigated to barba transition will handle this with same function
-if (window.innerWidth > 1024 || document.documentElement.clientWidth > 1024) {
-    document.querySelector("main").addEventListener("wheel", function(e){
-        e.preventDefault();
-    }, {passive: false} );
-};
+    // function to lock scrolling
+    // works with touchpad devices
+    // this is for direct page load
+    // if page is navigated to barba transition will handle this with same function
+    if (window.innerWidth > 1024 || document.documentElement.clientWidth > 1024) {
+        document.querySelector("main").addEventListener("wheel", function(e){
+            e.preventDefault();
+        }, {passive: false} );
+    };
 </script>

@@ -137,6 +137,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/memberships/pilots-in-lounge.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/memberships/pilots-in-lounge.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/memberships/pilots-in-lounge.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/memberships/pilots-in-lounge.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -201,7 +204,7 @@
                 
                 </ul>
             </details>
-        
+        <p class="mobile-more">view inclusions</p>
             
             <div class="section__content--button-wrapper nav__item--button-wrapper">
     
@@ -263,7 +266,7 @@
                 
                 </ul>
             </details>
-        
+        <p class="mobile-more">view inclusions</p>
             
             <div class="section__content--button-wrapper nav__item--button-wrapper">
     
@@ -326,7 +329,7 @@
                 </ul>
             </details>
         
-            
+            <p class="mobile-more">view inclusions</p>
             <div class="section__content--button-wrapper nav__item--button-wrapper">
     
     <div class="section__content--button section__content--button-sm" data-interaction="fadeElIn">
@@ -388,7 +391,7 @@
                 </ul>
             </details>
         
-            
+            <p class="mobile-more">view inclusions</p>
             <div class="section__content--button-wrapper nav__item--button-wrapper">
     
     <div class="section__content--button section__content--button-sm" data-interaction="fadeElIn">
@@ -410,9 +413,10 @@
     </div>
 </article>
 
-                    </div>
-
-<div class="services-table">
+            
+        </div>
+    
+    <div class="services-table">
     <div class="service__banner--table-item" data-interaction="fadeElIn">
         <h4><strong>Scheduled</strong></h4>
         <div class="services-table-row">
@@ -468,8 +472,7 @@
         </div>
     </div>
     <p><sub>* With advance booking</sub></p>
-</div>    
-    
+</div>
 
 </section>
 
@@ -519,6 +522,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/memberships/old-man-walking-into-plane.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/memberships/old-man-walking-into-plane.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/memberships/old-man-walking-into-plane.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/memberships/old-man-walking-into-plane.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -732,6 +738,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/memberships/woman-on-phone-chair.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/memberships/woman-on-phone-chair.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/memberships/woman-on-phone-chair.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/memberships/woman-on-phone-chair.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -749,6 +758,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/memberships/plane-front-pilot-walking.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/memberships/plane-front-pilot-walking.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/memberships/plane-front-pilot-walking.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/memberships/plane-front-pilot-walking.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -846,6 +858,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/memberships/plane-side-sky-behind.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/memberships/plane-side-sky-behind.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/memberships/plane-side-sky-behind.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/memberships/plane-side-sky-behind.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -911,38 +926,38 @@
 <script src="js/app.js"></script>
 <script src="js/polyfill.js"></script>
 <script type="text/javascript">
-    // console.log("Preload");
-    const mediaTypes = [ "jpg", "png", "gif", "mp4", "flv", "mov", "webm", "ogg" ],
-          loadMedia = new Array;
-    running = true;
-    document.querySelector("body").style.opacity = '0';
-    mediaTypes.forEach(function(current){
-        const currMedia = Array.from(
-            document.querySelectorAll(`*[src$=".${current}"]`)
-        );
-        if (currMedia.length > 0) {
-            currMedia.forEach(function(current){
-                if ( current.width >= ((window.innerWidth / 4)*3) ) {
-                    loadMedia.push(current)
-                }
-            })
-        }
-    });
-    loadMedia.forEach(function(current, index, arr){
-        const img = new Image();
-        img.src = current.src;
-        img.onload = function () { 
-            // console.log("Loaded " + current.src)
-        };
-        img.onerror = function () { 
-            // console.log("Failed " + current.src)
-        };
-    });
-    document.querySelector("body").style.opacity = '1';
-    running = false;
-    document.addEventListener("DOMContentLoaded", function() {
-        init(document.querySelector("section"))
-    });
+    console.log("Preload");
+    (function preloader(){
+        const mediaTypes = [ "jpg", "png", "gif", "mp4", "flv", "mov", "webm", "ogg" ],
+              loadMedia = new Array,
+              img = new Image();
+        running = true;
+        document.querySelector("body").style.opacity = '0';
+        mediaTypes.forEach(function(current){
+            const currMedia = Array.from(document.querySelectorAll(`*[src$=".${current}"]`));
+            if (currMedia.length > 0) {
+                currMedia.forEach(function(current){
+                    if ( current.width >= ((window.innerWidth / 4) * 3) ) {
+                        loadMedia.push(current)
+                    };
+                })
+            };
+        });
+        loadMedia.forEach(function(current, index, arr){
+            img.src = current.src;
+            img.onload = function () { 
+                // console.log("Loaded " + current.src)
+            };
+            img.onerror = function () { 
+                // console.log("Failed " + current.src)
+            };
+        });
+        document.querySelector("body").style.opacity = '1';
+        running = false;
+        document.addEventListener("DOMContentLoaded", function() {
+            init(document.querySelector("section"))
+        });
+    })();
 </script>
 </body>
 </html>

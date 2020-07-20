@@ -12,39 +12,35 @@
 <script src="js/polyfill.js"></script>
 <script type="text/javascript">
     console.log("Preload");
-    {% if openScrolling == false -%}
-        if (window.innerWidth > 1024 || document.documentElement.clientWidth > 1024)
-            document.querySelector("main").addEventListener("wheel", function(e){e.preventDefault();}, {passive: false} );
-    {%- endif %}
-    const mediaTypes = [ "jpg", "png", "gif", "mp4", "flv", "mov", "webm", "ogg" ],
-          loadMedia = new Array;
-    running = true;
-    document.querySelector("body").style.opacity = '0';
-    mediaTypes.forEach(function(current){
-        const currMedia = Array.from(
-            document.querySelectorAll(`*[src$=".${current}"]`)
-        );
-        if (currMedia.length > 0) {
-            currMedia.forEach(function(current){
-                if ( current.width >= ((window.innerWidth / 4)*3) ) {
-                    loadMedia.push(current)
-                }
-            })
-        }
-    });
-    loadMedia.forEach(function(current, index, arr){
-        const img = new Image();
-        img.src = current.src;
-        img.onload = function () { 
-            // console.log("Loaded " + current.src)
-        };
-        img.onerror = function () { 
-            // console.log("Failed " + current.src)
-        };
-    });
-    document.querySelector("body").style.opacity = '1';
-    running = false;
-    document.addEventListener("DOMContentLoaded", function() {
-        init(document.querySelector("section"))
-    });
+    (function preloader(){
+        const mediaTypes = [ "jpg", "png", "gif", "mp4", "flv", "mov", "webm", "ogg" ],
+              loadMedia = new Array,
+              img = new Image();
+        running = true;
+        document.querySelector("body").style.opacity = '0';
+        mediaTypes.forEach(function(current){
+            const currMedia = Array.from(document.querySelectorAll(`*[src$=".${current}"]`));
+            if (currMedia.length > 0) {
+                currMedia.forEach(function(current){
+                    if ( current.width >= ((window.innerWidth / 4) * 3) ) {
+                        loadMedia.push(current)
+                    };
+                })
+            };
+        });
+        loadMedia.forEach(function(current, index, arr){
+            img.src = current.src;
+            img.onload = function () { 
+                // console.log("Loaded " + current.src)
+            };
+            img.onerror = function () { 
+                // console.log("Failed " + current.src)
+            };
+        });
+        document.querySelector("body").style.opacity = '1';
+        running = false;
+        document.addEventListener("DOMContentLoaded", function() {
+            init(document.querySelector("section"))
+        });
+    })();
 </script>

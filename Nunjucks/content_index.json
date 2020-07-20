@@ -97,17 +97,17 @@
             "autoplay": true,
             "1": {
                 "superCopyIcon": "assets/image/base/michael-k.jpg",
-                "superCopy": "<q>A different model than flying commercial that offers so much flexibility.</q>",
+                "superCopy": "“A different model than flying commercial that offers so much flexibility.”",
                 "subCopy": "Michael K"
             },
             "2": {
                 "superCopyIcon": "assets/image/base/michael-k.jpg",
-                "superCopy": "<q>Lorem ipum dolor sit amet consectetor domas lamprey oscipmentum.</q>",
+                "superCopy": "“Lorem ipum dolor sit amet consectetor domas lamprey oscipmentum.”",
                 "subCopy": "Audrey M."
             },
             "3": {
                 "superCopyIcon": "assets/image/base/michael-k.jpg",
-                "superCopy": "<q>Consectetor domas lamprey oscipmentum kremp lorem ipum dolor.</q>",
+                "superCopy": "“Consectetor domas lamprey oscipmentum kremp lorem ipum dolor.”",
                 "subCopy": "Aaron P."
             }
         }],
@@ -142,31 +142,31 @@
             "1": {
                 "img": {
                     "imgSrc": "assets/image/index/wsj-logo.svg",
-                    "imgAlt": "Wall Street Journal"
+                    "imgAlt": "“Lorem ipsum dolor sit amet, consectetur adipiscing <br>elit, sed do eiusmod tempor incididunt”"
                 }
             },
             "2": {
                 "img": {
                     "imgSrc": "assets/image/index/tech-crunch-logo.svg",
-                    "imgAlt": "Tech Crunch"
+                    "imgAlt": "“Excepteur sint occaecat cupidatat non proident, <br>sunt in culpa qui officia deserunt mollit.”"
                 }
             },
             "3": {
                 "img": {
                     "imgSrc": "assets/image/index/active-travel-logo.svg",
-                    "imgAlt": "Active Travel &amp; Leisure"
+                    "imgAlt": "“This airline memberships lets you book unlimited <br>flights on a private jet every month”"
                 }
             },
             "4": {
                 "img": {
                     "imgSrc": "assets/image/index/forbes-logo.svg",
-                    "imgAlt": "Forbes"
+                    "imgAlt": "“Excepteur sint occaecat cupidatat non proident, sunt <br>in culpa qui officia deserunt mollit.”"
                 }
             },
             "5": {
                 "img": {
                     "imgSrc": "assets/image/index/robb-report-logo.svg",
-                    "imgAlt": "Robb Report"
+                    "imgAlt": "“Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor incididunt”"
                 }
             }
         }]

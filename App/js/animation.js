@@ -167,6 +167,7 @@ function slideItemIn(event) {
                   detailsDOMul = detailsDOM.querySelector("ul"),
                   targetChildren = Array.from(targetEl.children),
                   tl = gsap.timeline();
+            detailsDOMul.classList.add("transition")
             if (targetEl.classList.contains("activeItem")) {
                 slideItemOut(targetEl);
                 setTimeout(function() {
@@ -181,14 +182,46 @@ function slideItemIn(event) {
             targetChildren.forEach(function(current, index){
                 if (current.classList.contains("blur"))
                     targetChildren.splice(index, 1);
-            })
+            });
+            setDetails = ()=> {
+                const detailsDimensions = detailsDOMul.getBoundingClientRect();
+                detailsDOM.querySelector("summary").classList.add("details-active")
+                if (viewportWidth < 900 && viewportWidth > 700) {
+                    tl.from(detailsDOMul, {
+                        duration: 0.01,
+                        height: 0,
+                        ease: "none"
+                    }, "-=1.5").to(detailsDOMul,{
+                        duration: 1,
+                        height: detailsDimensions.height,
+                        ease: "expo.out"
+                    });
+                } else if (viewportWidth < 700) {
+                    tl.from(detailsDOMul, {
+                        duration: 0.01,
+                        height: 0,
+                        ease: "none"
+                    }, "-=2.5");
+                } else return
+            };
             openDetails = ()=> {
-                detailsDOM.setAttribute("open","")
-            }
+                detailsDOM.setAttribute("open","");
+                if (targetEl.closest("section").classList.contains("individuals")) {            // hotfix for membership page
+                    const detailsDimensions = detailsDOM.getBoundingClientRect();
+                    detailsDOM.style.height = "0";
+                    targetEl.querySelector(".mobile-more").innerText = "view less";
+                    tl.to(detailsDOM,{
+                        duration: 1,
+                        height: detailsDimensions.height,
+                        ease: "expo.out"
+                    },"-=3")
+                };
+                setDetails()
+            };
             tl.to( detailsClose, { 
                 duration: .5,
                 opacity: 1, 
-                ease: "expo.out", 
+                ease: "expo.out",
                 onComplete: openDetails
             })
             .to( detailsDOMul.children, {
@@ -237,42 +270,78 @@ function slideItemOut(target) {
     if (targetActive) {
         targetActive.classList.remove("activeItem");
     };
-    closeDetails = ()=> {
-        detailsDOM.removeAttribute("open");
+    setDetails = ()=> {
+        setTimeout(function(){
+            detailsDOM.querySelector("summary").classList.remove("details-active")
+        },500);
+        if (targetEl.closest("section").classList.contains("individuals")) {
+            const detailsDimensions = detailsDOM.getBoundingClientRect();
+            tl.to(detailsDOM,{
+                duration: 1,
+                height: 0,
+                ease: "expo.out",
+                onComplete: clearDOMchanges,
+                onCompleteParams: [detailsDOM]
+            }, "-=1")
+            setTimeout(function(){
+                targetEl.querySelector(".mobile-more").innerText = "view inclusions";
+            },1250)
+        };
+        if (viewportWidth < 900 && viewportWidth > 700) {
+            tl.to(detailsDOMul, {
+                duration: 1,
+                height: 0,
+                ease: "expo.out"
+            }, "-=1.25");
+        } else if (viewportWidth < 700) {
+            tl.to(detailsDOMul, {
+                duration: 1,
+                height: 0,
+                ease: "expo.out"
+            }, "-=1.25")
+        } else return;
     };
-    clearDOMchanges = ()=> {
-        if (detailsClose.hasAttribute("style")) detailsClose.removeAttribute("style");
+    closeDetails = ()=> {
+        clearDOMchanges(detailsDOMul)
+        detailsDOM.removeAttribute("open");
     };
     targetChildren.forEach(function(current, index){
         if (current.classList.contains("blur")) targetChildren.splice(index, 1)
     });
-    tl.to (Array.from(detailsDOMul.children).reverse(), {
+    tl.to(Array.from(detailsDOMul.children).reverse(), {
         duration: 1,
         stagger: 0.15,
         opacity: 0,
         translateY: 0,
         ease:"expo.out",
+        onStart: setDetails,
         onComplete: closeDetails
     }).to(targetEl, {
         duration: 1,
-        height: targetEl.offsetHeight / 1.75,
+        height: targetEl.getAttribute("height"),
         ease: "expo.out",
-        onComplete: clearDOMchanges
+        onComplete: clearDOMchanges,
+        onCompleteParams:[targetEl]
     }, "-=1" ).to(detailsDOM.querySelector("summary"), {
         duration: .5,
         display: "block",
         opacity: 1,
         ease: "expo.out",
+        onComplete: clearDOMchanges,
+        onCompleteParams:[detailsDOM.querySelector("summary")]
     }, "-=1" ).to(detailsClose, {
         duration: .5,
         opacity: 0,
-        ease: "expo.out"
+        ease: "expo.out",
+        onComplete: clearDOMchanges,
+        onCompleteParams:[detailsClose]
     }, "-=1" ).to(targetChildren, {
         duration: .5,
         translateY: 0,
         opacity: 1,
         ease: "expo.out",
-        onComplete: clearDOMchanges
+        onComplete: clearDOMchanges,
+        onCompleteParams:[targetChildren]
     }, "-=.5" );
     setTimeout(function(){
         intRunning = false;

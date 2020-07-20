@@ -29,6 +29,7 @@ let counter = document.querySelector(DOM.counter),
     viewportWidth = window.innerWidth || document.documentElement.clientWidth,
     time = 1500,
     running = false,
+    navRunning = false,
     intRunning = false,
     wipeRunning = false,
     pinRunning = false;
@@ -50,7 +51,7 @@ randomNumber = ()=> {                                               // random nu
 isOpenScrolling = ()=> {                                            // tests whether scroll-lock is turned off -- returns Bool
     return DOM.main.hasAttribute("open-scroll")                             // if DOM body has `open-scroll` attribute if truthy
 },
-isInViewport = targetEl=> {                                         // tests whether a DOM node is in the viewport -- returns Bool
+isInViewport = (targetEl, isBarba = false)=> {                                         // tests whether a DOM node is in the viewport -- returns Bool
     const rect = targetEl.getBoundingClientRect(),                                          // get element position using ClientRect
           windowHeight = (window.innerHeight                                                // get the window height
             || document.documentElement.clientHeight                                            // if not support, get client height
@@ -58,7 +59,7 @@ isInViewport = targetEl=> {                                         // tests whe
           windowWidth = (window.innerWidth                                                  // get the window width
             || document.documentElement.clientWidth                                             // if not support, get client width
           );
-    if (isOpenScrolling()) {                                                                // if is open scrolling is enabled
+    if (isOpenScrolling() && !isBarba) {                                                                // if is open scrolling is enabled
         return ( ((rect.height/5) * 3.5) >= rect.top )                                          // return if element is set space before top of viewport
     }                                                                                       // end if
     return (                                                                                // return truthy or falsy

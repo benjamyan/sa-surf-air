@@ -132,6 +132,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/scheduled/friends-on-plane-talking.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/scheduled/friends-on-plane-talking.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/scheduled/friends-on-plane-talking.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/scheduled/friends-on-plane-talking.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -223,7 +226,7 @@
         
         <div class="service__banner--item-title">
                 
-                    <img class="section__content--sub-icon" src="assets/image/memberships/plane.svg" />
+                    <img class="section__content--sub-icon" src="assets/image/memberships/calendar.svg" />
                 
                 <h3>Hourly Departures</h3>
             </div>
@@ -279,7 +282,7 @@
         
         <div class="service__banner--item-title">
                 
-                    <img class="section__content--sub-icon" src="assets/image/memberships/invite.svg" />
+                    <img class="section__content--sub-icon" src="assets/image/memberships/plane.svg" />
                 
                 <h3>Quick arrivals</h3>
             </div>
@@ -337,6 +340,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/memberships/pilots-in-lounge.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/memberships/pilots-in-lounge.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/memberships/pilots-in-lounge.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/memberships/pilots-in-lounge.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -354,6 +360,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/index/woman-walking-into-plane.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/index/woman-walking-into-plane.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/index/woman-walking-into-plane.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/index/woman-walking-into-plane.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -407,7 +416,7 @@
     
     
     <h2 data-interaction="fadeElIn">You’re missing out.</h2>
-    <h4 data-interaction="fadeElIn"><q>I would just say to people who travel quite a bit, if they haven’t tried Surf Air they are missing out big time. When you stop and think about what your time’s worth... in 3 months I’ve saved over 60 hours in travel time.</q></h4>
+    <h4 data-interaction="fadeElIn">“I would just say to people who travel quite a bit, if they haven’t tried Surf Air they are missing out big time. When you stop and think about what your time’s worth... in 3 months I’ve saved over 60 hours in travel time.”</h4>
     
     
 
@@ -432,6 +441,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/memberships/woman-on-phone-chair.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/memberships/woman-on-phone-chair.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/memberships/woman-on-phone-chair.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/memberships/woman-on-phone-chair.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -534,37 +546,37 @@
 <script src="js/polyfill.js"></script>
 <script type="text/javascript">
     console.log("Preload");
-    const mediaTypes = [ "jpg", "png", "gif", "mp4", "flv", "mov", "webm", "ogg" ],
-          loadMedia = new Array;
-    running = true;
-    document.querySelector("body").style.opacity = '0';
-    mediaTypes.forEach(function(current){
-        const currMedia = Array.from(
-            document.querySelectorAll(`*[src$=".${current}"]`)
-        );
-        if (currMedia.length > 0) {
-            currMedia.forEach(function(current){
-                if ( current.width >= ((window.innerWidth / 4)*3) ) {
-                    loadMedia.push(current)
-                }
-            })
-        }
-    });
-    loadMedia.forEach(function(current, index, arr){
-        const img = new Image();
-        img.src = current.src;
-        img.onload = function () { 
-            // console.log("Loaded " + current.src)
-        };
-        img.onerror = function () { 
-            // console.log("Failed " + current.src)
-        };
-    });
-    document.querySelector("body").style.opacity = '1';
-    running = false;
-    document.addEventListener("DOMContentLoaded", function() {
-        init(document.querySelector("section"))
-    });
+    (function preloader(){
+        const mediaTypes = [ "jpg", "png", "gif", "mp4", "flv", "mov", "webm", "ogg" ],
+              loadMedia = new Array,
+              img = new Image();
+        running = true;
+        document.querySelector("body").style.opacity = '0';
+        mediaTypes.forEach(function(current){
+            const currMedia = Array.from(document.querySelectorAll(`*[src$=".${current}"]`));
+            if (currMedia.length > 0) {
+                currMedia.forEach(function(current){
+                    if ( current.width >= ((window.innerWidth / 4) * 3) ) {
+                        loadMedia.push(current)
+                    };
+                })
+            };
+        });
+        loadMedia.forEach(function(current, index, arr){
+            img.src = current.src;
+            img.onload = function () { 
+                // console.log("Loaded " + current.src)
+            };
+            img.onerror = function () { 
+                // console.log("Failed " + current.src)
+            };
+        });
+        document.querySelector("body").style.opacity = '1';
+        running = false;
+        document.addEventListener("DOMContentLoaded", function() {
+            init(document.querySelector("section"))
+        });
+    })();
 </script>
 </body>
 </html>

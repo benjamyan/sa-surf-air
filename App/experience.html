@@ -122,6 +122,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/experience/airplane-from-hangar.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/experience/airplane-from-hangar.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/experience/airplane-from-hangar.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/experience/airplane-from-hangar.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -281,6 +284,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/experience/businessman-reading-newpaper.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/experience/businessman-reading-newpaper.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/experience/businessman-reading-newpaper.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/experience/businessman-reading-newpaper.jpg" alt="An alt tag for services section" />
         </picture>
     
@@ -297,6 +303,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/experience/person-on-bike-on-road.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/experience/person-on-bike-on-road.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/experience/person-on-bike-on-road.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/experience/person-on-bike-on-road.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -458,6 +467,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/experience/airplane-against-mountain-backdrop.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/experience/airplane-against-mountain-backdrop.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/experience/airplane-against-mountain-backdrop.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/experience/airplane-against-mountain-backdrop.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -540,7 +552,12 @@
         
 <div class="section__bg col-xs-12">
     <div class="section__bg--overlay col-xs-12"></div>
-    
+    <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/experience/woman-front-of-airplane.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/experience/woman-front-of-airplane.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/experience/woman-front-of-airplane.jpg">
+            <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/experience/woman-front-of-airplane.jpg" alt="Surf Air description goes here for SEO and screen readers" />
+        </picture>
     
 </div>
     </div>
@@ -580,6 +597,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/experience/airplane-at-dusk-tail.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/experience/airplane-at-dusk-tail.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/experience/airplane-at-dusk-tail.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/experience/airplane-at-dusk-tail.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -606,16 +626,17 @@
             <i></i><p>Change the way you fly</p>
         </div>
 </aside>
-<script type="text/javascript">
-// function to lock scrolling
-// works with touchpad devices
-// this is for direct page load
-// if page is navigated to barba transition will handle this with same function
-if (window.innerWidth > 1024 || document.documentElement.clientWidth > 1024) {
-    document.querySelector("main").addEventListener("wheel", function(e){
-        e.preventDefault();
-    }, {passive: false} );
-};
+
+            <script type="text/javascript">
+    // function to lock scrolling
+    // works with touchpad devices
+    // this is for direct page load
+    // if page is navigated to barba transition will handle this with same function
+    if (window.innerWidth > 1024 || document.documentElement.clientWidth > 1024) {
+        document.querySelector("main").addEventListener("wheel", function(e){
+            e.preventDefault();
+        }, {passive: false} );
+    };
 </script>
         
         
@@ -674,38 +695,38 @@ if (window.innerWidth > 1024 || document.documentElement.clientWidth > 1024) {
 <script src="js/app.js"></script>
 <script src="js/polyfill.js"></script>
 <script type="text/javascript">
-    // console.log("Preload");
-    const mediaTypes = [ "jpg", "png", "gif", "mp4", "flv", "mov", "webm", "ogg" ],
-          loadMedia = new Array;
-    running = true;
-    document.querySelector("body").style.opacity = '0';
-    mediaTypes.forEach(function(current){
-        const currMedia = Array.from(
-            document.querySelectorAll(`*[src$=".${current}"]`)
-        );
-        if (currMedia.length > 0) {
-            currMedia.forEach(function(current){
-                if ( current.width >= ((window.innerWidth / 4)*3) ) {
-                    loadMedia.push(current)
-                }
-            })
-        }
-    });
-    loadMedia.forEach(function(current, index, arr){
-        const img = new Image();
-        img.src = current.src;
-        img.onload = function () { 
-            // console.log("Loaded " + current.src)
-        };
-        img.onerror = function () { 
-            // console.log("Failed " + current.src)
-        };
-    });
-    document.querySelector("body").style.opacity = '1';
-    running = false;
-    document.addEventListener("DOMContentLoaded", function() {
-        init(document.querySelector("section"))
-    });
+    console.log("Preload");
+    (function preloader(){
+        const mediaTypes = [ "jpg", "png", "gif", "mp4", "flv", "mov", "webm", "ogg" ],
+              loadMedia = new Array,
+              img = new Image();
+        running = true;
+        document.querySelector("body").style.opacity = '0';
+        mediaTypes.forEach(function(current){
+            const currMedia = Array.from(document.querySelectorAll(`*[src$=".${current}"]`));
+            if (currMedia.length > 0) {
+                currMedia.forEach(function(current){
+                    if ( current.width >= ((window.innerWidth / 4) * 3) ) {
+                        loadMedia.push(current)
+                    };
+                })
+            };
+        });
+        loadMedia.forEach(function(current, index, arr){
+            img.src = current.src;
+            img.onload = function () { 
+                // console.log("Loaded " + current.src)
+            };
+            img.onerror = function () { 
+                // console.log("Failed " + current.src)
+            };
+        });
+        document.querySelector("body").style.opacity = '1';
+        running = false;
+        document.addEventListener("DOMContentLoaded", function() {
+            init(document.querySelector("section"))
+        });
+    })();
 </script>
 </body>
 </html>

@@ -137,6 +137,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/on-demand/woman-beside-plane.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/on-demand/woman-beside-plane.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/on-demand/woman-beside-plane.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/on-demand/woman-beside-plane.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -367,7 +370,7 @@
     <div id="slide1" class="section__content--item slider-item section__content--testimonial visible">
         
         
-            <p data-interaction="fadeElIn"><q>Sophie and her best friends took a day trip to Napa. They left in the morning and were sloshed by midday. Best trip ever.</q></p>
+            <p data-interaction="fadeElIn">“Sophie and her best friends took a day trip to Napa. They left in the morning and were sloshed by midday. Best trip ever.”</p>
         
         
             <p data-interaction="fadeElIn"><sub>Sophie <br>On-demand member</sub></p>
@@ -385,7 +388,7 @@
     <div id="slide2" class="section__content--item slider-item section__content--testimonial">
         
         
-            <p data-interaction="fadeElIn"><q>Lorem ipum dolor sit amet consectetor domas lamprey oscipmentum.</q></p>
+            <p data-interaction="fadeElIn">“Lorem ipum dolor sit amet consectetor domas lamprey oscipmentum.”</p>
         
         
             <p data-interaction="fadeElIn"><sub>Audrey M. <br>On-demand member</sub></p>
@@ -403,7 +406,7 @@
     <div id="slide3" class="section__content--item slider-item section__content--testimonial">
         
         
-            <p data-interaction="fadeElIn"><q>Consectetor domas lamprey oscipmentum kremp lorem ipum dolor.</q></p>
+            <p data-interaction="fadeElIn">“Consectetor domas lamprey oscipmentum kremp lorem ipum dolor.”</p>
         
         
             <p data-interaction="fadeElIn"><sub>Aaron P. <br>On-demand member</sub></p>
@@ -453,6 +456,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/on-demand/vineyard.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/on-demand/vineyard.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/on-demand/vineyard.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/on-demand/vineyard.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -510,6 +516,9 @@
     
     
         <picture>
+            <source media="(min-width:1700px)" srcset="assets/image/on-demand/man-walking-into-plane.jpg">
+            <source media="(min-width:1100px)" srcset="assets/image/on-demand/man-walking-into-plane.jpg">
+            <source media="(min-width:600px)" srcset="assets/image/on-demand/man-walking-into-plane.jpg">
             <img class="bg__image section__bg--media section__bg--bg-image col-xs-12" src="assets/image/on-demand/man-walking-into-plane.jpg" alt="Surf Air description goes here for SEO and screen readers" />
         </picture>
     
@@ -575,38 +584,38 @@
 <script src="js/app.js"></script>
 <script src="js/polyfill.js"></script>
 <script type="text/javascript">
-    // console.log("Preload");
-    const mediaTypes = [ "jpg", "png", "gif", "mp4", "flv", "mov", "webm", "ogg" ],
-          loadMedia = new Array;
-    running = true;
-    document.querySelector("body").style.opacity = '0';
-    mediaTypes.forEach(function(current){
-        const currMedia = Array.from(
-            document.querySelectorAll(`*[src$=".${current}"]`)
-        );
-        if (currMedia.length > 0) {
-            currMedia.forEach(function(current){
-                if ( current.width >= ((window.innerWidth / 4)*3) ) {
-                    loadMedia.push(current)
-                }
-            })
-        }
-    });
-    loadMedia.forEach(function(current, index, arr){
-        const img = new Image();
-        img.src = current.src;
-        img.onload = function () { 
-            // console.log("Loaded " + current.src)
-        };
-        img.onerror = function () { 
-            // console.log("Failed " + current.src)
-        };
-    });
-    document.querySelector("body").style.opacity = '1';
-    running = false;
-    document.addEventListener("DOMContentLoaded", function() {
-        init(document.querySelector("section"))
-    });
+    console.log("Preload");
+    (function preloader(){
+        const mediaTypes = [ "jpg", "png", "gif", "mp4", "flv", "mov", "webm", "ogg" ],
+              loadMedia = new Array,
+              img = new Image();
+        running = true;
+        document.querySelector("body").style.opacity = '0';
+        mediaTypes.forEach(function(current){
+            const currMedia = Array.from(document.querySelectorAll(`*[src$=".${current}"]`));
+            if (currMedia.length > 0) {
+                currMedia.forEach(function(current){
+                    if ( current.width >= ((window.innerWidth / 4) * 3) ) {
+                        loadMedia.push(current)
+                    };
+                })
+            };
+        });
+        loadMedia.forEach(function(current, index, arr){
+            img.src = current.src;
+            img.onload = function () { 
+                // console.log("Loaded " + current.src)
+            };
+            img.onerror = function () { 
+                // console.log("Failed " + current.src)
+            };
+        });
+        document.querySelector("body").style.opacity = '1';
+        running = false;
+        document.addEventListener("DOMContentLoaded", function() {
+            init(document.querySelector("section"))
+        });
+    })();
 </script>
 </body>
 </html>

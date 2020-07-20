@@ -105,7 +105,7 @@
             "type": "testimonial",
             "autoplay": true,
             "1": {
-                "mainCopy": "<q>Sophie and her best friends took a day trip to Napa. They left in the morning and were sloshed by midday. Best trip ever.</q>",
+                "mainCopy": "“Sophie and her best friends took a day trip to Napa. They left in the morning and were sloshed by midday. Best trip ever.”",
                 "subCopy": "Sophie <br>On-demand member",
                 "media": [{
                     "mainImageSrc": "assets/image/on-demand/topo-map.png",
@@ -113,7 +113,7 @@
                 }]
             },
             "2": {
-                "mainCopy": "<q>Lorem ipum dolor sit amet consectetor domas lamprey oscipmentum.</q>",
+                "mainCopy": "“Lorem ipum dolor sit amet consectetor domas lamprey oscipmentum.”",
                 "subCopy": "Audrey M. <br>On-demand member",
                 "media": [{
                     "mainImageSrc": "assets/image/on-demand/topo-map.png",
@@ -121,7 +121,7 @@
                 }]
             },
             "3": {
-                "mainCopy": "<q>Consectetor domas lamprey oscipmentum kremp lorem ipum dolor.</q>",
+                "mainCopy": "“Consectetor domas lamprey oscipmentum kremp lorem ipum dolor.”",
                 "subCopy": "Aaron P. <br>On-demand member",
                 "media": [{
                     "mainImageSrc": "assets/image/on-demand/topo-map.png",

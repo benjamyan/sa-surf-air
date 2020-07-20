@@ -11,51 +11,68 @@ headerMenuActive = ()=> {                                           // activates
     };
 }
 headerMobileToggle = (event)=> {                                    // mobile navigation interactions
-    const fadeTargets = Array.from(
-            navDOM.mainText.concat(navDOM.subText, navDOM.subButton)
-          ),
-          fadeBlurEffect = document.querySelector(".header__nav .blur"),
-          tl = gsap.timeline();
-    if (!navDOM.nav.classList.contains("open")) {
-        navDOM.nav.classList.add("open");
-        fadeTargets.forEach(function(current){
-            current.style.opacity = 0;
-            current.style.transform = "translateY(50px)"
-        })
-        fadeBlurEffect.style.opacity = 0;
-        tl.to( fadeBlurEffect, {
-            duration: 1,
-            opacity: 1,
-            ease: "expo.out",
-            onComplete: clearDOMchanges,
-            onCompleteParams: [ fadeBlurEffect ]
-        }).to( fadeTargets, {
-            delay: 0.1,
-            duration: 1,
-            stagger: 0.15,
-            opacity: 1,
-            translateY: 0,
-            ease:"expo.out",
-            onComplete: clearDOMchanges,
-            onCompleteParams: [ fadeTargets ] 
-        }, "-=0.9")
-    } else {
-        const removeClass = ()=> navDOM.nav.classList.remove("open");
-        tl.to( fadeTargets, {
-            delay: 0,
-            duration: 1,
-            stagger: 0.1,
-            opacity: 0,
-            translateY: 50,
-            ease:"expo.out",
-            onComplete: removeClass
-        }).to( fadeBlurEffect, {
-            delay: 0,
-            duration: 1,
-            opacity: 0,
-            ease: "expo.out"
-        }, "-=1" )
-    }
+    return (function() {
+        if (!navRunning) {
+            navRunning = true;
+            const fadeTargets = Array.from(navDOM.mainText.concat(navDOM.subText, navDOM.subButton)),
+                  fadeBlurEffect = document.querySelector(".header__nav .blur"),
+                  tl = gsap.timeline();
+            if (!navDOM.nav.classList.contains("open")) {
+                navDOM.nav.classList.add("open");
+                navDOM.mobile.classList.add("mobile-open");
+                fadeTargets.forEach(function(current){
+                    current.style.opacity = 0;
+                });
+                fadeBlurEffect.style.opacity = 0;
+                tl.to( fadeBlurEffect, {
+                    duration: 0.5,
+                    opacity: 1,
+                    ease: "expo.out",
+                    onComplete: clearDOMchanges,
+                    onCompleteParams: [ fadeBlurEffect ]
+                }).to( fadeTargets, {
+                    duration: 0.01,
+                    translateY: 50,
+                    opacity: 0,
+                    ease: "none"
+                }, "-=0.49").to( fadeTargets, {
+                    duration: 1,
+                    stagger: 0.15,
+                    opacity: 1,
+                    translateY: 0,
+                    ease:"expo.out",
+                    onComplete: clearDOMchanges,
+                    onCompleteParams: [ fadeTargets ] 
+                });
+            } else {
+                const finalClose = ()=> {
+                    clearDOMchanges(fadeTargets);
+                    clearDOMchanges(navDOM.nav);
+                    navDOM.nav.classList.remove("open");
+                }
+                tl.to( fadeTargets, {
+                    duration: 1,
+                    stagger: 0.1,
+                    opacity: 0,
+                    translateY: 50,
+                    ease:"expo.out",
+                    onComplete: navDOM.mobile.classList.remove("mobile-open")
+                }).to( fadeBlurEffect, {
+                    duration: 1,
+                    opacity: 0,
+                    ease: "expo.out"
+                }, "-=0.9").to( navDOM.nav, {
+                    duration: 2,
+                    background: "rgba(0, 0, 0, 0)",
+                    ease: "expo.out",
+                    onComplete: finalClose
+                }, "-=1.9");
+            };
+            setTimeout(function(){
+                navRunning = false;
+            },2000);
+        }
+    })();
 }
 showCounter = (targetEl)=> {                                        // show the current breadcrumb counter spot on page
     const targetIdNum = targetEl.id.split("section")[1],
@@ -158,11 +175,120 @@ wipeInteraction = (targetEl)=> {
 /////////////////////////////////////////
 /////////////////////////////////////////
 // Slider element ///////////////////////
-carouselInteraction = (targetEl)=> {
-    //
+carouselInteraction = (prevTarget, nextTarget)=> {
+    console.log("carouselInteraction")
+    return (function() {
+        if (!running) {
+            running = true;
+            (function applyClasses(){
+                if (prevTarget) prevTarget.classList.remove("active-slide");
+                /*if (viewportWidth < 900) {
+                    setTimeout(function(){
+                        nextTarget.classList.add("active-slide");
+                    },1000);
+                } else {
+                    nextTarget.classList.add("active-slide");
+                };*/
+                nextTarget.classList.add("active-slide");
+            })();
+            (function applyAltText(){
+                const currSection = nextTarget.closest("section")
+                DOM.textTags.forEach(function(current){
+                    const currText = currSection.querySelector(current)
+                    if (currText) {
+                        const tl = gsap.timeline();
+                        tl.to( viewportWidth > 900 ? currText.children : currText, {
+                            duration: 0.01, 
+                            translateY: 0,
+                            opacity: 1,
+                            ease:"expo.out"
+                        }).to( viewportWidth > 900 ? currText.children : currText, {
+                            duration: 0.5,
+                            stagger: 0.15,
+                            opacity: 0,
+                            translateY: -25,
+                            ease:"expo.out"
+                        });
+                        setTimeout(function(){
+                            currText.innerHTML = nextTarget.querySelector("img").alt;
+                            if (viewportWidth > 900) {
+                                $(currText).splitLines({
+                                    tag: '<div class="split-line" style="display:block;line-height:inherit;opacity:0;">',
+                                    keepHtml: true,
+                                    width: "100%"
+                                });
+                            };
+                            tl.to( viewportWidth > 900 ? currText.children : currText, {
+                                duration: 0.01, 
+                                translateY: 25,
+                                ease:"expo.out"
+                            },"-=0.75").to(viewportWidth > 900 ? currText.children : currText, {
+                                duration: 0.5,
+                                stagger: 0.15,
+                                opacity: 1,
+                                translateY: 0,
+                                ease:"expo.out"
+                            });
+                        },500);
+                    }
+                });
+            })();
+            setTimeout(function(){
+                running = false;
+            },time)
+        }
+    })();
 }
 carouselSlider = (targetEl)=> {
     // console.log("carouselSlider");
+    let intervalTime = 10000, isHover = false;
+    const sliderItems = Array.from(targetEl.querySelectorAll(".slider-item")),
+          sliderInterval = setInterval(function() {
+            if (isHover === false/* && viewportWidth > 900*/) {
+                let activeSlide = targetEl.querySelector(".active-slide"),
+                    nextSlide = activeSlide.nextElementSibling;
+                    if (nextSlide.classList.contains("slider-nav")) nextSlide = sliderItems[0];
+                    carouselInteraction(activeSlide, nextSlide)
+            } else return
+          },intervalTime );
+    if (!targetEl.querySelector(".active-slide")) {
+        carouselInteraction(false, sliderItems[0]);
+    };
+    if (viewportWidth < 900) {
+        /*const targetDOM = targetEl.closest("center");
+        const touchEvents = ["touchstart","touchmove","touchend"];
+        touchEvents.forEach(function(current){
+            targetDOM.addEventListener(current, function() {
+                swipedetect(targetDOM, function(swipedir){
+                    const currActive = targetEl.querySelector(".active-slide");
+                    if (swipedir == "left" || swipedir =='none') {
+                        console.log("left")
+                        nextActive = currActive.nextElementSibling;
+                        if (!nextActive) nextActive = sliderItems[0];
+                        carouselInteraction(currActive, nextActive);
+                    };
+                    if (swipedir == "right") {
+                        console.log("right")
+                        nextActive = currActive.previousElementSibling;
+                        if (!nextActive) nextActive = sliderItems[sliderItems.length - 1];
+                        carouselInteraction(currActive, nextActive);
+                    };
+                });
+            }, false);
+        });*/
+    } else {
+        sliderItems.forEach(function(current){
+            current.onmouseover = ()=> isHover = true;
+            current.onmouseout = ()=> isHover = false;
+            current.addEventListener("click", function() {
+                isHover = true;
+                setTimeout(function(){
+                    isHover = false;
+                },intervalTime);
+                carouselInteraction(targetEl.querySelector(".active-slide"), current);
+            });
+        });
+    };      
 }
 testimonialChange = (targetEl)=> {
     // console.log("testimonialChange"); 
@@ -279,7 +405,6 @@ testimonialSlider = (targetEl)=> {
                     sliderItems.splice(index)
                 };
             });
-            console.log
             sliderNavItems.forEach(function(current){
                 current.onclick = function() {
                     if (!current.classList.contains("visible")) {

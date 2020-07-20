@@ -206,7 +206,7 @@
             width: 100%;
             background: rgba(0,0,0,0.2);
             .nav {
-                &__mobile {
+                &__mobile.mobile-open {
                     margin-right: -10px;
                     div:nth-child(1) {
                         transform: rotate(45deg) translateY(11px);
